@@ -101,6 +101,7 @@ local.properties
 Servers/
 */target/
 */connection.properties
+*/connection.project2.properties
 ## Angular ##
 # compiled output
 */dist
