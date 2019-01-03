@@ -18,6 +18,7 @@
 *.zip
 *.tar.gz
 *.rar
+*.properties
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -101,6 +102,7 @@ local.properties
 Servers/
 */target/
 */connection.properties
+*/connection.project2.properties
 ## Angular ##
 # compiled output
 */dist
