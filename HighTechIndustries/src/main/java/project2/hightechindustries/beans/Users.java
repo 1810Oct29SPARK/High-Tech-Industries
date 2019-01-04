@@ -2,6 +2,13 @@ package project2.hightechindustries.beans;
 
 import java.sql.Blob;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="USERS")
 public class Users {
 	
 	public Users(int id, String firstName, String lastName, String email, String phone, String employeeStatus,
@@ -35,16 +42,30 @@ public class Users {
 		this.salt = salt;
 	}
 	
+	public Users() {};
+	
+	@Id
+	@Column(name="USER_ID")
 	private int id;
+	@Column(name="FIRSTNAME")
 	private String firstName;
+	@Column(name="LASTNAME")
 	private String lastName;
+	@Column(name="EMAIL")
 	private String email;
+	@Column(name="PHONE")
 	private String phone;
+	@Column(name="EMPLOYEE_STATUS")
 	private String employeeStatus;
+	@Column(name="HELPED_BY")
 	private int helpedBy;
+	@Column(name="IMAGE")
 	private Blob picture;
+	@Column(name="USERNAME")
 	private String username;
+	@Column(name="PASSWORDHASH")
 	private String passHash;
+	@Column(name="SALT")
 	private String salt;
 	
 	public int getId() {
