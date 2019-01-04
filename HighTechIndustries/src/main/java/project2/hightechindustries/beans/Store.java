@@ -2,6 +2,13 @@ package project2.hightechindustries.beans;
 
 import java.sql.Blob;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="STORE")
 public class Store {
 	
 	public Store(int productId, String productName, String description, Double price, String specs, Blob image) {
@@ -14,11 +21,21 @@ public class Store {
 		this.image = image;
 	}
 	
+	public Store() {};
+
+	
+	@Id
+	@Column(name="PRODUCT_ID")
 	private int productId;
+	@Column(name="PRODUCT_NAME")
 	private String productName;
+	@Column(name="DESCRIPTION")
 	private String description;
+	@Column(name="AMOUNT")
 	private Double price;
+	@Column(name="SPECIFICATIONS")
 	private String specs;
+	@Column(name="IMAGE")
 	private Blob image;
 	
 	public int getProductId() {
