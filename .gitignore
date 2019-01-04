@@ -18,6 +18,7 @@
 *.zip
 *.tar.gz
 *.rar
+*.properties
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -132,9 +133,53 @@ testem.log
 #System Files
 .DS_Store
 
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
 
 
 # End of https://www.gitignore.io/api/angular
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -234,3 +279,5 @@ testem.log
 .DS_Store
 
 # End of https://www.gitignore.io/api/angular
+=======
+>>>>>>> a47e598ff24bc7d77da92a25c4c4b7d241528bcc
