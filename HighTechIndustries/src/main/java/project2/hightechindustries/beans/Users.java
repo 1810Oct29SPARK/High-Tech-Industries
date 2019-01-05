@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USERS")
+@Table(name="MEMBERS")
 public class Users {
 	
 	public Users(int id, String firstName, String lastName, String email, String phone, String employeeStatus,
@@ -47,9 +47,9 @@ public class Users {
 	@Id
 	@Column(name="USER_ID")
 	private int id;
-	@Column(name="FIRSTNAME")
+	@Column(name="FIRST_NAME")
 	private String firstName;
-	@Column(name="LASTNAME")
+	@Column(name="LAST_NAME")
 	private String lastName;
 	@Column(name="EMAIL")
 	private String email;
@@ -61,9 +61,9 @@ public class Users {
 	private int helpedBy;
 	@Column(name="IMAGE")
 	private Blob picture;
-	@Column(name="USERNAME")
+	@Column(name="MEMBER_NAME")
 	private String username;
-	@Column(name="PASSWORDHASH")
+	@Column(name="PASSWORD_HASH")
 	private String passHash;
 	@Column(name="SALT")
 	private String salt;
