@@ -31,7 +31,7 @@ public class Store {
 	private String productName;
 	@Column(name="DESCRIPTION")
 	private String description;
-	@Column(name="AMOUNT")
+	@Column(name="PRICE")
 	private Double price;
 	@Column(name="SPECIFICATIONS")
 	private String specs;
