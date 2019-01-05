@@ -15,6 +15,10 @@
 		<!-- update by default -->
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- locations of domain object mappings -->
+		<mapping class="project2.hightechindustries.beans.Calendar"></mapping>
+		<mapping class="project2.hightechindustries.beans.Cart"></mapping>
+		<mapping class="project2.hightechindustries.beans.Purchased"></mapping>
+		<mapping class="project2.hightechindustries.beans.RecentlyViewed"></mapping>
 		<mapping class="project2.hightechindustries.beans.Store"></mapping>
 		<mapping class="project2.hightechindustries.beans.Users"></mapping>
 	</session-factory>
