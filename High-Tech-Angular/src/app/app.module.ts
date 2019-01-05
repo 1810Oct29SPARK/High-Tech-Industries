@@ -12,7 +12,7 @@ import { FooterComponent } from './footer/footer.component';
     FooterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
