@@ -15,6 +15,11 @@ public class Purchased {
 		this.productId = productId;
 		this.quantity = quantity;
 	}
+	
+	public Purchased() {
+		
+	}
+	
 	@Id
 	@Column(name="MEMBER_ID")
 	int memberId;

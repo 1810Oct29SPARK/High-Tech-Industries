@@ -21,6 +21,10 @@ public class RecentlyViewed {
 		this.productId5 = productId5;
 	}
 	
+	public RecentlyViewed() {
+		
+	}
+	
 	@Id
 	@Column(name="VIEWED_ID")
 	int viewedId;

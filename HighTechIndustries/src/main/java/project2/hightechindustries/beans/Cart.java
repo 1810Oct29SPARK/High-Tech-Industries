@@ -15,6 +15,11 @@ public class Cart {
 		this.productId = productId;
 		this.quantity = quantity;
 	}
+	
+	public Cart() {
+		
+	}
+	
 	@Id
 	@Column(name="MEMBER_ID")
 	int memberId;

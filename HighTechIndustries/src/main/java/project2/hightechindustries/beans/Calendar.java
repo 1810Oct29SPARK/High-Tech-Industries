@@ -19,6 +19,10 @@ public class Calendar {
 		this.helpedBy = helpedBy;
 	}
 	
+	public Calendar() {
+		
+	}
+	
 	@Id
 	@Column(name="EVENT_ID")
 	int eventId;
