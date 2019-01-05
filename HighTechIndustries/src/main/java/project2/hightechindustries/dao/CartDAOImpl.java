@@ -14,20 +14,22 @@ public class CartDAOImpl implements CartDAO {
 	
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
 
+	//The memberId and productId here may or may NOT be the ones from Cart, so work still needs to be done here
 	@Override
-	public Cart getCartById(int id) {
+	public Cart getCartById(int memberId, int productId) {
 		Cart item = null;
 		try (Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
-			item = (Cart) s.get(Cart.class, id);
+			item = (Cart) s.get(Cart.class, productId);
 			tx.commit();
 			s.close();
 		}
 		return item;
 	}
 
+	//The int memberId here is likely NOT the same as the memberId from Cart (which is what I eventually want it to be)
 	@Override
-	public List<Cart> getAllCartItems() {
+	public List<Cart> getAllCartItemsById(int memberId) {
 		List<Cart> items = new ArrayList<>();
 		try (Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
@@ -48,14 +50,14 @@ public class CartDAOImpl implements CartDAO {
 		}
 	}
 
-	@Override
-	public void updateCart(Cart c) {
-		try (Session s = sf.getCurrentSession()){
-			Transaction tx = s.beginTransaction();
-			s.update(c);
-			s.close();
-		}
-	}
+//	@Override
+//	public void updateCart(Cart c) {
+//		try (Session s = sf.getCurrentSession()){
+//			Transaction tx = s.beginTransaction();
+//			s.update(c);
+//			s.close();
+//		}
+//	}
 
 	@Override
 	public void deleteItem(Cart c) {

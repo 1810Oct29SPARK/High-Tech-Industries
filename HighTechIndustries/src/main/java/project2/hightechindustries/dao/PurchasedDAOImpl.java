@@ -48,15 +48,15 @@ public class PurchasedDAOImpl implements PurchasedDAO {
 		}
 	}
 
-	@Override
-	public void updatePurchased(Purchased p) {
-		try (Session s = sf.getCurrentSession()){
-			Transaction tx = s.beginTransaction();
-			s.update(p);
-			tx.commit();
-			s.close();
-		}
-	}
+//	@Override
+//	public void updatePurchased(Purchased p) {
+//		try (Session s = sf.getCurrentSession()){
+//			Transaction tx = s.beginTransaction();
+//			s.update(p);
+//			tx.commit();
+//			s.close();
+//		}
+//	}
 
 	@Override
 	public void deletePurchased(Purchased p) {

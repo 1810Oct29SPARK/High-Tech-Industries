@@ -22,7 +22,7 @@ public class Cart {
 	
 	@Id
 	@Column(name="MEMBER_ID")
-	int memberId;
+	public int memberId;
 	@Column(name="PRODUCT_ID")
 	int productId;
 	@Column(name="QUANTITY")
