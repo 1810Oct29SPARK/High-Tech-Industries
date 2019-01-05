@@ -9,10 +9,9 @@ import javax.persistence.Table;
 @Table(name="RECENTLY_VIEWED")
 public class RecentlyViewed {
 	
-	public RecentlyViewed(int viewedId, int memberId, int productId1, int productId2, int productId3, int productId4,
+	public RecentlyViewed(int memberId, int productId1, int productId2, int productId3, int productId4,
 			int productId5) {
 		super();
-		this.viewedId = viewedId;
 		this.memberId = memberId;
 		this.productId1 = productId1;
 		this.productId2 = productId2;
@@ -21,13 +20,27 @@ public class RecentlyViewed {
 		this.productId5 = productId5;
 	}
 	
+	public RecentlyViewed(int productId1, int productId2, int productId3, int productId4,
+			int productId5) {
+		super();
+		this.productId1 = productId1;
+		this.productId2 = productId2;
+		this.productId3 = productId3;
+		this.productId4 = productId4;
+		this.productId5 = productId5;
+	}
+	
+	public RecentlyViewed(int memberId, int productId1) {
+		super();
+		this.memberId = memberId;
+		this.productId1 = productId1;
+	}
+	
 	public RecentlyViewed() {
 		
 	}
 	
 	@Id
-	@Column(name="VIEWED_ID")
-	int viewedId;
 	@Column(name="MEMBER_ID")
 	int memberId;
 	@Column(name="PRODUCT_ID_1")
@@ -41,12 +54,6 @@ public class RecentlyViewed {
 	@Column(name="PRODUCT_ID_5")
 	int productId5;
 	
-	public int getViewedId() {
-		return viewedId;
-	}
-	public void setViewedId(int viewedId) {
-		this.viewedId = viewedId;
-	}
 	public int getMemberId() {
 		return memberId;
 	}
@@ -85,7 +92,7 @@ public class RecentlyViewed {
 	}
 	@Override
 	public String toString() {
-		return "RecentlyViewed [viewedId=" + viewedId + ", memberId=" + memberId + ", productId1=" + productId1
+		return "RecentlyViewed [memberId=" + memberId + ", productId1=" + productId1
 				+ ", productId2=" + productId2 + ", productId3=" + productId3 + ", productId4=" + productId4
 				+ ", productId5=" + productId5 + "]";
 	}
