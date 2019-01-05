@@ -45,7 +45,7 @@ public class Users {
 	public Users() {};
 	
 	@Id
-	@Column(name="USER_ID")
+	@Column(name="MEMBER_ID")
 	private int id;
 	@Column(name="FIRST_NAME")
 	private String firstName;
