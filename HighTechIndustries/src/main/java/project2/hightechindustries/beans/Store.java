@@ -26,7 +26,7 @@ public class Store {
 	
 	@Id
 	@Column(name="PRODUCT_ID")
-	private int productId;
+	private Integer productId;
 	@Column(name="PRODUCT_NAME")
 	private String productName;
 	@Column(name="DESCRIPTION")

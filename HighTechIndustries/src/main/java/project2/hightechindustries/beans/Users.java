@@ -42,11 +42,13 @@ public class Users {
 		this.salt = salt;
 	}
 	
-	public Users() {};
+	public Users() {
+		
+	}
 	
 	@Id
 	@Column(name="MEMBER_ID")
-	private int id;
+	private Integer id;
 	@Column(name="FIRST_NAME")
 	private String firstName;
 	@Column(name="LAST_NAME")
@@ -58,7 +60,7 @@ public class Users {
 	@Column(name="EMPLOYEE_STATUS")
 	private String employeeStatus;
 	@Column(name="HELPED_BY")
-	private int helpedBy;
+	private Integer helpedBy;
 	@Column(name="IMAGE")
 	private Blob picture;
 	@Column(name="MEMBER_NAME")
