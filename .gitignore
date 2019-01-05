@@ -180,6 +180,7 @@ Thumbs.db
 
 # End of https://www.gitignore.io/api/angular
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -281,3 +282,5 @@ testem.log
 # End of https://www.gitignore.io/api/angular
 =======
 >>>>>>> a47e598ff24bc7d77da92a25c4c4b7d241528bcc
+=======
+>>>>>>> 5eef9e7fa61c3ff86601854f9ebcc6f1aefbdcd6
