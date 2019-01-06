@@ -6,7 +6,7 @@ import project2.hightechindustries.beans.Cart;
 
 public interface CartDAO {
 	
-	public Cart getCartById(int memberId, int productId);
+//	public Cart getCartById(int memberId, int productId);
 	public List<Cart> getAllCartItemsById(int memberId);
 	public void addCartItem(Cart c);
 //	public void updateCart(Cart c);
