@@ -1,5 +1,8 @@
 package project2.hightechindustries.main;
 
+<<<<<<< HEAD
+import project2.hightechindustries.beans.Users;
+=======
 import java.util.List;
 
 import project2.hightechindustries.beans.Cart;
@@ -8,10 +11,16 @@ import project2.hightechindustries.beans.RecentlyViewed;
 import project2.hightechindustries.dao.RecentlyViewedDAO;
 import project2.hightechindustries.dao.RecentlyViewedDAOImpl;
 import project2.hightechindustries.beans.Store;
+>>>>>>> fc8de352962853ec1bbe3a77a80a1b946ef551e5
 import project2.hightechindustries.dao.CartDAO;
 import project2.hightechindustries.dao.CartDAOImpl;
 import project2.hightechindustries.dao.PurchasedDAO;
 import project2.hightechindustries.dao.PurchasedDAOImpl;
+<<<<<<< HEAD
+import project2.hightechindustries.dao.RecentlyViewedDAO;
+import project2.hightechindustries.dao.RecentlyViewedDAOImpl;
+=======
+>>>>>>> fc8de352962853ec1bbe3a77a80a1b946ef551e5
 import project2.hightechindustries.dao.StoreDAO;
 import project2.hightechindustries.dao.StoreDAOImpl;
 import project2.hightechindustries.dao.UserDAO;
@@ -21,6 +30,16 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		
+<<<<<<< HEAD
+		UserDAO u = new UserDAOImpl();
+		StoreDAO s = new StoreDAOImpl();
+		RecentlyViewedDAO rv = new RecentlyViewedDAOImpl();
+		
+		CartDAO c = new CartDAOImpl();
+		PurchasedDAO p = new PurchasedDAOImpl();
+//		c.deleteItem(new Cart(1, 12, 54));
+		u.addUser(new Users("Bill", "Mye", null, null, "Customer", 1, null, "ShcienceGuy", null, null));
+=======
 //		UserDAO u = new UserDAOImpl();
 //		StoreDAO s = new StoreDAOImpl();
 //		RecentlyViewedDAO rv = new RecentlyViewedDAOImpl();
@@ -43,6 +62,7 @@ public class Driver {
 //			System.out.println(ca);
 //		}
 		
+>>>>>>> fc8de352962853ec1bbe3a77a80a1b946ef551e5
 //		System.out.println(u.getUserById(1));
 //		System.out.println(s.getStoreById(1));
 //		List<Users> usersList = u.getAllUsers();
@@ -62,7 +82,10 @@ public class Driver {
 //		}
 //		rv.addRecentlyViewed(new RecentlyViewed(3,11));
 //		System.out.println(p.getPurchasedItemById(1));
+<<<<<<< HEAD
+=======
 		
+>>>>>>> fc8de352962853ec1bbe3a77a80a1b946ef551e5
 		
 	}
 

@@ -4,7 +4,10 @@ import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -47,6 +50,8 @@ public class Users {
 	}
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "userSequence")
+	@SequenceGenerator(allocationSize = 1, name = "userSequence", sequenceName = "SQ_MEMBER_ID")
 	@Column(name="MEMBER_ID")
 	private Integer id;
 	@Column(name="FIRST_NAME")
