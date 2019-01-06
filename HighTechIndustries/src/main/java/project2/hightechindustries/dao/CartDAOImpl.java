@@ -15,31 +15,34 @@ public class CartDAOImpl implements CartDAO {
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
 
 	//The memberId and productId here may or may NOT be the ones from Cart, so work still needs to be done here
-	@Override
-	public Cart getCartById(int memberId, int productId) {
-		Cart item = null;
-		try (Session s = sf.getCurrentSession()){
-			Transaction tx = s.beginTransaction();
-			item = (Cart) s.get(Cart.class, productId);
-			tx.commit();
-			s.close();
-		}
-		return item;
-	}
+//	@Override
+//	public Cart getCartById(int memberId, int productId) {
+//		Cart item = null;
+//		try (Session s = sf.getCurrentSession()){
+//			Transaction tx = s.beginTransaction();
+//			item = (Cart) s.get(Cart.class, productId);
+//			tx.commit();
+//			s.close();
+//		}
+//		return item;
+//	}
 
 	//The int memberId here is likely NOT the same as the memberId from Cart (which is what I eventually want it to be)
+	// looks like you fixed it
 	@Override
 	public List<Cart> getAllCartItemsById(int memberId) {
 		List<Cart> items = new ArrayList<>();
 		try (Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
-			items = s.createQuery("from Cart").getResultList();
+			items = s.createQuery("from Cart C where C.memberId ="+memberId+"").getResultList();
 			tx.commit();
 			s.close();
 		}
 		return items;
 	}
 
+//	this works, when someone adds a store item to cart 
+//	the sequences both go, the SQL and the hibernate
 	@Override
 	public void addCartItem(Cart c) {
 		try (Session s = sf.getCurrentSession()){
@@ -50,6 +53,9 @@ public class CartDAOImpl implements CartDAO {
 		}
 	}
 
+//  If somebody want to change the amount of robots they have in cart
+//	Then we'd write this.
+	
 //	@Override
 //	public void updateCart(Cart c) {
 //		try (Session s = sf.getCurrentSession()){
@@ -64,6 +70,7 @@ public class CartDAOImpl implements CartDAO {
 		try (Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
 			s.delete(c);
+			tx.commit();
 			s.close();
 		}
 	}
