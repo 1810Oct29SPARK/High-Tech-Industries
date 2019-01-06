@@ -64,6 +64,7 @@ public class CartDAOImpl implements CartDAO {
 		try (Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
 			s.delete(c);
+			tx.commit();
 			s.close();
 		}
 	}

@@ -42,17 +42,17 @@ public class RecentlyViewed {
 	
 	@Id
 	@Column(name="MEMBER_ID")
-	int memberId;
+	private Integer memberId;
 	@Column(name="PRODUCT_ID_1")
-	int productId1;
+	private Integer productId1;
 	@Column(name="PRODUCT_ID_2")
-	int productId2;
+	private Integer productId2;
 	@Column(name="PRODUCT_ID_3")
-	int productId3;
+	private Integer productId3;
 	@Column(name="PRODUCT_ID_4")
-	int productId4;
+	private Integer productId4;
 	@Column(name="PRODUCT_ID_5")
-	int productId5;
+	private Integer productId5;
 	
 	public int getMemberId() {
 		return memberId;
