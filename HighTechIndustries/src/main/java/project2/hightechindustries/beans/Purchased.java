@@ -2,12 +2,23 @@ package project2.hightechindustries.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="PURCHASED")
 public class Purchased {
+	
+	public Purchased(int purchasedId, int memberId, int productId, int quantity) {
+		super();
+		this.purchasedId = purchasedId;
+		this.memberId = memberId;
+		this.productId = productId;
+		this.quantity = quantity;
+	}
 	
 	public Purchased(int memberId, int productId, int quantity) {
 		super();
@@ -16,11 +27,19 @@ public class Purchased {
 		this.quantity = quantity;
 	}
 	
-	public Purchased() {
-		
+	public Purchased() {	
+	}
+
+	public Purchased(int purchasedId) {
+		super();
+		this.purchasedId = purchasedId;
 	}
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="purchasedSequence")
+	@SequenceGenerator(allocationSize=1, name="purchasedSequence", sequenceName="SQ_PURCHASED_ID")
+	@Column(name="PURCHASED_ID")
+	int purchasedId;
 	@Column(name="MEMBER_ID")
 	int memberId;
 	@Column(name="PRODUCT_ID")

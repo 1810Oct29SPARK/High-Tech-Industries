@@ -3,6 +3,7 @@ package project2.hightechindustries.main;
 import java.util.List;
 
 import project2.hightechindustries.beans.Cart;
+import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.beans.RecentlyViewed;
 import project2.hightechindustries.dao.RecentlyViewedDAO;
 import project2.hightechindustries.dao.RecentlyViewedDAOImpl;
@@ -23,15 +24,24 @@ public class Driver {
 //		UserDAO u = new UserDAOImpl();
 //		StoreDAO s = new StoreDAOImpl();
 //		RecentlyViewedDAO rv = new RecentlyViewedDAOImpl();
-		CartDAO c = new CartDAOImpl();
+//		CartDAO c = new CartDAOImpl();
 		PurchasedDAO p = new PurchasedDAOImpl();
+		p.addPurchased(new Purchased(1,3,13));
+		p.addPurchased(new Purchased(1,6,23));
+		p.deletePurchased(new Purchased(5));
+		List<Purchased> purchasedList = p.getPurchasedItems(3);
+		for (Purchased pc : purchasedList) {
+			System.out.println(pc);
+		}
+		
+		
 //		c.getAllCartItemsById(2);
 //		c.deleteItem(new Cart(18));
 		
-		List<Cart> cartList = c.getAllCartItemsById(2);
-		for (Cart ca : cartList) {
-			System.out.println(ca);
-		}
+//		List<Cart> cartList = c.getAllCartItemsById(2);
+//		for (Cart ca : cartList) {
+//			System.out.println(ca);
+//		}
 		
 //		System.out.println(u.getUserById(1));
 //		System.out.println(s.getStoreById(1));
