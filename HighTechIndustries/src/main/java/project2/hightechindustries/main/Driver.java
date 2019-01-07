@@ -34,7 +34,10 @@ public class Driver {
 //		StoreDAO s = new StoreDAOImpl();
 //		RecentlyViewedDAO rv = new RecentlyViewedDAOImpl();
 //		CartDAO c = new CartDAOImpl();
+<<<<<<< HEAD
 		PurchasedDAO pu = new PurchasedDAOImpl();
+=======
+>>>>>>> 82d6065746c1b5d351e4fb3af3e729533500b23b
 		p.addPurchased(new Purchased(1,3,13));
 		p.addPurchased(new Purchased(1,6,23));
 		p.deletePurchased(new Purchased(5));
@@ -43,6 +46,11 @@ public class Driver {
 			System.out.println(pc);
 		}
 		
+<<<<<<< HEAD
+=======
+		
+
+>>>>>>> 82d6065746c1b5d351e4fb3af3e729533500b23b
 //		c.getAllCartItemsById(2);
 //		c.deleteItem(new Cart(18));
 		
