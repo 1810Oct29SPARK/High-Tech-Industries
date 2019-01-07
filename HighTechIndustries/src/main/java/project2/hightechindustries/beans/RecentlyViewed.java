@@ -36,6 +36,11 @@ public class RecentlyViewed {
 		this.productId1 = productId1;
 	}
 	
+	public RecentlyViewed(int memberId) {
+		super();
+		this.memberId = memberId;
+	}
+	
 	public RecentlyViewed() {
 		
 	}
@@ -54,37 +59,37 @@ public class RecentlyViewed {
 	@Column(name="PRODUCT_ID_5")
 	private Integer productId5;
 	
-	public int getMemberId() {
+	public Integer getMemberId() {
 		return memberId;
 	}
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
-	public int getProductId1() {
+	public Integer getProductId1() {
 		return productId1;
 	}
 	public void setProductId1(int productId1) {
 		this.productId1 = productId1;
 	}
-	public int getProductId2() {
+	public Integer getProductId2() {
 		return productId2;
 	}
 	public void setProductId2(int productId2) {
 		this.productId2 = productId2;
 	}
-	public int getProductId3() {
+	public Integer getProductId3() {
 		return productId3;
 	}
 	public void setProductId3(int productId3) {
 		this.productId3 = productId3;
 	}
-	public int getProductId4() {
+	public Integer getProductId4() {
 		return productId4;
 	}
 	public void setProductId4(int productId4) {
 		this.productId4 = productId4;
 	}
-	public int getProductId5() {
+	public Integer getProductId5() {
 		return productId5;
 	}
 	public void setProductId5(int productId5) {

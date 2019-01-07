@@ -8,8 +8,8 @@ public interface RecentlyViewedDAO {
 	
 	public RecentlyViewed getRecentlyViewedById(int id);
 	public List<RecentlyViewed> getAllRecentlyViewed();
+	public void newRecentlyViewed(RecentlyViewed rv);
 	public void addRecentlyViewed(RecentlyViewed rv);
-	public void updateRecentlyViewed(RecentlyViewed rv);
 	public void deleteRecentlyViewed(RecentlyViewed rv);
 
 }
