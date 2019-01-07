@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import project2.hightechindustries.beans.RecentlyViewed;
-import project2.hightechindustries.beans.Users;
 import project2.hightechindustries.util.HibernateUtil;
 
 public class RecentlyViewedDAOImpl implements RecentlyViewedDAO {
@@ -43,14 +42,45 @@ public class RecentlyViewedDAOImpl implements RecentlyViewedDAO {
 	@Override
 	public void addRecentlyViewed(RecentlyViewed rv) {
 		try(SessionFactory sf = HibernateUtil.getSessionFactory()) {
-			Session s = sf.getCurrentSession();
+			Session s = sf.openSession();
 			Transaction tx = s.beginTransaction();
-			RecentlyViewed ou = new RecentlyViewed();
-			rv.setProductId5(ou.getProductId5());
-			rv.setProductId4(ou.getProductId4());
-			rv.setProductId3(ou.getProductId3());
-			rv.setProductId2(ou.getProductId2());
-			s.persist(rv);
+			RecentlyViewedDAO rvt = new RecentlyViewedDAOImpl();
+			RecentlyViewed ou = rvt.getRecentlyViewedById(rv.getMemberId());
+			
+			if (ou.getProductId1() == null) {
+				ou.setProductId1(rv.getProductId1());
+			}
+			else if (ou.getProductId2() == null) {
+				ou.setProductId2(ou.getProductId1());
+				ou.setProductId1(rv.getProductId1());
+			}
+			else if (ou.getProductId3() == null) {
+				ou.setProductId3(ou.getProductId2());
+				ou.setProductId2(ou.getProductId1());
+				ou.setProductId1(rv.getProductId1());
+			}
+			
+			else if (ou.getProductId4() == null) {
+				ou.setProductId4(ou.getProductId3());
+				ou.setProductId3(ou.getProductId2());
+				ou.setProductId2(ou.getProductId1());
+				ou.setProductId1(rv.getProductId1());
+			}
+			else if (ou.getProductId5() == null) {
+				ou.setProductId5(ou.getProductId4());
+				ou.setProductId4(ou.getProductId3());
+				ou.setProductId3(ou.getProductId2());
+				ou.setProductId2(ou.getProductId1());
+				ou.setProductId1(rv.getProductId1());
+			}
+			else {
+				ou.setProductId5(ou.getProductId4());
+				ou.setProductId4(ou.getProductId3());
+				ou.setProductId3(ou.getProductId2());
+				ou.setProductId2(ou.getProductId1());
+				ou.setProductId1(rv.getProductId1());
+			}
+			s.saveOrUpdate(ou);
 			tx.commit();
 			s.close();
 		}
@@ -66,6 +96,16 @@ public class RecentlyViewedDAOImpl implements RecentlyViewedDAO {
 	public void deleteRecentlyViewed(RecentlyViewed rv) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void newRecentlyViewed(RecentlyViewed rv) {
+		try(Session s = sf.getCurrentSession()) {
+			Transaction tx = s.beginTransaction();
+			s.persist(rv);
+			tx.commit();
+			s.close();
+		}
 	}
 
 }
