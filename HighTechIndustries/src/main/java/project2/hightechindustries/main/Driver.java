@@ -1,8 +1,6 @@
 package project2.hightechindustries.main;
 
-
 import java.util.List;
-
 import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.beans.RecentlyViewed;
 import project2.hightechindustries.dao.CartDAO;
@@ -19,6 +17,10 @@ import project2.hightechindustries.dao.UserDAOImpl;
 public class Driver {
 	
 	public static void main(String[] args) {
+<<<<<<< HEAD
+		
+=======
+>>>>>>> b1ce5e4fd59e30c5348d448803fc28a9a9e355cf
 	}
 
 }
