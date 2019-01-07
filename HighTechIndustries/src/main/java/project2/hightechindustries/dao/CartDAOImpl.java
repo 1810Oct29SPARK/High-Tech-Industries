@@ -14,19 +14,6 @@ public class CartDAOImpl implements CartDAO {
 	
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
 
-	//The memberId and productId here may or may NOT be the ones from Cart, so work still needs to be done here
-//	@Override
-//	public Cart getCartById(int memberId, int productId) {
-//		Cart item = null;
-//		try (Session s = sf.getCurrentSession()){
-//			Transaction tx = s.beginTransaction();
-//			item = (Cart) s.get(Cart.class, productId);
-//			tx.commit();
-//			s.close();
-//		}
-//		return item;
-//	}
-
 	//The int memberId here is likely NOT the same as the memberId from Cart (which is what I eventually want it to be)
 	// looks like you fixed it
 	@Override
@@ -56,14 +43,15 @@ public class CartDAOImpl implements CartDAO {
 //  If somebody want to change the amount of robots they have in cart
 //	Then we'd write this.
 	
-//	@Override
-//	public void updateCart(Cart c) {
-//		try (Session s = sf.getCurrentSession()){
-//			Transaction tx = s.beginTransaction();
-//			s.update(c);
-//			s.close();
-//		}
-//	}
+	@Override
+	public void updateCart(Cart c) {
+		try (Session s = sf.getCurrentSession()){
+			Transaction tx = s.beginTransaction();
+			CartDAO cd = new CartDAOImpl();
+			s.update(c);
+			s.close();
+		}
+	}
 
 	@Override
 	public void deleteItem(Cart c) {

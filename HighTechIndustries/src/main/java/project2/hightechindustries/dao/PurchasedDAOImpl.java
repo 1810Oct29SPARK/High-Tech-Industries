@@ -109,7 +109,7 @@ public class PurchasedDAOImpl implements PurchasedDAO {
 	 * employees will also have this ability
 	 **/
 	@Override
-	public List<Purchased> getPurchasedItemsByMember(int memberId) {
+	public List<Purchased> getPurchasedItemsByMemberId(int memberId) {
 		List <Purchased> owned = new ArrayList<>();
 		try (Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
@@ -119,5 +119,6 @@ public class PurchasedDAOImpl implements PurchasedDAO {
 		}
 		return owned;
 	}
+
 
 }

@@ -1,5 +1,6 @@
 package project2.hightechindustries.main;
 
+
 import java.util.List;
 
 import project2.hightechindustries.beans.Users;
@@ -35,12 +36,12 @@ public class Driver {
 //		CartDAO c = new CartDAOImpl();
 		p.addPurchased(new Purchased(1,3,13));
 		p.addPurchased(new Purchased(1,6,23));
-		List<Purchased> purchasedList = p.getPurchasedItemsByMember(3);
+		List<Purchased> purchasedList = p.getPurchasedItemsByProductId(3);
 		for (Purchased pc : purchasedList) {
 			System.out.println(pc);
 		}
 		System.out.println("owned by mario");
-		List<Purchased> ownedList = p.getPurchasedItemsByMember(1);
+		List<Purchased> ownedList = p.getPurchasedItemsByMemberId(1);
 		for (Purchased pc : ownedList) {
 			System.out.println(pc);
 		}
