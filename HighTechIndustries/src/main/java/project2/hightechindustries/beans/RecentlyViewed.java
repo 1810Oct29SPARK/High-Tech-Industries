@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @Author (name="SBG")
+ * @Author (name="Sean, SBG")
  * each instance of this class will represent a row within the RECENTLY_VIEWED table
  * the constructors in this class are used in different ways, there is a no-args,
  * a userId only version which exists to generate a row in the table to avoid null-pointer,
