@@ -38,7 +38,7 @@ public class UserDAOImpl implements UserDAO {
 		List<Users> users = new ArrayList<>();
 		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
-			// Getting info from Users table
+			// Getting info from Users table using HQL
 			users = s.createQuery("from Users").getResultList();
 			// Will commit  everything and shows up in database if no errors
 			tx.commit();

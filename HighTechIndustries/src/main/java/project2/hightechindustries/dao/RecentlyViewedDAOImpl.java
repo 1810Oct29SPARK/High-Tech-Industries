@@ -34,12 +34,12 @@ public class RecentlyViewedDAOImpl implements RecentlyViewedDAO {
 
 	// Getting list of items for customers recently viewed
 	@Override
-	public List<RecentlyViewed> getAllRecentlyViewed() {
+	public List<RecentlyViewed> getAllRecentlyViewed(int memberId) {
 		List<RecentlyViewed> recViewed = new ArrayList<>();
-		try(Session s = sf.getCurrentSession()) {
+		try(Session s = sf.openSession()) {
 			Transaction tx = s.beginTransaction();
 			// grabbing information from database by using createQuery with 'from RecentlyViewed' query
-			recViewed = s.createQuery("from RecentlyViewed").getResultList();
+			recViewed = s.createQuery("from RecentlyViewed RV where RV.memberId = "+memberId+"").getResultList();
 			tx.commit();
 			s.close();
 		}
@@ -53,11 +53,11 @@ public class RecentlyViewedDAOImpl implements RecentlyViewedDAO {
 	// Adding item to database with 5 items, creating a new session within a session
 	@Override
 	public void addRecentlyViewed(RecentlyViewed rv) {
-		try(SessionFactory sf = HibernateUtil.getSessionFactory()) {
+		try(SessionFactory sfn = HibernateUtil.getSessionFactory()) {
 			// Creating a new session to get info from database
-			Session s = sf.openSession();
+			Session sn = sfn.openSession();
 			// Creating new transaction
-			Transaction tx = s.beginTransaction();
+			Transaction txn = sn.beginTransaction();
 			// Creating an instance of RecentlyViewed to get items from database by members id
 			RecentlyViewedDAO rvt = new RecentlyViewedDAOImpl();
 			RecentlyViewed ou = rvt.getRecentlyViewedById(rv.getMemberId());
@@ -112,9 +112,9 @@ public class RecentlyViewedDAOImpl implements RecentlyViewedDAO {
 			}
 			// Using saveOrUpdate to add a new item if there is nothing in the database (new user where they havn't seen 
 			// anything yet) or updating their info if there is already at least one item in their recently viewed
-			s.saveOrUpdate(ou);
-			tx.commit();
-			s.close();
+			sn.saveOrUpdate(ou);
+			txn.commit();
+			sn.close();
 		}
 	}
 
