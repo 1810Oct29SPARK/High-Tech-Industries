@@ -9,14 +9,14 @@ public interface UserDAO {
 	/**
 	 * @author (name=Esteban) (for method)
 	 * @author (name=Sean) (for JavaDoc)
-	 * 
+	 * This method is here so that a member (particularly an employee member) can view any particular client member.
 	 */
 	public Users getUserById(int id);
 	
 	/**
 	 * @author (name=Esteban) (for method)
 	 * @author (name=Sean) (for JavaDoc)
-	 * 
+	 * This method is here so that a member (particularly an employee member) can view a list of all other members.
 	 */
 	public List<Users> getAllUsers();
 	
