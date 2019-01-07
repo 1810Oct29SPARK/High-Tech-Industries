@@ -1,8 +1,13 @@
 package project2.hightechindustries.main;
 
+<<<<<<< HEAD
+
+=======
 import project2.hightechindustries.beans.Users;
+>>>>>>> bdffd882e21fe0ef2d7f4d7f52031fed5f6ac3f2
 import java.util.List;
 
+import project2.hightechindustries.beans.Users;
 import project2.hightechindustries.beans.Cart;
 import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.beans.RecentlyViewed;
@@ -13,8 +18,6 @@ import project2.hightechindustries.dao.CartDAO;
 import project2.hightechindustries.dao.CartDAOImpl;
 import project2.hightechindustries.dao.PurchasedDAO;
 import project2.hightechindustries.dao.PurchasedDAOImpl;
-import project2.hightechindustries.dao.RecentlyViewedDAO;
-import project2.hightechindustries.dao.RecentlyViewedDAOImpl;
 import project2.hightechindustries.dao.StoreDAO;
 import project2.hightechindustries.dao.StoreDAOImpl;
 import project2.hightechindustries.dao.UserDAO;
@@ -31,21 +34,35 @@ public class Driver {
 		CartDAO c = new CartDAOImpl();
 		PurchasedDAO p = new PurchasedDAOImpl();
 //		c.deleteItem(new Cart(1, 12, 54));
+<<<<<<< HEAD
+=======
 //		u.addUser(new Users("Bill", "Mye", null, null, "Customer", 1, null, "ShcienceGuy", null, null));
+>>>>>>> bdffd882e21fe0ef2d7f4d7f52031fed5f6ac3f2
 //		UserDAO u = new UserDAOImpl();
 //		StoreDAO s = new StoreDAOImpl();
 //		RecentlyViewedDAO rv = new RecentlyViewedDAOImpl();
 //		CartDAO c = new CartDAOImpl();
+<<<<<<< HEAD
+=======
+		PurchasedDAO pu = new PurchasedDAOImpl();
+>>>>>>> bdffd882e21fe0ef2d7f4d7f52031fed5f6ac3f2
 		p.addPurchased(new Purchased(1,3,13));
 		p.addPurchased(new Purchased(1,6,23));
-		p.deletePurchased(new Purchased(5));
 		List<Purchased> purchasedList = p.getPurchasedItems(3);
 		for (Purchased pc : purchasedList) {
 			System.out.println(pc);
 		}
+<<<<<<< HEAD
+		System.out.println("owned by mario");
+		List<Purchased> ownedList = p.getPurchasedItemsByMember(1);
+		for (Purchased pc : ownedList) {
+			System.out.println(pc);
+		}
+		System.out.println("owned by mario");
 		
 		
-
+=======
+>>>>>>> bdffd882e21fe0ef2d7f4d7f52031fed5f6ac3f2
 //		c.getAllCartItemsById(2);
 //		c.deleteItem(new Cart(18));
 		
@@ -74,7 +91,10 @@ public class Driver {
 //		rv.newRecentlyViewed(new RecentlyViewed(5));
 		rv.addRecentlyViewed(new RecentlyViewed(5,6));
 //		System.out.println(p.getPurchasedItemById(1));
+<<<<<<< HEAD
+=======
 		
+>>>>>>> bdffd882e21fe0ef2d7f4d7f52031fed5f6ac3f2
 	}
 
 }

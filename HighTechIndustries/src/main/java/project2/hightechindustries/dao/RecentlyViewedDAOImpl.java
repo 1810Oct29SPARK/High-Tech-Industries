@@ -87,15 +87,13 @@ public class RecentlyViewedDAOImpl implements RecentlyViewedDAO {
 	}
 
 	@Override
-	public void updateRecentlyViewed(RecentlyViewed rv) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void deleteRecentlyViewed(RecentlyViewed rv) {
-		// TODO Auto-generated method stub
-		
+		try(Session s = sf.getCurrentSession()) {
+			Transaction tx = s.beginTransaction();
+			s.delete(rv);
+			tx.commit();
+			s.close();
+		}
 	}
 
 	@Override

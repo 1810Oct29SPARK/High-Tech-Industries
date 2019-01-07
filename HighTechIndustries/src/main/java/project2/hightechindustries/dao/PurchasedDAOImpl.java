@@ -56,7 +56,7 @@ public class PurchasedDAOImpl implements PurchasedDAO {
 //			s.update(p);
 //			tx.commit();
 //			s.close();
-//		}
+//		} 
 //	}
 
 	@Override
@@ -67,6 +67,18 @@ public class PurchasedDAOImpl implements PurchasedDAO {
 			tx.commit();
 			s.close();
 		}
+	}
+
+	@Override
+	public List<Purchased> getPurchasedItemsByMember(int memberId) {
+		List <Purchased> owned = new ArrayList<>();
+		try (Session s = sf.getCurrentSession()){
+			Transaction tx = s.beginTransaction();
+			owned = s.createQuery("from Purchased P where P.memberId = "+memberId+"").getResultList();
+			tx.commit();
+			s.close();
+		}
+		return owned;
 	}
 
 }
