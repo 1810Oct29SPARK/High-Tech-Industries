@@ -9,6 +9,9 @@ import { NewsPageComponent } from './news-page/news-page.component';
 import { EmployeePageComponent} from './employee-page/employee-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { StorePageComponent } from './store-page/store-page.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileInfoComponent } from './profile-info/profile-info.component';
+import { ShowDirective } from './show.directive';
 
 const appRoutes: Routes = [
   {path: '', 
@@ -26,7 +29,7 @@ const appRoutes: Routes = [
   redirectTo: 'news',
   pathMatch: 'full'
   }
-]
+];
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ const appRoutes: Routes = [
     NewsPageComponent,
     EmployeePageComponent,
     ProfilePageComponent,
-    StorePageComponent
+    StorePageComponent,
+    ProfileComponent,
+    ProfileInfoComponent,
+    ShowDirective
   ],
   imports: [
     BrowserModule, 
