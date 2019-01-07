@@ -10,13 +10,23 @@ import org.hibernate.Transaction;
 import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.util.HibernateUtil;
 
+/**
+ * @Author (name="Sean,SBG")
+ * the PurchasedDAOImpl will be called only once either
+ * an employee or customer has logged in
+ **/
 public class PurchasedDAOImpl implements PurchasedDAO {
 
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
-	
+	/**
+	 * @Author (name="Sean,SBG")
+	 * the getPurchasedItemsByProductId method will
+	 * return a list of all the purchased units of the specified id
+	 * this is in case we need to issue a recall on a particular unit
+	 * or notify owners of potential issues 
+	 * */
 	@Override
-	//this method exists so we can figure out who owns a faulty robot
-	public List<Purchased> getPurchasedItems(int productId) {
+	public List<Purchased> getPurchasedItemsByProductId(int productId) {
 		List <Purchased> owners = new ArrayList<>();
 		try (Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
@@ -26,7 +36,14 @@ public class PurchasedDAOImpl implements PurchasedDAO {
 		}
 		return owners;
 	}
-
+	/** 
+	 * @Author (name="Sean,SBG")
+	 * the getAllPurchased method will return a list of all the
+	 * owned robots that anyone has purchased from our company
+	 * this is for spying purposes.
+	 * A Big Brother Type deal
+	 * 
+	 * */
 	@Override
 	public List<Purchased> getAllPurchased() {
 		List<Purchased> items = new ArrayList<>();
@@ -39,6 +56,14 @@ public class PurchasedDAOImpl implements PurchasedDAO {
 		return items;
 	}
 
+	/**
+	 * @Author (name="Sean,SBG")
+	 * the addPurchased method will be called when a transaction is successfully made.
+	 * things within the cart will be moved to the purchased table
+	 * this method will only be called from the cart, so there is no
+	 * need to check if the current object is in the cart
+	 * 
+	 **/
 	@Override
 	public void addPurchased(Purchased p) {
 		try (Session s = sf.getCurrentSession()){
@@ -56,9 +81,16 @@ public class PurchasedDAOImpl implements PurchasedDAO {
 //			s.update(p);
 //			tx.commit();
 //			s.close();
-//		}
+//		} 
 //	}
-
+	/**
+	 * @Author (name="Sean,SBG")
+	 * the deletePurchased method will go ahead and remove an entry from the DB
+	 * this will be called only be employees
+	 * this would happen if the customer returned the product or it can be confirmed
+	 * no longer existent
+	 * 
+	 **/
 	@Override
 	public void deletePurchased(Purchased p) {
 		try (Session s = sf.getCurrentSession()){
@@ -68,5 +100,25 @@ public class PurchasedDAOImpl implements PurchasedDAO {
 			s.close();
 		}
 	}
+
+	/**
+	 * @Author (name="Sean,SBG")
+	 * the getPurchasedItemsByMember method will return a list of all those
+	 * products owned by a customer.
+	 * this will be for showing a customer what they have.
+	 * employees will also have this ability
+	 **/
+	@Override
+	public List<Purchased> getPurchasedItemsByMemberId(int memberId) {
+		List <Purchased> owned = new ArrayList<>();
+		try (Session s = sf.getCurrentSession()){
+			Transaction tx = s.beginTransaction();
+			owned = s.createQuery("from Purchased P where P.memberId = "+memberId+"").getResultList();
+			tx.commit();
+			s.close();
+		}
+		return owned;
+	}
+
 
 }
