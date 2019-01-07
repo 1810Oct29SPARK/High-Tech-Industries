@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { ProfileInfoComponent } from '../profile-info/profile-info.component';
 
 @Component({
   selector: 'app-profile',
@@ -7,13 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
-  loadComponent(){
-    
+  showVar: boolean = true;
+  toggleChild() {
+    this.showVar = !this.showVar;
   }
 
-ngOnInit() {
-}
+
+  ngOnInit() {
+  }
 
 }

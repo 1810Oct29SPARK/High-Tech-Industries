@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { ShowDirective } from './show.directive';
 
+
 const appRoutes: Routes = [
   {path: '', 
   redirectTo: 'news',
@@ -51,6 +52,10 @@ const appRoutes: Routes = [
       appRoutes)
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ProfileInfoComponent,
+    // ProfileItemsComponent
+  ]
 })
 export class AppModule { }
