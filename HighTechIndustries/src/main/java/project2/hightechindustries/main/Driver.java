@@ -19,7 +19,6 @@ import project2.hightechindustries.dao.UserDAOImpl;
 public class Driver {
 	
 	public static void main(String[] args) {
-		
 	}
 
 }
