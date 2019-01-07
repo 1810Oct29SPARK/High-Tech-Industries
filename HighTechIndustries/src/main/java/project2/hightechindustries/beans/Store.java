@@ -7,6 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @Author (name="Sean, SBG")
+ * this POJO will represent a single row in the STORE
+ * the constructors in the class are a no args, and a full args constructor
+ */
 @Entity
 @Table(name="STORE")
 public class Store {
