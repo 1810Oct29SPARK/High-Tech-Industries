@@ -45,6 +45,11 @@ public class Users {
 		this.salt = salt;
 	}
 	
+	public Users(int id) {
+		super();
+		this.id = id;
+	}
+	
 	public Users() {
 		
 	}

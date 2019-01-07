@@ -1,7 +1,6 @@
 package project2.hightechindustries.main;
 
 
-import project2.hightechindustries.beans.Users;
 import java.util.List;
 
 import project2.hightechindustries.beans.Users;
@@ -30,29 +29,33 @@ public class Driver {
 		
 		CartDAO c = new CartDAOImpl();
 		PurchasedDAO p = new PurchasedDAOImpl();
+//		Users ou = u.getUserById(10);
+//		u.deleteUser(ou);
 //		c.deleteItem(new Cart(1, 12, 54));
-
-//		u.addUser(new Users("Bill", "Mye", null, null, "Customer", 1, null, "ShcienceGuy", null, null));
 //		UserDAO u = new UserDAOImpl();
 //		StoreDAO s = new StoreDAOImpl();
 //		RecentlyViewedDAO rv = new RecentlyViewedDAOImpl();
 //		CartDAO c = new CartDAOImpl();
-
-		PurchasedDAO pu = new PurchasedDAOImpl();
+//		PurchasedDAO pu = new PurchasedDAOImpl();
+//		p.addPurchased(new Purchased(1,3,13));
+//		p.addPurchased(new Purchased(1,6,23));
+//		p.deletePurchased(new Purchased(5));
+//		List<Purchased> purchasedList = p.getPurchasedItems(3);
+//		for (Purchased pc : purchasedList) {
+//			System.out.println(pc);
+//		}
 		p.addPurchased(new Purchased(1,3,13));
 		p.addPurchased(new Purchased(1,6,23));
-		List<Purchased> purchasedList = p.getPurchasedItems(3);
+		List<Purchased> purchasedList = p.getPurchasedItemsByProductId(3);
 		for (Purchased pc : purchasedList) {
 			System.out.println(pc);
 		}
 		System.out.println("owned by mario");
-		List<Purchased> ownedList = p.getPurchasedItemsByMember(1);
+		List<Purchased> ownedList = p.getPurchasedItemsByMemberId(1);
 		for (Purchased pc : ownedList) {
 			System.out.println(pc);
 		}
 		System.out.println("owned by mario");
-		
-		
 //		c.getAllCartItemsById(2);
 //		c.deleteItem(new Cart(18));
 		
@@ -79,9 +82,8 @@ public class Driver {
 //			System.out.println(rv);
 //		}
 //		rv.newRecentlyViewed(new RecentlyViewed(5));
-		rv.addRecentlyViewed(new RecentlyViewed(5,6));
+//		rv.addRecentlyViewed(new RecentlyViewed(5,6));
 //		System.out.println(p.getPurchasedItemById(1));
-
 	}
 
 }

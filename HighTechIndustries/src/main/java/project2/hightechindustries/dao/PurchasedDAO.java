@@ -13,13 +13,13 @@ public interface PurchasedDAO {
 	 *   It could also come in handy in case of a recall; employees in charge of recalled item can find how 
 	 *   many have been sold and to whom.
 	 */
-	public List<Purchased> getPurchasedItems(int id);
+	public List<Purchased> getPurchasedItemsByProductId(int productId);
 	
 	/**
 	 * @author (name=Sean)
 	 * This method is here so that members can view a history of what items they purchased.
 	 */
-	public List<Purchased> getPurchasedItemsByMember(int memberId);
+	public List<Purchased> getPurchasedItemsByMemberId(int memberId);
 	
 	/**
 	 * @author (name=Sean)
