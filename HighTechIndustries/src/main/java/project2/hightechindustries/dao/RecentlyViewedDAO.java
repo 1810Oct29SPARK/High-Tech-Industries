@@ -18,7 +18,7 @@ public interface RecentlyViewedDAO {
 	 * This method is here so members can view their entire Recently Viewed List
 	 * The list consists of the five most recently viewed items by the member
 	 */
-	public List<RecentlyViewed> getAllRecentlyViewed();
+	public List<RecentlyViewed> getAllRecentlyViewed(int memberId);
 	
 	/**
 	 * @author (name=Sean)
