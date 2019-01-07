@@ -10,7 +10,8 @@ export class ProfileInfoComponent implements OnInit {
 
   constructor() { }
 
-  @Input() showMePartially: boolean;
+  @Input() profileInfo: boolean;
+  @Input() profileItems: boolean;
 
   ngOnInit() {
   }

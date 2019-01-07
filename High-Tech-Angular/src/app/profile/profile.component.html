@@ -13,21 +13,17 @@
       <img src="assets/img/374114-download-free-scenic-backgrounds-1920x1080.jpg" style="height: 300px; width: 100%">
     </div>
     <div class="row">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn active">
-              <input type="radio" name="options" value="profile">Profile
-            </label>
-            <label class="btn">
-              <input type="radio" name="options" value="items">Items
-            </label>
-            <label class="btn">
-              <input type="radio" name="options" value=""> Something
-            </label>
-            <button type="button" label="Click" (click)="toggleChild()"></button>
-          </div>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <button type="button" label="Click" (click)="toggleInfo()">Profile</button>
+        <button type="button" label="Click" (click)="toggleItems()">Items</button>
+        <button type="button" label="Click" (click)="toggleStuff()">Stupid Stuff</button>
+      </div>
     </div>
     <div class="row">
-        <div (profileInfo)="showVar"></div>
+      <div>
+        <app-profile-info [profileInfo]="showInfo"></app-profile-info>
+        <app-profile-info [profileItems]="showItems"></app-profile-info>
+      </div>
     </div>
   </div>
 </div>

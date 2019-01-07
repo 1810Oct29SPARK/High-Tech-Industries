@@ -10,11 +10,17 @@ export class ProfileComponent implements OnInit {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
-  showVar: boolean = true;
-  toggleChild() {
-    this.showVar = !this.showVar;
+  showInfo: boolean = true;
+  showItems: boolean = false;
+  toggleInfo() {
+    this.showInfo = true;
+    this.showItems = false;
   }
 
+  toggleItems(){
+    this.showItems = true;
+    this.showInfo = false;
+  }
 
   ngOnInit() {
   }
