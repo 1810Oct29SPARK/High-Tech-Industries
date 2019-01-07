@@ -28,20 +28,22 @@ public class Driver {
 		
 		CartDAO c = new CartDAOImpl();
 		PurchasedDAO p = new PurchasedDAOImpl();
+//		Users ou = u.getUserById(10);
+//		u.deleteUser(ou);
 //		c.deleteItem(new Cart(1, 12, 54));
 //		u.addUser(new Users("Bill", "Mye", null, null, "Customer", 1, null, "ShcienceGuy", null, null));
 //		UserDAO u = new UserDAOImpl();
 //		StoreDAO s = new StoreDAOImpl();
 //		RecentlyViewedDAO rv = new RecentlyViewedDAOImpl();
 //		CartDAO c = new CartDAOImpl();
-		PurchasedDAO pu = new PurchasedDAOImpl();
-		p.addPurchased(new Purchased(1,3,13));
-		p.addPurchased(new Purchased(1,6,23));
-		p.deletePurchased(new Purchased(5));
-		List<Purchased> purchasedList = p.getPurchasedItems(3);
-		for (Purchased pc : purchasedList) {
-			System.out.println(pc);
-		}
+//		PurchasedDAO pu = new PurchasedDAOImpl();
+//		p.addPurchased(new Purchased(1,3,13));
+//		p.addPurchased(new Purchased(1,6,23));
+//		p.deletePurchased(new Purchased(5));
+//		List<Purchased> purchasedList = p.getPurchasedItems(3);
+//		for (Purchased pc : purchasedList) {
+//			System.out.println(pc);
+//		}
 //		c.getAllCartItemsById(2);
 //		c.deleteItem(new Cart(18));
 		
@@ -68,7 +70,7 @@ public class Driver {
 //			System.out.println(rv);
 //		}
 //		rv.newRecentlyViewed(new RecentlyViewed(5));
-		rv.addRecentlyViewed(new RecentlyViewed(5,6));
+//		rv.addRecentlyViewed(new RecentlyViewed(5,6));
 //		System.out.println(p.getPurchasedItemById(1));
 		
 	}
