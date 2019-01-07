@@ -32,7 +32,7 @@ public class UserDAOImplTest {
 	      //set the stockService to the portfolio
 	      portfolio.setStockService(stockServiceMock);
 
-	      double marketValue = portfolio.getMarketValue();
+	      String marketValue = portfolio.getMarketValue();
 
 	      //verify the market value to be 
 	      //10*50.00 + 100* 1000.00 = 500.00 + 100000.00 = 100500
