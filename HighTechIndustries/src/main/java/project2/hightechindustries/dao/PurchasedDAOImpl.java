@@ -15,15 +15,16 @@ public class PurchasedDAOImpl implements PurchasedDAO {
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
 	
 	@Override
-	public Purchased getPurchasedItemById(int id) {
-		Purchased item = null;
+	//this method exists so we can figure out who owns a faulty robot
+	public List<Purchased> getPurchasedItems(int productId) {
+		List <Purchased> owners = new ArrayList<>();
 		try (Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
-			item = (Purchased) s.get(Purchased.class, id);
+			owners = s.createQuery("from Purchased P where P.productId = "+productId+"").getResultList();
 			tx.commit();
 			s.close();
 		}
-		return item;
+		return owners;
 	}
 
 	@Override
