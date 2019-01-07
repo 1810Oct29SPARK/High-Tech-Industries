@@ -5,6 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @Author (name="SBG")
+ * each instance of this class will represent a row within the RECENTLY_VIEWED table
+ * the constructors in this class are used in different ways, there is a no-args,
+ * a userId only version which exists to generate a row in the table to avoid null-pointer,
+ * a userId+productId version which passes a productId for insertion into the DB,
+ * and a full constructor for grabbing data from DB 
+ **/
 @Entity
 @Table(name="RECENTLY_VIEWED")
 public class RecentlyViewed {
@@ -13,16 +21,6 @@ public class RecentlyViewed {
 			int productId5) {
 		super();
 		this.memberId = memberId;
-		this.productId1 = productId1;
-		this.productId2 = productId2;
-		this.productId3 = productId3;
-		this.productId4 = productId4;
-		this.productId5 = productId5;
-	}
-	
-	public RecentlyViewed(int productId1, int productId2, int productId3, int productId4,
-			int productId5) {
-		super();
 		this.productId1 = productId1;
 		this.productId2 = productId2;
 		this.productId3 = productId3;
@@ -42,7 +40,6 @@ public class RecentlyViewed {
 	}
 	
 	public RecentlyViewed() {
-		
 	}
 	
 	@Id
