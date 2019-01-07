@@ -3,17 +3,13 @@ package project2.hightechindustries.main;
 
 import java.util.List;
 
-import project2.hightechindustries.beans.Users;
-import project2.hightechindustries.beans.Cart;
-import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.beans.RecentlyViewed;
-import project2.hightechindustries.dao.RecentlyViewedDAO;
-import project2.hightechindustries.dao.RecentlyViewedDAOImpl;
-import project2.hightechindustries.beans.Store;
 import project2.hightechindustries.dao.CartDAO;
 import project2.hightechindustries.dao.CartDAOImpl;
 import project2.hightechindustries.dao.PurchasedDAO;
 import project2.hightechindustries.dao.PurchasedDAOImpl;
+import project2.hightechindustries.dao.RecentlyViewedDAO;
+import project2.hightechindustries.dao.RecentlyViewedDAOImpl;
 import project2.hightechindustries.dao.StoreDAO;
 import project2.hightechindustries.dao.StoreDAOImpl;
 import project2.hightechindustries.dao.UserDAO;
@@ -44,18 +40,18 @@ public class Driver {
 //		for (Purchased pc : purchasedList) {
 //			System.out.println(pc);
 //		}
-		p.addPurchased(new Purchased(1,3,13));
-		p.addPurchased(new Purchased(1,6,23));
-		List<Purchased> purchasedList = p.getPurchasedItemsByProductId(3);
-		for (Purchased pc : purchasedList) {
-			System.out.println(pc);
-		}
-		System.out.println("owned by mario");
-		List<Purchased> ownedList = p.getPurchasedItemsByMemberId(1);
-		for (Purchased pc : ownedList) {
-			System.out.println(pc);
-		}
-		System.out.println("owned by mario");
+//		p.addPurchased(new Purchased(1,3,13));
+//		p.addPurchased(new Purchased(1,6,23));
+//		List<Purchased> purchasedList = p.getPurchasedItemsByProductId(3);
+//		for (Purchased pc : purchasedList) {
+//			System.out.println(pc);
+//		}
+//		System.out.println("owned by mario");
+//		List<Purchased> ownedList = p.getPurchasedItemsByMemberId(1);
+//		for (Purchased pc : ownedList) {
+//			System.out.println(pc);
+//		}
+//		System.out.println("owned by mario");
 //		c.getAllCartItemsById(2);
 //		c.deleteItem(new Cart(18));
 		
@@ -77,10 +73,11 @@ public class Driver {
 		
 //		rv.addRecentlyViewed(new RecentlyViewed(3,1,2,3,4,5));
 //		System.out.println(rv.getRecentlyViewedById(1));
-//		List<RecentlyViewed> rvList = rv.getAllRecentlyViewed();
-//		for (RecentlyViewed rvs : rvList) {
-//			System.out.println(rv);
-//		}
+//		rv.addRecentlyViewed(new RecentlyViewed(8,9));
+		List<RecentlyViewed> rvList = rv.getAllRecentlyViewed();
+		for (RecentlyViewed rvs : rvList) {
+			System.out.println(rvs);
+		}
 //		rv.newRecentlyViewed(new RecentlyViewed(5));
 //		rv.addRecentlyViewed(new RecentlyViewed(5,6));
 //		System.out.println(p.getPurchasedItemById(1));
