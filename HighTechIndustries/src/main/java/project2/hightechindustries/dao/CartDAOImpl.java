@@ -12,10 +12,14 @@ import project2.hightechindustries.util.HibernateUtil;
 
 public class CartDAOImpl implements CartDAO {
 	
+	/**
+	 * @author Esteban
+	 */
+	
+	// Using SessionFactory to create a new session
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
 
-	//The int memberId here is likely NOT the same as the memberId from Cart (which is what I eventually want it to be)
-	// looks like you fixed it
+	// Getting back a list of items in the users cart
 	@Override
 	public List<Cart> getAllCartItemsById(int memberId) {
 		List<Cart> items = new ArrayList<>();
@@ -28,8 +32,7 @@ public class CartDAOImpl implements CartDAO {
 		return items;
 	}
 
-//	this works, when someone adds a store item to cart 
-//	the sequences both go, the SQL and the hibernate
+//	Add an item into the cart
 	@Override
 	public void addCartItem(Cart c) {
 		try (Session s = sf.getCurrentSession()){
@@ -40,9 +43,7 @@ public class CartDAOImpl implements CartDAO {
 		}
 	}
 
-//  If somebody want to change the amount of robots they have in cart
-//	Then we'd write this.
-	
+//  This still needs to be done by Stewart
 	@Override
 	public void updateCart(Cart c) {
 		try (Session s = sf.getCurrentSession()){
@@ -53,6 +54,7 @@ public class CartDAOImpl implements CartDAO {
 		}
 	}
 
+	// Detel items from the cart
 	@Override
 	public void deleteItem(Cart c) {
 		try (Session s = sf.getCurrentSession()){
