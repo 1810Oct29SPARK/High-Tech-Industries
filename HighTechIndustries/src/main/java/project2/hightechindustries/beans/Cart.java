@@ -8,6 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+ * @Author (name="Sean, SBG")
+ * each instance of this class is representative of a single row in the
+ * CART table of the DB.
+ * this POJO includes several different constructors
+ * a no args, an id constructor associated with the tables primary key,
+ * an idless constructor for insertion into a table,
+ * and a full args constructor for grabbing from a table.
+ **/
 @Entity
 @Table(name="CART")
 public class Cart {

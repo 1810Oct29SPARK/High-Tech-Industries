@@ -29,7 +29,6 @@ public class RecentlyViewedDAOImpl implements RecentlyViewedDAO {
 	@Override
 	public List<RecentlyViewed> getAllRecentlyViewed() {
 		List<RecentlyViewed> recViewed = new ArrayList<>();
-		//use a Query to retrieve all caves
 		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
 			recViewed = s.createQuery("from RecentlyViewed").getResultList();
