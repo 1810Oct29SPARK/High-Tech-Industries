@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import project2.hightechindustries.beans.Cart;
 import project2.hightechindustries.util.HibernateUtil;
@@ -32,37 +33,45 @@ public class CartDAOImpl implements CartDAO {
 		return items;
 	}
 
-//	Add an item into the cart
-	@Override
-	public void addCartItem(Cart c) {
+	/**
+	 * @author (name=Sean)
+	 */
+	public void addOrUpdateCartItem(Cart c) {
 		try (Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
-			s.persist(c);
+			Query copyCheck = s.createQuery("select C.productId from Cart C where C.productId ="+ c.getProductId() +"and C.memberId ="+ c.getMemberId()+"");
+			if (copyCheck == null) {
+				s.persist(c);
+			} else {
+				s.update(c);
+			}
 			tx.commit();
 			s.close();
+			
+			
 		}
 	}
-
-//  This still needs to be done by Stewart
-	@Override
-	public void updateCart(Cart c) {
+	
+	/**
+	 * @author (name=Sean)
+	 */
+	
+	public void deleteOrUpdateCartItem(Cart c) {
 		try (Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
-			CartDAO cd = new CartDAOImpl();
-			s.update(c);
-			s.close();
-		}
-	}
-
-	// Detel items from the cart
-	@Override
-	public void deleteItem(Cart c) {
-		try (Session s = sf.getCurrentSession()){
-			Transaction tx = s.beginTransaction();
-			s.delete(c);
+			Query copyCheck = s.createQuery("select C.productId from Cart C where C.productId ="+ c.getProductId()
+					+ "and C.memberId ="+ c.getMemberId()
+					+ "and C.quantity = 1");
+			if (copyCheck == null) {
+				s.update(c);
+			} else {
+				s.delete(c);
+			}
 			tx.commit();
 			s.close();
+			
+			
 		}
 	}
-
+	
 }
