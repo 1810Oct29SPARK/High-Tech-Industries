@@ -1,11 +1,48 @@
 <div *ngIf="profileInfo">
-  <p>
-    profile-info works!
-  </p>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Username</label>
+        </div>
+        <div class="col-md-6">
+            <p>{{ Username }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Name</label>
+        </div>
+        <div class="col-md-6">
+            <p>{{ firstname }} {{ lastname }} </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Email</label>
+        </div>
+        <div class="col-md-6">
+            <p>{{ email }} </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Phone</label>
+        </div>
+        <div class="col-md-6">
+            <p>{{ phone }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Employee helping you</label>
+        </div>
+        <div class="col-md-6">
+            <p>{{ employeeFirstname }} {{ employeeLastname }}</p>
+        </div>
+    </div>
 </div>
 
 <div *ngIf="profileItems">
   <p>
-    profile-items works!
+    Here are you dumb items that may kill you.
   </p>
 </div>

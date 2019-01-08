@@ -10,6 +10,8 @@ export class ProfileInfoComponent implements OnInit {
 
   constructor() { }
 
+  firstname: String = 'Someone\'s Name';
+
   @Input() profileInfo: boolean;
   @Input() profileItems: boolean;
 

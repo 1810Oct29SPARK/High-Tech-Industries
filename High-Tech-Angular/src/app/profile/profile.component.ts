@@ -10,14 +10,15 @@ export class ProfileComponent implements OnInit {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
+  firstname: String = 'Someone\'s Name';
+
   showInfo: boolean = true;
   showItems: boolean = false;
   toggleInfo() {
     this.showInfo = true;
     this.showItems = false;
   }
-
-  toggleItems(){
+  toggleItems() {
     this.showItems = true;
     this.showInfo = false;
   }
