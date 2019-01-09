@@ -62,7 +62,7 @@
                     <form>
                         <div class="form-group">
                             <label for="username" class="col-form-label">Username:</label>
-                            <input type="username" class="form-control" id="username" placeholder="Username" aria-label="Username"
+                            <input type="username" class="form-control" id="username1" placeholder="Username" aria-label="Username"
                                 data-toggle="tooltip" data-placement="bottom" title="Username" required="true">
                         </div>
                         <div class="form-group">
@@ -72,7 +72,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password" class="col-form-label">Password:</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password" aria-label="Password"
+                            <input type="password" class="form-control" id="password1" placeholder="Password" aria-label="Password"
                                 data-toggle="tooltip" data-placement="bottom" title="Password" required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.confirmPassword.pattern = this.value;">
                         </div>
                         <div class="form-group">
@@ -101,7 +101,7 @@
 
 <div *ngIf="profileItems">
     <div class="list-group">
-        <a *ngFor="let item of Items" href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        <a *ngFor="let item of Items" href="" class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ itemTitle }}</h5>
             </div>

@@ -1,9 +1,10 @@
 <div class="navcomp fixed-top">
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a routerLink="/news" routerLiinkActive="active">News</a>
-    <a routerLink="/store" routerLiinkActive="active">Store</a>
-    <a routerLink="/profile" routerLiinkActive="active">Profile</a>
+    <a routerLink="/news" routerLinkActive="active">News</a>
+    <a routerLink="/store" routerLinkActive="active">Store</a>
+    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+    <a *ngIf="isEmployee" routerLink="/employee" routerLinkActive="active">Employee</a>
     <div class="text-center">
       <button type="button" class="btn btn-outline-light my-2 my-sm-2 text-white mt-1" data-toggle="modal" data-target="#exampleModal"
         data-whatever="@mdo">Sign In</button>

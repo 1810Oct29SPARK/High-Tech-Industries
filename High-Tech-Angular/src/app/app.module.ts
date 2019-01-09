@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { ShowDirective } from './show.directive';
 import { StoreComponent } from './store/store.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 
 const appRoutes: Routes = [
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
     ProfileInfoComponent,
     ShowDirective,
     StoreComponent,
+    EmployeeComponent,
   ],
   imports: [
     BrowserModule, 
