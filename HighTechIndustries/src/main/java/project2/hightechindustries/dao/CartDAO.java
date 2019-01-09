@@ -15,21 +15,17 @@ public interface CartDAO {
 	/**
 	 * @author (name=Sean)
 	 * This method is here so that members can add items to their cart.
+	 * Or, if they've already bought that item before, it will increase the quantity associated with
+	 *  that item by one.
 	 */
-	public void addCartItem(Cart c);
-	
-	/**
-	 * @author (name-Sean)
-	 * This method is here so that when members add an item to their cart,
-	 *   the quantity associated with that memberId and productId will increase by the number of items added.
-	 * Likewise the quantity will decrease by the number deleted when a member removes a number of items from his cart.
-	 */
-	public void updateCart(Cart c);
+	public void addOrUpdateCartItem(Cart c);
 	
 	/**
 	 * @author (name=Sean)
 	 * This method is here so that members can remove items from their cart.
+	 * Or, if they have more than just one of that item remaining, it will decrease the quantity associated
+	 *  with that item by one.
 	 */
-	public void deleteItem(Cart c);
+	public void deleteOrUpdateCartItem(Cart c);
 
 }
