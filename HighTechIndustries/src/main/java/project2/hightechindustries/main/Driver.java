@@ -1,6 +1,8 @@
 package project2.hightechindustries.main;
 
 import java.util.List;
+
+import project2.hightechindustries.beans.Cart;
 import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.beans.RecentlyViewed;
 import project2.hightechindustries.dao.CartDAO;
@@ -17,6 +19,10 @@ import project2.hightechindustries.dao.UserDAOImpl;
 public class Driver {
 	
 	public static void main(String[] args) {
+		
+		Cart c = new Cart(2, 2, 10);
+		CartDAO cd = new CartDAOImpl();
+		cd.addOrUpdateCartItem(c);
 		
 	}
 
