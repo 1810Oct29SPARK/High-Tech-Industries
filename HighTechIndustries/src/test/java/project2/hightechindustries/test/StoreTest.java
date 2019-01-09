@@ -119,6 +119,7 @@ class StoreTest {
         Assert.assertEquals(store10, s.getAllStore().get(9));
         Assert.assertEquals(store11, s.getAllStore().get(10));
         Assert.assertEquals(store12, s.getAllStore().get(11));
+        
 	}
 
 	/**
