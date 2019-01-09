@@ -2,27 +2,28 @@ package project2.hightechindustries.main;
 
 import java.util.List;
 
-import project2.hightechindustries.beans.Cart;
-import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.beans.RecentlyViewed;
-import project2.hightechindustries.dao.CartDAO;
-import project2.hightechindustries.dao.CartDAOImpl;
-import project2.hightechindustries.dao.PurchasedDAO;
-import project2.hightechindustries.dao.PurchasedDAOImpl;
 import project2.hightechindustries.dao.RecentlyViewedDAO;
 import project2.hightechindustries.dao.RecentlyViewedDAOImpl;
-import project2.hightechindustries.dao.StoreDAO;
-import project2.hightechindustries.dao.StoreDAOImpl;
-import project2.hightechindustries.dao.UserDAO;
-import project2.hightechindustries.dao.UserDAOImpl;
 
 public class Driver {
 	
 	public static void main(String[] args) {
 		
-		Cart c = new Cart(2, 2, 10);
-		CartDAO cd = new CartDAOImpl();
-		cd.addOrUpdateCartItem(c);
+//		Cart c = new Cart(2, 2, 10);
+//		CartDAO cd = new CartDAOImpl();
+//		cd.addOrUpdateCartItem(c);
+		
+		RecentlyViewedDAO rv = new RecentlyViewedDAOImpl();
+		
+		rv.newRecentlyViewed(new RecentlyViewed(1));
+		
+//		System.out.println(rv.getRecentlyViewedById(8));
+//
+//		List<RecentlyViewed> recViewedL = rv.getAllRecentlyViewed(8);
+//		for (RecentlyViewed rvl : recViewedL) {
+//			System.out.println(rvl);
+//		}
 		
 	}
 
