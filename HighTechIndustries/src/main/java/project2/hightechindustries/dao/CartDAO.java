@@ -23,9 +23,7 @@ public interface CartDAO {
 	/**
 	 * @author (name=Sean)
 	 * This method is here so that members can remove items from their cart.
-	 * Or, if they have more than just one of that item remaining, it will decrease the quantity associated
-	 *  with that item by one.
 	 */
-	public void deleteOrUpdateCartItem(Cart c);
+	public void deleteCartItem(Cart c);
 
 }
