@@ -10,6 +10,7 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		
+<<<<<<< HEAD
 //		Cart c = new Cart(2, 2, 10);
 //		CartDAO cd = new CartDAOImpl();
 //		cd.addOrUpdateCartItem(c);
@@ -24,6 +25,13 @@ public class Driver {
 //		for (RecentlyViewed rvl : recViewedL) {
 //			System.out.println(rvl);
 //		}
+=======
+		Purchased p = new Purchased(1, 6, 5);
+		PurchasedDAO pd = new PurchasedDAOImpl();
+		pd.addOrUpdatePurchasedItem(p);
+		
+		
+>>>>>>> bcf5bf2d9602544d3cfe245a0de6e9ed408c9897
 		
 	}
 

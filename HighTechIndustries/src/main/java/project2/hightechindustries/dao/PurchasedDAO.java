@@ -37,7 +37,8 @@ public interface PurchasedDAO {
 	 * This method is here so that members can buy products from their cart
 	 *   (Thus adding them to the Purchased list)
 	 */
-	public void addPurchased(Purchased p);
+	
+	public void addOrUpdatePurchasedItem(Purchased p);
 	
 	/**
 	 * @author (name=Sean)
