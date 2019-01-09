@@ -12,6 +12,7 @@ import { StorePageComponent } from './store-page/store-page.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { ShowDirective } from './show.directive';
+import { StoreComponent } from './store/store.component';
 
 
 const appRoutes: Routes = [
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     StorePageComponent,
     ProfileComponent,
     ProfileInfoComponent,
-    ShowDirective
+    ShowDirective,
+    StoreComponent,
   ],
   imports: [
     BrowserModule, 
