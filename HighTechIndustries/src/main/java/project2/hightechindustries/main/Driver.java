@@ -2,28 +2,36 @@ package project2.hightechindustries.main;
 
 import java.util.List;
 
-import project2.hightechindustries.beans.Store;
-import project2.hightechindustries.dao.StoreDAO;
-import project2.hightechindustries.dao.StoreDAOImpl;
-import project2.hightechindustries.dao.UserDAO;
-import project2.hightechindustries.dao.UserDAOImpl;
+import project2.hightechindustries.beans.RecentlyViewed;
+import project2.hightechindustries.dao.RecentlyViewedDAO;
+import project2.hightechindustries.dao.RecentlyViewedDAOImpl;
 
 public class Driver {
 	
 	public static void main(String[] args) {
 		
-		UserDAO u = new UserDAOImpl();
-		StoreDAO s = new StoreDAOImpl();
-//		System.out.println(u.getUserById(1));
-//		System.out.println(s.getStoreById(1));
-//		List<Users> usersList = u.getAllUsers();
-//		for (Users us : usersList) {
-//			System.out.println(us);
+<<<<<<< HEAD
+//		Cart c = new Cart(2, 2, 10);
+//		CartDAO cd = new CartDAOImpl();
+//		cd.addOrUpdateCartItem(c);
+		
+		RecentlyViewedDAO rv = new RecentlyViewedDAOImpl();
+		
+		rv.newRecentlyViewed(new RecentlyViewed(1));
+		
+//		System.out.println(rv.getRecentlyViewedById(8));
+//
+//		List<RecentlyViewed> recViewedL = rv.getAllRecentlyViewed(8);
+//		for (RecentlyViewed rvl : recViewedL) {
+//			System.out.println(rvl);
 //		}
-		List<Store> storeList = s.getAllStore();
-		for (Store str : storeList) {
-			System.out.println(str);
-		}
+=======
+		Purchased p = new Purchased(1, 6, 5);
+		PurchasedDAO pd = new PurchasedDAOImpl();
+		pd.addOrUpdatePurchasedItem(p);
+		
+		
+>>>>>>> bcf5bf2d9602544d3cfe245a0de6e9ed408c9897
 		
 	}
 

@@ -4,9 +4,17 @@ import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+ * @Author (name="Sean, SBG")
+ * this POJO will represent a single row in the STORE
+ * the constructors in the class are a no args, and a full args constructor
+ */
 @Entity
 @Table(name="STORE")
 public class Store {
@@ -21,10 +29,20 @@ public class Store {
 		this.image = image;
 	}
 	
+	public Store(String productName, String description, Double price, String specs, Blob image) {
+		super();
+		this.productName = productName;
+		this.description = description;
+		this.price = price;
+		this.specs = specs;
+	}
+	
 	public Store() {};
 
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "storeSequence")
+	@SequenceGenerator(allocationSize = 1, name = "storeSequence", sequenceName = "SQ_STORE_ID")
 	@Column(name="PRODUCT_ID")
 	private Integer productId;
 	@Column(name="PRODUCT_NAME")

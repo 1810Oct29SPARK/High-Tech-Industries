@@ -2,12 +2,37 @@ package project2.hightechindustries.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+ * @Author (name="Sean, SBG")
+ * each instance of this class is representative of a single row in the
+ * CART table of the DB.
+ * this POJO includes several different constructors
+ * a no args, an id constructor associated with the tables primary key,
+ * an idless constructor for insertion into a table,
+ * and a full args constructor for grabbing from a table.
+ **/
 @Entity
 @Table(name="CART")
 public class Cart {
+	
+	public Cart(int cartId) {
+		super();
+		this.cartId=cartId;
+	}
+	
+	public Cart(int cartId, int memberId, int productId, int quantity) {
+		super();
+		this.cartId = cartId;
+		this.memberId = memberId;
+		this.productId = productId;
+		this.quantity = quantity;
+	}
 	
 	public Cart(int memberId, int productId, int quantity) {
 		super();
@@ -21,18 +46,28 @@ public class Cart {
 	}
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="cartSequence")
+	@SequenceGenerator(allocationSize=1, name="cartSequence", sequenceName="SQ_CART_ID")
+	@Column(name="CART_ID")
+	private Integer cartId;
 	@Column(name="MEMBER_ID")
-	int memberId;
+	private Integer memberId;
 	@Column(name="PRODUCT_ID")
-	int productId;
+	private Integer productId;
 	@Column(name="QUANTITY")
-	int quantity;
+	private Integer quantity;
 	
 	public int getMemberId() {
 		return memberId;
 	}
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
+	}
+	public int getCartId() {
+		return cartId;
+	}
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
 	}
 	public int getProductId() {
 		return productId;
@@ -48,7 +83,7 @@ public class Cart {
 	}
 	@Override
 	public String toString() {
-		return "Cart [memberId=" + memberId + ", productId=" + productId + ", quantity=" + quantity + "]";
+		return "Cart [cartId="+ cartId +", memberId=" + memberId + ", productId=" + productId + ", quantity=" + quantity + "]";
 	}
 
 }

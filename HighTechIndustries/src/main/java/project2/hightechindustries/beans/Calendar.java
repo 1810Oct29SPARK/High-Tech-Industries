@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @Author (name="Sean, SBG")
+ * We aren't using this yet
+ */
 @Entity
 @Table(name="CALENDAR")
 public class Calendar {
