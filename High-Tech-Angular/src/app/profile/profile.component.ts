@@ -12,8 +12,10 @@ export class ProfileComponent implements OnInit {
 
   firstname: String = 'Someone\'s Name';
 
+
   showInfo: boolean = true;
   showItems: boolean = false;
+  
   toggleInfo() {
     this.showInfo = true;
     this.showItems = false;

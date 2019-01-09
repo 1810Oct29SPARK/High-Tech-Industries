@@ -4,26 +4,27 @@
     <p class="lead"></p>
   </div>
 </div>
-<div class="row ml-2">
-  <div class="col-md-3">
-    <h1>this is the calendar</h1>
-  </div>
-  <div class="col-md-9">
-    <div class="row">
-      <img src="assets/img/374114-download-free-scenic-backgrounds-1920x1080.jpg" style="height: 300px; width: 100%">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <h1> Calendar </h1>
     </div>
-    <div class="row">
-      <div class="p-2 pl-4" style="width: 50%">
-        <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleInfo()">Profile</button>
+    <div class="col">
+      <div class="row" style="background-image: url(assets/img/374114-download-free-scenic-backgrounds-1920x1080.jpg); background-size: 100% 100%; height: 300px">
       </div>
-      <div class="p-2 pr-4" style="width: 50%">
-        <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleItems()">Items</button>
+      <div class="row">
+        <div class="col m-2">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleInfo()">Profile</button>
+        </div>
+        <div class="col m-2">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleItems()">Items</button>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="w-100">
-        <app-profile-info [profileInfo]="showInfo"></app-profile-info>
-        <app-profile-info [profileItems]="showItems"></app-profile-info>
+      <div class="row">
+        <div class="col">
+          <app-profile-info [profileInfo]="showInfo"></app-profile-info>
+          <app-profile-info [profileItems]="showItems"></app-profile-info>
+        </div>
       </div>
     </div>
   </div>

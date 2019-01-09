@@ -1,7 +1,7 @@
 <div *ngIf="profileInfo">
     <div class="row">
         <div class="col-md-6">
-            <label>Username</label>
+            <h3><label>Username</label></h3>
         </div>
         <div class="col-md-6">
             <p>{{ Username }}</p>
@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <label>Name</label>
+            <h3><label>Name</label></h3>
         </div>
         <div class="col-md-6">
             <p>{{ firstname }} {{ lastname }} </p>
@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <label>Email</label>
+            <h3><label>Email</label></h3>
         </div>
         <div class="col-md-6">
             <p>{{ email }} </p>
@@ -25,7 +25,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <label>Phone</label>
+            <h3><label>Phone</label></h3>
         </div>
         <div class="col-md-6">
             <p>{{ phone }}</p>
@@ -33,16 +33,80 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <label>Employee helping you</label>
+            <h3><label>Employee helping you</label></h3>
         </div>
         <div class="col-md-6">
             <p>{{ employeeFirstname }} {{ employeeLastname }}</p>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-2 m-2 ml-auto">
+            <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#updateModal">Update
+                Information</button>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update your information.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="username" class="col-form-label">Username:</label>
+                            <input type="username" class="form-control" id="username" placeholder="Username" aria-label="Username"
+                                data-toggle="tooltip" data-placement="bottom" title="Username" required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email"
+                                data-toggle="tooltip" data-placement="bottom" title="Email" required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">Password:</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password" aria-label="Password"
+                                data-toggle="tooltip" data-placement="bottom" title="Password" required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.confirmPassword.pattern = this.value;">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword" class="col-form-label">Confirm Password:</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
+                                aria-label="Confirm Password" data-toggle="tooltip" data-placement="bottom" title="Confirm Password"
+                                required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            </div>
+                            <div class="col">
+                                <button type="submit" name="submit" class="btn btn-primary btn-block">Save Updates</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 <div *ngIf="profileItems">
-  <p>
-    Here are you dumb items that may kill you.
-  </p>
+    <div class="list-group">
+        <a *ngFor="let item of Items" href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ itemTitle }}</h5>
+            </div>
+            <p class="mb-1">{{ itemDescription }}</p>
+            <small></small>
+        </a>
+    </div>
 </div>
