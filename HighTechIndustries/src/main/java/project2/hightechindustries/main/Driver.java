@@ -20,9 +20,11 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		
-		Cart c = new Cart(2, 2, 10);
-		CartDAO cd = new CartDAOImpl();
-		cd.addOrUpdateCartItem(c);
+		Purchased p = new Purchased(1, 6, 5);
+		PurchasedDAO pd = new PurchasedDAOImpl();
+		pd.addOrUpdatePurchasedItem(p);
+		
+		
 		
 	}
 

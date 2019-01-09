@@ -6,7 +6,9 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
+import project2.hightechindustries.beans.Cart;
 import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.util.HibernateUtil;
 
@@ -18,6 +20,26 @@ import project2.hightechindustries.util.HibernateUtil;
 public class PurchasedDAOImpl implements PurchasedDAO {
 
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
+	
+	
+	/**
+	 * @Author (name="Sean,SBG")
+	 * the getPurchasedItemsByMember method will return a list of all those
+	 * products owned by a customer.
+	 * this will be for showing a customer what they have.
+	 * employees will also have this ability
+	 **/
+	@Override
+	public List<Purchased> getPurchasedItemsByMemberId(int memberId) {
+		List <Purchased> owned = new ArrayList<>();
+		try (Session s = sf.getCurrentSession()){
+			Transaction tx = s.beginTransaction();
+			owned = s.createQuery("from Purchased P where P.memberId = "+memberId+"").getResultList();
+			tx.commit();
+			s.close();
+		}
+		return owned;
+	}
 	/**
 	 * @Author (name="Sean,SBG")
 	 * the getPurchasedItemsByProductId method will
@@ -64,31 +86,40 @@ public class PurchasedDAOImpl implements PurchasedDAO {
 	 * need to check if the current object is in the cart
 	 * 
 	 **/
-	@Override
-	public void addPurchased(Purchased p) {
-		try (Session s = sf.getCurrentSession()){
+	
+	
+	public void addOrUpdatePurchasedItem(Purchased p) {
+		Purchased updated = null;
+		try (Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
-			s.persist(p);
+			Query<Purchased> copyCheck = s.createQuery("from Purchased P where P.productId =" + p.getProductId() + "and P.memberId =" + p.getMemberId() + "");
+			List<Purchased> item = copyCheck.list();
+			if (item.isEmpty()) {
+				// just add a new cart item
+				s.persist(p);
+			} else {
+				// if in DB then get constructed version of query
+				Purchased result = item.get(0);
+				int priorQuantity = result.getQuantity();
+				int requestedQuantity = p.getQuantity();
+				int newQuantity = priorQuantity + requestedQuantity;
+				updated = new Purchased(p.getMemberId(), p.getProductId(), newQuantity);
+				s.persist(updated);
+				s.delete(result);
+			}
 			tx.commit();
 			s.close();
+
 		}
 	}
 
-//	@Override
-//	public void updatePurchased(Purchased p) {
-//		try (Session s = sf.getCurrentSession()){
-//			Transaction tx = s.beginTransaction();
-//			s.update(p);
-//			tx.commit();
-//			s.close();
-//		} 
-//	}
 	/**
 	 * @Author (name="Sean,SBG")
 	 * the deletePurchased method will go ahead and remove an entry from the DB
 	 * this will be called only be employees
 	 * this would happen if the customer returned the product or it can be confirmed
 	 * no longer existent
+	 * 
 	 * 
 	 **/
 	@Override
@@ -101,24 +132,7 @@ public class PurchasedDAOImpl implements PurchasedDAO {
 		}
 	}
 
-	/**
-	 * @Author (name="Sean,SBG")
-	 * the getPurchasedItemsByMember method will return a list of all those
-	 * products owned by a customer.
-	 * this will be for showing a customer what they have.
-	 * employees will also have this ability
-	 **/
-	@Override
-	public List<Purchased> getPurchasedItemsByMemberId(int memberId) {
-		List <Purchased> owned = new ArrayList<>();
-		try (Session s = sf.getCurrentSession()){
-			Transaction tx = s.beginTransaction();
-			owned = s.createQuery("from Purchased P where P.memberId = "+memberId+"").getResultList();
-			tx.commit();
-			s.close();
-		}
-		return owned;
-	}
+	
 
 
 }
