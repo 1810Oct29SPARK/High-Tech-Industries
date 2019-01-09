@@ -1,65 +1,50 @@
-<div class="fixed-top">
-  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: black">
-    <a class="navbar-brand" href="#">High Tech Industries</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExample04">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown04">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-      </ul>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2"
-        aria-expanded="false" aria-controls="multiCollapseExample2" style="margin-right: 20px">Sign In</button>
+<div class="navcomp fixed-top">
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a routerLink="/news" routerLinkActive="active">News</a>
+    <a routerLink="/store" routerLinkActive="active">Store</a>
+    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+    <a *ngIf="isEmployee" routerLink="/employee" routerLinkActive="active">Employee</a>
+    <div class="text-center">
+      <button type="button" class="btn btn-outline-light my-2 my-sm-2 text-white mt-1" data-toggle="modal" data-target="#exampleModal"
+        data-whatever="@mdo">Sign In</button>
     </div>
-  </nav>
-  <div class="fixed-top" style="margin-top: 50px">
-    <div class="row">
-      <div class="col-md-10"></div>
-      <div class="col-md-2">
-        <div class="collapse multi-collapse" id="multiCollapseExample2">
-          <div class="card card-body">
-            <form class="form-signin">
-              <div class="text-center mb-4">
-                <img class="mb-4" src="/docs/4.2/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-                <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
-              </div>
+  </div>
+  <div id="main">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+  </div>
+</div>
 
-              <div class="form-label-group">
-                <input type="username" id="inputEmail" class="form-control" placeholder="Username" required=""
-                  autofocus="">
-                <label for="inputEmail">Username</label>
-              </div>
 
-              <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-                <label for="inputPassword">Password</label>
-              </div>
-
-              <div class="checkbox mb-3">
-                <label>
-                  <input type="checkbox" value="remember-me"> Remember me
-                </label>
-              </div>
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-              <p class="mt-5 mb-3 text-muted text-center">© 2018-2019</p>
-            </form>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Please Sign In</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="">
+          <div class="form-group">
+            <label for="username" class="col-form-label">Username:</label>
+            <input type="username" class="form-control" id="username" placeholder="Username" aria-label="Username"
+              data-toggle="tooltip" data-placement="bottom" title="Username" required="true">
           </div>
+          <div class="form-group">
+            <label for="password" class="col-form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" aria-label="Password"
+              data-toggle="tooltip" data-placement="bottom" title="Password" required="true">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div class="col">
+          <button type="button" class="btn btn-secondary btn-block">Create an Account</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-primary btn-block">Sign In</button>
         </div>
       </div>
     </div>
