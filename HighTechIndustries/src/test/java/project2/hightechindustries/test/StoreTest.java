@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import project2.hightechindustries.beans.Store;
-import project2.hightechindustries.beans.Store;
 import project2.hightechindustries.dao.StoreDAO;
 import project2.hightechindustries.dao.StoreDAOImpl;
 
@@ -18,6 +17,7 @@ class StoreTest {
 	 */
 	@Test
 	public void getStoreItem() {
+		
 		Store store = new Store();
 		store.setProductId(1);
 		store.setProductName("Silver Jacket");
@@ -34,6 +34,7 @@ class StoreTest {
 	 */
 	@Test
 	public void listStoreItems() {
+		
         Store store1 = new Store();
 		store1.setProductId(1);
 		store1.setProductName("Silver Jacket");
@@ -118,6 +119,58 @@ class StoreTest {
         Assert.assertEquals(store10, s.getAllStore().get(9));
         Assert.assertEquals(store11, s.getAllStore().get(10));
         Assert.assertEquals(store12, s.getAllStore().get(11));
+	}
+
+	/**
+	 * @author Esteban
+	 * Get a list of all Store items, have to first create an Object of Store with expected list of all items and then
+	 * evaluate whether the returned object with a list of store is correct
+	 */
+//	@Test
+//	public void addStoreTest() {
+//	
+//		s.addStore(new Store("Sangvis Ferri unit", "Very basic unit that shoots everything", 500.49, "Good accuracy but weak", null));
+//
+//      Store store = new Store();
+//		store.setProductId(22);
+//		store.setProductName("Sangvis Ferri unit");
+//		store.setDescription("Very basic unit that shoots everything");
+//		store.setPrice(500.49);
+//		store.setSpecs("Good accuracy but weak");
+//	
+//		Assert.assertEquals(store, s.getStoreById(22));
+//	}
+	
+	/**
+	 * @author Esteban
+	 * Updates the information of an item including the product id. Need to supply every bit of information to change it.
+	 */
+//	@Test
+//	public void updateStoreTest() {
+//	
+//		s.updateStore(new Store(21,"Sangvis Ferri Vespid", "Very basic unit that shoots everything", 420.69, "Good accuracy but weak", null));
+//		
+//		Store store = new Store();
+//		store.setProductId(21);
+//		store.setProductName("Sangvis Ferri Vespid");
+//		store.setDescription("Very basic unit that shoots everything");
+//		store.setPrice(420.69);
+//		store.setSpecs("Good accuracy but weak");
+//		
+//		Assert.assertEquals(store, s.getStoreById(21));
+//	}
+	/**
+	 * @author Esteban
+	 * Delete an item by getting an object with the items id and then pass the object into the delete method
+	 */
+	@Test
+	public void deleteStoreTest() {
+		
+		Store sto = s.getStoreById(22);
+		s.deleteStore(sto);
+		
+		Assert.assertNull(s.getStoreById(22));
+		
 	}
 
 }
