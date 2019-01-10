@@ -39,9 +39,6 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.0.Final</version>
 		</dependency>
-<<<<<<< HEAD
-=======
-		<!-- This dependency is for JUnit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -55,7 +52,6 @@
 			<version>2.10.0</version>
 			<scope>test</scope>
 		</dependency>
->>>>>>> b09e5ca1112f9e6ca86a73c5b67d61895f00ba53
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -65,11 +61,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>5.1.3.RELEASE</version>
-<<<<<<< HEAD
-</dependency>
-=======
 		</dependency>
-
->>>>>>> b09e5ca1112f9e6ca86a73c5b67d61895f00ba53
 	</dependencies>
 </project>
