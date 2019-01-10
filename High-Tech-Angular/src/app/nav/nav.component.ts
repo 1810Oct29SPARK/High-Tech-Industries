@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
 
   constructor() { }
+
+  @Input() isEmployee: boolean = true;
+
+  showEmployeeTab: boolean;
 
   ngOnInit() {
   }

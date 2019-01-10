@@ -4,9 +4,17 @@ import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
+/**
+ * @Author (name="Sean, SBG")
+ * each instance of this class represents a row within the members table
+ * there are serveral constructors, a no args, an id constructor for searching
+ * a idLess constructor for insertion, and a full constructor for grabbing data from DB 
+ **/
 @Entity
 @Table(name="MEMBERS")
 public class Users {
@@ -42,11 +50,18 @@ public class Users {
 		this.salt = salt;
 	}
 	
+	public Users(int id) {
+		super();
+		this.id = id;
+	}
+	
 	public Users() {
 		
 	}
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "userSequence")
+	@SequenceGenerator(allocationSize = 1, name = "userSequence", sequenceName = "SQ_MEMBER_ID")
 	@Column(name="MEMBER_ID")
 	private Integer id;
 	@Column(name="FIRST_NAME")
@@ -141,24 +156,6 @@ public class Users {
 		return "Users [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", phone=" + phone + ", employeeStatus=" + employeeStatus + ", helpedBy=" + helpedBy + ", picture="
 				+ picture + ", username=" + username + ", passHash=" + passHash + ", salt=" + salt + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((employeeStatus == null) ? 0 : employeeStatus.hashCode());
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + helpedBy;
-		result = prime * result + id;
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((passHash == null) ? 0 : passHash.hashCode());
-		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + ((picture == null) ? 0 : picture.hashCode());
-		result = prime * result + ((salt == null) ? 0 : salt.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
 	}
 
 	@Override
