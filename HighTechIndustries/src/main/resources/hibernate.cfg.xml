@@ -2,8 +2,6 @@
 <!DOCTYPE hibernate-configuration SYSTEM 
 "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <!-- the above specifies the DTD (or Document Type Definition) for a Hibernate Config File -->
-<!-- this file is considered "valid" if it conforms to the allowed elements listed in the DTD (or XSD, XML Schema Definition)-->
-<!-- an XML file can be "well-formed" without being "valid"  -->
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
@@ -14,7 +12,11 @@
 		<!-- choose whether to start fresh or update existing ddl -->
 		<!-- update by default -->
 		<property name="hibernate.hbm2ddl.auto">update</property>
-		<!-- locations of domain object mappings -->
+		<!-- locations of beans mappings -->
+		<mapping class="project2.hightechindustries.beans.Calendar"></mapping>
+		<mapping class="project2.hightechindustries.beans.Cart"></mapping>
+		<mapping class="project2.hightechindustries.beans.Purchased"></mapping>
+		<mapping class="project2.hightechindustries.beans.RecentlyViewed"></mapping>
 		<mapping class="project2.hightechindustries.beans.Store"></mapping>
 		<mapping class="project2.hightechindustries.beans.Users"></mapping>
 	</session-factory>
