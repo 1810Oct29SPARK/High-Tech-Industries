@@ -13,6 +13,7 @@
       <div class="row" style="background-image: url(assets/img/374114-download-free-scenic-backgrounds-1920x1080.jpg); 
       background-size: 100% 100%; height: 30vh; min-height: 200px ">
       </div>
+      <!-- two buttons that toggle between User Info and User Items -->
       <div class="row">
         <div class="col m-2">
           <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleInfo()">Profile</button>
@@ -21,6 +22,7 @@
           <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleItems()">Items</button>
         </div>
       </div>
+      <!-- only shows if showIfo is true (determined by which button is pressed from above) -->
       <div class="row">
         <div class="col">
             <div *ngIf="showInfo">
@@ -64,6 +66,7 @@
                         <p>{{ employeeFirstname }} {{ employeeLastname }}</p>
                     </div>
                 </div>
+                <!-- used to open a modal that allows the user to update their information -->
                 <div class="row">
                     <div class="col-md-2 m-2 ml-auto">
                         <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#updateModal">Update
@@ -73,7 +76,7 @@
             
             
             
-            
+            <!-- the mpdal that opens up when the Update Information is pressed -->
                 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -123,7 +126,7 @@
             
             
             </div>
-            
+            <!-- displays the user's items if the Items button is pressed above -->
             <div *ngIf="showItems">
                 <div class="list-group">
                     <a *ngFor="let item of Items" href="" class="list-group-item list-group-item-action flex-column align-items-start">

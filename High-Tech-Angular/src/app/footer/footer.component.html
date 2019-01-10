@@ -1,19 +1,22 @@
 <footer class="page-footer" style="background-color: gainsboro">
   <div class="container">
-    <div class="row text-center d-flex justify-content-center pt-5 mb-3">
-      <div class="col-md-2 mb-3">
+    <div class="row text-center d-flex justify-content-center pt-4 mb-2">
+      <div class="col-md-2 mb-2">
         <h6 class="text-uppercase font-weight-bold">
-          <a href="#!" style="color: black">About us</a>
+            <button type="button" class="btn btn-outline-dark my-2 my-sm-2 mt-1" data-toggle="modal"
+            data-target="#donateModal">Donate your Robot</button>
         </h6>
       </div>
-      <div class="col-md-2 mb-3">
+      <div class="col-md-2 mb-2">
         <h6 class="text-uppercase font-weight-bold">
-          <a href="#!" style="color: black">Products</a>
+            <button type="button" class="btn btn-outline-dark my-2 my-sm-2 mt-1" data-toggle="modal"
+            data-target="#reportBugModal">Report a Bug</button>
         </h6>
       </div>
-      <div class="col-md-2 mb-3">
+      <div class="col-md-2 mb-2">
         <h6 class="text-uppercase font-weight-bold">
-          <a href="#!" style="color: black">Contact Us</a>
+            <button type="button" class="btn btn-outline-dark my-2 my-sm-2 mt-1" data-toggle="modal"
+            data-target="#contactModal">Contact Us</button>
         </h6>
       </div>
     </div>
@@ -32,3 +35,60 @@
   <div class="footer-copyright text-center py-3">© 2018 High Tech Industries
   </div>
 </footer>
+
+<div class="modal fade" id="reportBugModal" tabindex="-1" role="dialog" aria-labelledby="reportBugModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Report Bug</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="firstname" class="col-form-label">Firstname:</label>
+            <input type="text" class="form-control" id="firstname" placeholder="Firstname" aria-label="Firstname"
+              data-toggle="tooltip" data-placement="bottom" title="Firstname" required="true">
+          </div>
+          <div class="form-group">
+            <label for="lastname" class="col-form-label">Lastname:</label>
+            <input type="text" class="form-control" id="lastname" placeholder="Lastname" aria-label="Lastname"
+              data-toggle="tooltip" data-placement="bottom" title="Lastname" required="true">
+          </div>
+          <div class="form-group">
+            <label for="username" class="col-form-label">Username:</label>
+            <input type="username" class="form-control" id="username1" placeholder="Username" aria-label="Username"
+              data-toggle="tooltip" data-placement="bottom" title="Username" required="true">
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-form-label">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email" data-toggle="tooltip"
+              data-placement="bottom" title="Email" required="true">
+          </div>
+          <div class="form-group">
+            <label for="password" class="col-form-label">Password:</label>
+            <input type="password" class="form-control" id="password1" placeholder="Password" aria-label="Password"
+              data-toggle="tooltip" data-placement="bottom" title="Password" required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.confirmPassword.pattern = this.value;">
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword" class="col-form-label">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" aria-label="Confirm Password"
+              data-toggle="tooltip" data-placement="bottom" title="Confirm Password" required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
+          </div>
+          <div class="modal-footer">
+            <div class="col">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+            <div class="col">
+              <button type="submit" name="submit" class="btn btn-primary btn-block">Save Updates</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

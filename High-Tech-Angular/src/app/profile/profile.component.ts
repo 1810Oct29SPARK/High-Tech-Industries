@@ -12,10 +12,12 @@ export class ProfileComponent implements OnInit {
 
   firstname: String = 'Someone\'s Name';
 
-
+// delare boolean values for the info and items on the profile page
   showInfo: boolean = true;
   showItems: boolean = false;
   
+  // when each button is pressed it will change the related value to true and the unrelated value to false
+  // if that value is true, that section of html will display on the page. 
   toggleInfo() {
     this.showInfo = true;
     this.showItems = false;

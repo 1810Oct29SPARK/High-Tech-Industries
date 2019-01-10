@@ -1,13 +1,19 @@
 <div class="navcomp fixed-top">
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a routerLink="/news" routerLinkActive="active" onclick="closeNav()">News</a>
-    <a routerLink="/store" routerLinkActive="active" onclick="closeNav()">Store</a>
-    <a routerLink="/profile" routerLinkActive="active" onclick="closeNav()">Profile</a>
-    <a *ngIf="isEmployee" routerLink="/employee" routerLinkActive="active" onclick="closeNav()">Employee</a>
+    <!-- each tab is a router link that appends to the URL and determines which components will show -->
+    <a routerLink="high-tech/news" routerLinkActive="active" onclick="closeNav()">News</a>
+    <a routerLink="high-tech/store" routerLinkActive="active" onclick="closeNav()">Store</a>
+    <!-- only shows if the server can validate that the user is signed in -->
+    <a routerLink="high-tech/profile" routerLinkActive="active" onclick="closeNav()">Profile</a>
+    <!-- only shows if the server can validate that the user signed in is an employee -->
+    <a *ngIf="isEmployee" routerLink="high-tech/employee" routerLinkActive="active" onclick="closeNav()">Employee</a>
     <div class="text-center">
+
+      <!-- only shows if the user is not signed in and opens up a modal that allows the user to sign in -->
       <button *ngIf="signedIn" type="button" class="btn btn-outline-light my-2 my-sm-2 text-white mt-1" data-toggle="modal"
         data-target="#exampleModal" data-whatever="@mdo">Sign In</button>
+      <!-- only shows if the user is signed in and allows the user to sign out, ending their session -->
       <button *ngIf="signedOut" type="button" class="btn btn-outline-light my-2 my-sm-2 text-white mt-1" data-toggle="modal"
         data-target="#exampleModal">Sign Out</button>
     </div>
@@ -17,7 +23,7 @@
   </div>
 </div>
 
-
+<!-- modal that opens when the user clicks the sign in button -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -41,6 +47,7 @@
           </div>
         </form>
       </div>
+      <!-- opens a new modal for the user to create an account -->
       <div class="modal-footer">
         <div class="col">
           <button type="button" class="btn btn-secondary btn-block">Create an Account</button>

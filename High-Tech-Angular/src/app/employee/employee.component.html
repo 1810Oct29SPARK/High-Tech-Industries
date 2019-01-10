@@ -12,6 +12,10 @@
     </div>
     <div class="col">
       <div class="row">
+        <h1>Members List</h1>
+      </div>
+      <!-- displays each member that is associated with the employee -->
+      <div class="row">
         <div class="col">
           <div *ngIf="showMembers">
             <div class="list-group m-2">
@@ -26,32 +30,27 @@
                     <p class="mb-1">george.com</p>
                   </div>
                   <div class="col-md-2">
+                    <!-- allows the employee to open a modal to view the individual member's information and items -->
                     <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#viewMemberModal">View
                       Member</button>
                   </div>
                 </div>
               </a>
-              <a class="list-group-item list-group-item-action flex-column align-items-start">
+              <a class="list-group-item flex-column align-items-start">
                 <div class="row">
                   <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">George Foreman</h5>
-                    </div>
                   </div>
                   <div class="col">
-                    <p class="mb-1">george.com</p>
                   </div>
                   <div class="col-md-2">
-                    <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#viewMemberModal">View
-                      Member</button>
+                    <!-- allows the employee to open a modal to add a new member -->
+                    <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#addMemberModal">Add
+                      a New Member</button>
                   </div>
                 </div>
               </a>
               <div class="row">
-                <div class="col-md-2 m-2 ml-auto">
-                  <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#addMemberModal">Add
-                    a New Member</button>
-                </div>
+
               </div>
             </div>
           </div>
@@ -62,6 +61,7 @@
   </div>
 </div>
 
+<!-- model used to add a new member -->
 <div class="modal fade" id="addMemberModal" tabindex="-1" role="dialog" aria-labelledby="addMemeberModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -119,6 +119,7 @@
   </div>
 </div>
 
+<!-- modal used to view the individual member's infomation and items -->
 <div class="modal fade" id="viewMemberModal" tabindex="-1" role="dialog" aria-labelledby="viewMemeberModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
