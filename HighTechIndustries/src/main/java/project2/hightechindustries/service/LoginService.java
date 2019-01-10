@@ -7,8 +7,11 @@ import project2.hightechindustries.beans.Users;
 @Service
 public class LoginService {
 	
-//	public Users validateMember(String username, String password) {
-//		
-//	}
-
+	/**
+	 * @author (name=Sean)
+	 * This is the LoginService.
+	 * The purpose of this service is to log people in, both employee members and customer members,
+	 *  create a session when they're logged in, log them out, and end the session when they log out.
+	 */
+	
 }
