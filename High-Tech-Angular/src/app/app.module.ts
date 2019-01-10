@@ -5,15 +5,11 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { NewsComponent } from './news/news.component';
-import { NewsPageComponent } from './news-page/news-page.component';
-import { EmployeePageComponent} from './employee-page/employee-page.component';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { StorePageComponent } from './store-page/store-page.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
-import { ShowDirective } from './show.directive';
 import { StoreComponent } from './store/store.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { MemberComponent } from './member/member.component';
 
 
 const appRoutes: Routes = [
@@ -21,13 +17,30 @@ const appRoutes: Routes = [
   redirectTo: 'news',
   pathMatch: 'full'},
   {path: 'news',
-  component: NewsPageComponent},
+  component: NewsComponent},
   {path: 'profile',
-  component: ProfilePageComponent},
+  component: ProfileComponent,
+  children: [
+    {path: '**',
+    redirectTo: '',
+    pathMatch: 'full'}
+  ]},
   {path: 'store',
-  component: StorePageComponent},
+  component: StoreComponent,
+  children: [
+    {path: '**',
+    redirectTo: '',
+    pathMatch: 'full'}
+  ]},
   {path: 'employee',
-  component: EmployeePageComponent},
+  component: EmployeeComponent,
+  children: [
+    {path: 'member',
+    component: MemberComponent},
+    {path: '**',
+    redirectTo: '',
+    pathMatch: 'full'}
+  ]},
   { path: '**',
   redirectTo: 'news',
   pathMatch: 'full'
@@ -40,15 +53,11 @@ const appRoutes: Routes = [
     NavComponent,
     FooterComponent,
     NewsComponent,
-    NewsPageComponent,
-    EmployeePageComponent,
-    ProfilePageComponent,
-    StorePageComponent,
     ProfileComponent,
     ProfileInfoComponent,
-    ShowDirective,
     StoreComponent,
     EmployeeComponent,
+    MemberComponent,
   ],
   imports: [
     BrowserModule, 

@@ -9,6 +9,8 @@ export class EmployeeComponent implements OnInit {
 
   constructor() { }
 
+  showMembers: boolean = true;
+
   ngOnInit() {
   }
 

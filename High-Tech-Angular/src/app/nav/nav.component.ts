@@ -9,7 +9,9 @@ export class NavComponent implements OnInit {
 
   constructor() { }
 
-  @Input() isEmployee: boolean = true;
+  isEmployee: boolean = true;
+  signedIn: boolean = true;
+  signedOut: boolean = false;
 
   showEmployeeTab: boolean;
 
