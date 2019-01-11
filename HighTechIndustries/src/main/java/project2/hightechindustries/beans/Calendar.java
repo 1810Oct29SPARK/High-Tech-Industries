@@ -23,6 +23,15 @@ public class Calendar {
 		this.helpedBy = helpedBy;
 	}
 	
+	public Calendar(int memberId, String day, String timeslot, String type, int helpedBy) {
+		super();
+		this.memberId = memberId;
+		this.day = day;
+		this.timeslot = timeslot;
+		this.type = type;
+		this.helpedBy = helpedBy;
+	}
+	
 	public Calendar() {
 		
 	}
