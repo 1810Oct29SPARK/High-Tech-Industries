@@ -7,16 +7,20 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
-	<context:component-scan base-package="com.revature"></context:component-scan>
-	
+	<context:component-scan
+		base-package="com.revature"></context:component-scan>
+
 	<!-- enable MVC annotations -->
 	<mvc:annotation-driven></mvc:annotation-driven>
-	
+
 	<!-- enable mapping of static resources -->
-	<mvc:resources location="/WEB-INF/static/" mapping="/static/**"></mvc:resources>
-	
-	<!-- set up ViewResolver for JSPs (and other templating engines, should we decide to -->
-	<bean name="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<mvc:resources location="/WEB-INF/static/"
+		mapping="/static/**"></mvc:resources>
+
+	<!-- set up ViewResolver for JSPs (and other templating engines, should 
+		we decide to use them -->
+	<bean name="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
 			<value>/WEB-INF/pages/</value>
 		</property>
@@ -24,5 +28,4 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
-	
 </beans>
