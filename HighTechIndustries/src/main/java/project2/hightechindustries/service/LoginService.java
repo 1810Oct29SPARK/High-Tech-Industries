@@ -1,8 +1,10 @@
 package project2.hightechindustries.service;
 
+import java.net.PasswordAuthentication;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
+import java.sql.Blob;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -45,7 +47,7 @@ public class LoginService {
 		return salt;
 	}
 
-	public byte[] hash(String password, byte[] salt) {
+	public byte[] hashPassword(String password, byte[] salt) {
 		PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, keySize);
 		Arrays.fill(password.toCharArray(), Character.MIN_VALUE);
 		try {
@@ -67,6 +69,20 @@ public class LoginService {
 		UserDAO ud = new UserDAOImpl();
 
 		return currentUser.toString();
+	}
+
+	public void addUserService(String firstname, String lastname, String email, String phone, String employeeStatus,
+			String username, String password) {
+
+		UserDAO ud = new UserDAOImpl();
+		byte[] userSaltByte = new byte[16];
+		userSaltByte = getNextSalt();
+		byte[] passByte = hashPassword(password, userSaltByte);
+		String passHash = new String(passByte);
+		String userSalt = new String(userSaltByte);
+		ud.addUser(new Users(firstname, lastname, email, phone, employeeStatus, username, passHash,
+				userSalt));
+
 	}
 
 }
