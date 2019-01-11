@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import project2.hightechindustries.beans.Cart;
 import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.util.HibernateUtil;
 
