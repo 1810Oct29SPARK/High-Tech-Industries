@@ -9,6 +9,9 @@ export class StoreComponent implements OnInit {
 
   constructor() { }
 
+  noItems: boolean = true;
+  areItems: boolean = false;
+
   ngOnInit() {
   }
 

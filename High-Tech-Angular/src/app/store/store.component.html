@@ -7,8 +7,17 @@
 
 <div class="container">
   <div class="row">
+    <div class="col-md-10">
+    </div>
+    <div class="col-md-2">
+      <!-- cart button that displays the number of items in the cart and shows the cart modal -->
+      <button type="button" class="btn btn-outline-dark btn-lg btn-block mt-2" data-toggle="modal" data-target="#cartModal">Cart<span
+          class="badge badge-dark">{{ cartQuantity }}</span></button>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-lg-3">
-      <h1 class="my-4"></h1>
+      <h1 class="my-2"></h1>
       <!-- used to sort the store based on the category -->
       <div class="list-group">
         <a href="#" class="list-group-item">All Products</a>
@@ -18,7 +27,7 @@
       </div>
     </div>
     <div class="col-lg-9">
-      <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+      <div id="carouselExampleIndicators" class="carousel slide my-2" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
@@ -64,6 +73,50 @@
           </div> -->
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- cart Modal that displays the users cart and its content -->
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Your Cart</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- displays if there are no items in your cart -->
+        <div *ngIf="noItems">
+          <h2>There are not items in your cart.</h2>
+          <h3>Search the store to add items to your cart.</h3>
+        </div>
+        <form>
+          <!-- will only display if you have items in your cart -->
+          <div class="list-group" *ngIf="areItems">
+            <!-- will display for each item in your cart -->
+            <a *ngFor="let item of Items" href="" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ itemTitle }}</h5>
+              </div>
+              <p class="mb-1">{{ itemDescription }}</p>
+              <small>He He He He</small>
+            </a>
+          </div>
+          <div class="modal-footer">
+            <div class="col">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            <div class="col">
+              <button type="submit" name="submit" class="btn btn-primary btn-block">Purchase</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
     </div>
   </div>
 </div>

@@ -10,7 +10,10 @@ import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { StoreComponent } from './store/store.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { MemberComponent } from './member/member.component';
-import { CanActivate, CanActivateChild } from '@angular/router';
+import { CanVisitService } from './can-visit.service';
+// import { CalendarComponent } from './calendar/calendar.component';
+// import { NgbDatepicker, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+// import { FormsModule } from '@angular/forms';
 
 
 // class profileGuard implements CanActivate{
@@ -35,6 +38,7 @@ const appRoutes: Routes = [
   component: NewsComponent},
   {path: 'high-tech/profile',
   component: ProfileComponent,
+  canActivate:[CanVisitService],
   //all paths have a child path that will redirect them back to the specific path (if someone is at /news and types /news/fewaoiniugn)
   children: [
     {path: '**',
@@ -50,9 +54,8 @@ const appRoutes: Routes = [
   ]},
   {path: 'high-tech/employee',
   component: EmployeeComponent,
+  canActivate:[CanVisitService],
   children: [
-    {path: 'member',
-    component: MemberComponent},
     {path: '**',
     redirectTo: '',
     pathMatch: 'full'}
@@ -77,14 +80,17 @@ const appRoutes: Routes = [
     StoreComponent,
     EmployeeComponent,
     MemberComponent,
+    // CalendarComponent,
+    // NgbDatepicker
   ],
   imports: [
     BrowserModule, 
     //needed for using routes 
     RouterModule.forRoot(
-      appRoutes)
+      appRoutes),
+    // FormsModule
   ],
-  providers: [],
+  providers: [CanVisitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
