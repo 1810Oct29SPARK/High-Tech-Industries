@@ -1,14 +1,118 @@
-<p>Simple datepicker</p>
+<div class="row text-center my-2">
+    <div class="col">
+        <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+    </div>
+</div>
+<div class="row text-center my-2">
+    <div class="col">
+        <button class="btn btn-sm btn-outline-primary mr-2" (click)="selectToday()">Select Today</button>
+        <button class="btn btn-sm btn-outline-primary mr-2" (click)="dp.navigateTo()">To current month</button>
+    </div>
+</div>
+<div class="row my-2">
+    <div class="col">
+        <div class="list-group m-2">
+            <div>
+                <a class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">George Foreman</h5>
+                            </div>
+                            <small>Installation</small>
+                        </div>
+                        <div class="col">
+                            <p class="mb-1">Month: {{ date.month }}.{{ date.year }} </p>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- allows the employee to open a modal to view the individual member's information and items -->
+                            <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal"
+                                data-target="#viewMemberModal">Edit</button>
+                        </div>
+                    </div>
+                </a><!-- modal used to view the individual member's infomation and items -->
+                <div class="modal fade" id="viewMemberModal" tabindex="-1" role="dialog" aria-labelledby="viewMemeberModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Update Event</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="firstname" class="col-form-label">Firstname:</label>
+                                            </div>
+                                            <div class="col">
+                                                <p>George</p>
+                                            </div>
+                                            <div class="col">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="lastname" class="col-form-label">Lastname:</label>
+                                            </div>
+                                            <div class="col">
+                                                <p>Forman</p>
+                                            </div>
+                                            <div class="col">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="type1" class="col-form-label">Type:</label>
+                                            </div>
+                                            <div class="col">
+                                                <p>Installation</p>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="type1" placeholder="Change Type"
+                                                    aria-label="Type" data-toggle="tooltip" data-placement="bottom"
+                                                    title="Type" required="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="type1" class="col-form-label">Date:</label>
+                                            </div>
+                                            <div class="col">
+                                                <p>1.1.2019</p>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="date1" placeholder="Change Date"
+                                                    aria-label="Date" data-toggle="tooltip" data-placement="bottom"
+                                                    title="Date" required="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="col">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                        <div class="col">
+                                            <button type="submit" name="submit" class="btn btn-primary btn-block">Save
+                                                Updates</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
 
-<ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
-
-<hr />
-
-<button class="btn btn-sm btn-outline-primary mr-2" (click)="selectToday()">Select Today</button>
-<button class="btn btn-sm btn-outline-primary mr-2" (click)="dp.navigateTo()">To current month</button>
-<button class="btn btn-sm btn-outline-primary mr-2" (click)="dp.navigateTo({year: 2013, month: 2})">To Feb 2013</button>
-
-<hr />
-
-<pre>Month: {{ date.month }}.{{ date.year }}</pre>
-<pre>Model: {{ model | json }}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

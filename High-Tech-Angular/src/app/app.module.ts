@@ -11,9 +11,9 @@ import { StoreComponent } from './store/store.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { MemberComponent } from './member/member.component';
 import { CanVisitService } from './can-visit.service';
-// import { CalendarComponent } from './calendar/calendar.component';
-// import { NgbDatepicker, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-// import { FormsModule } from '@angular/forms';
+import { CalendarComponent } from './calendar/calendar.component';
+import { NgbDatepicker, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 
 // class profileGuard implements CanActivate{
@@ -21,7 +21,7 @@ import { CanVisitService } from './can-visit.service';
 //     return true;
 //   }
 // }
-
+// 
 // class profileChildGuard implements CanActivateChild{
 //   canActivateChild(){
 //     return true;
@@ -80,15 +80,15 @@ const appRoutes: Routes = [
     StoreComponent,
     EmployeeComponent,
     MemberComponent,
-    // CalendarComponent,
-    // NgbDatepicker
+    CalendarComponent
   ],
   imports: [
     BrowserModule, 
     //needed for using routes 
     RouterModule.forRoot(
       appRoutes),
-    // FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [CanVisitService],
   bootstrap: [AppComponent]
