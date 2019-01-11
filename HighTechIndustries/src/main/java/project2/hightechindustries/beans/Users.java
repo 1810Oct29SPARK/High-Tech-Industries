@@ -59,11 +59,7 @@ public class Users {
 	public Users(String username, String passHash) {
 		super();
 		this.username = username;
-<<<<<<< HEAD
-		this.password = password;
-=======
-		this.passHash = passHash;
->>>>>>> ebfa55b733ae436cc2ee97a08fc122203872ccb0
+		this.password = passHash;
 	}
 	
 	public Users() {
