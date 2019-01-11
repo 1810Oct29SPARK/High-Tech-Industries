@@ -8,7 +8,7 @@ import { ProfileInfoComponent } from '../profile-info/profile-info.component';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(public componentFactoryResolver: ComponentFactoryResolver) { }
 
   firstname: String = 'Someone\'s Name';
 
