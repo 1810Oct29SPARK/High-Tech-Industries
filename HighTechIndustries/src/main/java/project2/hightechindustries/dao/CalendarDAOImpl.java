@@ -19,15 +19,15 @@ public class CalendarDAOImpl implements CalendarDAO {
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
 
 	@Override
-	public List<Calendar> getCalendarEventById(int memberId) {
-		List<Calendar> c = new ArrayList<>();
+	public List<Calendar> getCalendarEventById(int eventId) {
+		List<Calendar> calendar = new ArrayList<>();
 		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
-			c = s.createQuery("from Calendar C where C.memberId = "+memberId+"").getResultList();
+			calendar = s.createQuery("from Calendar C where C.eventId = "+eventId+"").getResultList();
 			tx.commit();
 			s.close();
 		}
-		return c;
+		return calendar;
 	}
 
 	@Override
