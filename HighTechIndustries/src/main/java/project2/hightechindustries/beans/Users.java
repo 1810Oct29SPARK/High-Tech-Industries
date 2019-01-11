@@ -55,6 +55,13 @@ public class Users {
 		this.id = id;
 	}
 	
+	// add method to get users info by their username and password
+	public Users(String username, String password) {
+		super();
+		this.username = username;
+		this.passHash = password;
+	}
+	
 	public Users() {
 		
 	}
