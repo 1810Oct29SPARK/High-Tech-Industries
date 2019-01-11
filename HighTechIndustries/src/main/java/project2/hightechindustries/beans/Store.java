@@ -35,6 +35,7 @@ public class Store {
 		this.description = description;
 		this.price = price;
 		this.specs = specs;
+		this.image = image;
 	}
 	
 	public Store() {};
