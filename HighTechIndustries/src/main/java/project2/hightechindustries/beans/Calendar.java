@@ -2,7 +2,10 @@ package project2.hightechindustries.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -23,11 +26,22 @@ public class Calendar {
 		this.helpedBy = helpedBy;
 	}
 	
+	public Calendar(int memberId, String day, String timeslot, String type, int helpedBy) {
+		super();
+		this.memberId = memberId;
+		this.day = day;
+		this.timeslot = timeslot;
+		this.type = type;
+		this.helpedBy = helpedBy;
+	}
+	
 	public Calendar() {
 		
 	}
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="calendarSequence")
+	@SequenceGenerator(allocationSize=1, name="calendarSequence", sequenceName="SQ_CALENDAR_ID")
 	@Column(name="EVENT_ID")
 	int eventId;
 	@Column(name="MEMBER_ID")

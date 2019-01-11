@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import project2.hightechindustries.beans.Users;
 import project2.hightechindustries.util.HibernateUtil;
@@ -17,7 +18,31 @@ public class UserDAOImpl implements UserDAO {
 	 */
 	
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
-
+	/**
+	 * @author SBG
+	 * this is the implementation for logging into our website,
+	 * you pass in username and password and a full user will be returned 
+	 */
+	//shits fuct boi
+	//the error that gets warned the SQL Error 904 will show up for either username or password
+	//it doesnt care. its just wrong no matter what.
+	//god damn.
+	@Override
+	public Users findUser(Users namePass) {
+		Users placeholder = null;
+		String username = namePass.getUsername();
+		String password = namePass.getPassHash();
+		try(Session s = sf.getCurrentSession()){
+			Transaction tx = s.beginTransaction();
+			List<Users> question = s.createQuery("from Users where username='"+username+"' and passHash='"+password+"'").getResultList();
+			placeholder = question.get(0);
+			tx.commit();
+			s.close();
+		}
+		return placeholder;
+	}
+	
+	
 	// Used to get the user back as an object by passing their id, also used to delete user
 	@Override
 	public Users getUserById(int id) {
