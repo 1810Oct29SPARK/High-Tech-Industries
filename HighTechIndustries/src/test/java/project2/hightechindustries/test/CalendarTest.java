@@ -15,13 +15,14 @@ class CalendarTest {
 	public void getCalendarEventById() {
 		
 		Calendar cal = new Calendar();
+		cal.setEventId(1);
 		cal.setMemberId(5);
 		cal.setDay("Monday");
 		cal.setTimeslot("5PM");
 		cal.setType("Special Massage");
 		cal.setHelpedBy(3);
 		
-		Assert.assertEquals(cal, calendar.getCalendarEventById(5)); //fix this to be member id, change in impl
+		Assert.assertEquals(cal.toString(), calendar.getCalendarEventById(5).get(0).toString()); 
 		
 	}
 
