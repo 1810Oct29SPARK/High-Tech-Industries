@@ -6,7 +6,7 @@ import project2.hightechindustries.beans.Calendar;
 
 public interface CalendarDAO {
 	
-	public Calendar getCalendarEventById(int id);
+	public List<Calendar> getCalendarEventById(int memberId);
 	public List<Calendar> getAllCalendarEvents(int memberId);
 	public void addCalendarEvent(Calendar cal);
 	public void updateCalendar(Calendar cal);
