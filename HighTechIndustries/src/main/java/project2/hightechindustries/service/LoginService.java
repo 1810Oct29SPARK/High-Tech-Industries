@@ -64,12 +64,29 @@ public class LoginService {
 
 	}
 
-	public String findUser(String username, String password) {
-		Users currentUser = null;
+	public Users login(String username, String password) {
 		UserDAO ud = new UserDAOImpl();
-
-		return currentUser.toString();
+		Users loginUsername = null;
+		Users currentUser = null;
+		Users usersCredentials = null;
+		usersCredentials = loginUsername.findUser(username);
+		if(usersCredentials == null) {
+			System.out.println("User not found, invalid username");
+		} else {
+			String userSalt = usersCredentials.getSalt();
+			byte userSaltByte[] = userSalt.getBytes();
+			String userPassHash = usersCredentials.getPassHash();
+			int userId = usersCredentials.getId();
+			String loginPassHash = hashPassword(password, userSaltByte).toString();
+			if(loginPassHash == userPassHash) {
+				currentUser = ud.getUserById(userId);
+			} else {
+				System.out.println("invalid password");
+			}
+		}
+		return currentUser;
 	}
+	
 
 	public void addUserService(String firstname, String lastname, String email, String phone, String employeeStatus,
 			String username, String password) {
