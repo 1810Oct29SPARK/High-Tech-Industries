@@ -17,7 +17,7 @@ public class Driver {
 //		rv.newRecentlyViewed(new RecentlyViewed(1));
 		
 		CalendarDAO calendar = new CalendarDAOImpl();
-		calendar.addCalendarEvent(new Calendar(5, "Monday", "5PM", "Special Massage", 3));
+//		calendar.addCalendarEvent(new Calendar(5, "Monday", "5PM", "Special Massage", 3));
 		
 //		System.out.println(rv.getRecentlyViewedById(8));
 //
