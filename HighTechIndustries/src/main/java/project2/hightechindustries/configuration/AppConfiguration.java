@@ -9,12 +9,13 @@ import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import static org.hibernate.cfg.Environment.*;
 
 @Configuration
-@PropertySource("connection.project2.properties")
+@PropertySource("classpath:connection.project2.properties")
 @EnableTransactionManagement
 @ComponentScans(value = {
 		@ComponentScan("project2.hightechindustries.dao"),
@@ -54,6 +55,10 @@ public class AppConfiguration {
 		return factoryBean;
 	}
 	
-	
+	public HibernateTransactionManager getTransactionManager() {
+		HibernateTransactionManager htm = new HibernateTransactionManager();
+		htm.setSessionFactory(getSessionFactory().getObject());
+		return htm;
+	}
 
 }
