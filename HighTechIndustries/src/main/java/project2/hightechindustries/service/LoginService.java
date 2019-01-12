@@ -72,6 +72,7 @@ public class LoginService {
 	public Users login(String username, String password) {
 		UserDAO ud = new UserDAOImpl();
 		Users usersCredentials = ud.findUser(new Users(username));
+		System.out.println(usersCredentials);
 		if (usersCredentials == null) {
 			System.out.println("User not found, invalid username");
 		} else {
@@ -79,8 +80,8 @@ public class LoginService {
 			byte userSaltByte[] = userSalt.getBytes();
 			String userPassHash = usersCredentials.getPassHash();
 			int userId = usersCredentials.getId();
-			String loginPassHash = hashPassword(password, userSaltByte).toString();
-			if (loginPassHash != userPassHash) {
+			String loginPassHash = new String (hashPassword(password, userSaltByte));
+			if (!loginPassHash.equals(userPassHash)) {
 				System.out.println("invalid password");
 				usersCredentials = null;
 			} 
