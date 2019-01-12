@@ -19,7 +19,7 @@ import project2.hightechindustries.beans.Users;
 import project2.hightechindustries.dao.UserDAO;
 import project2.hightechindustries.dao.UserDAOImpl;
 
-@Service
+@Service(value="loginService")
 public class LoginService {
 
 	/**
@@ -71,8 +71,7 @@ public class LoginService {
 //	if it does, then the full user will be returned
 	public Users login(String username, String password) {
 		UserDAO ud = new UserDAOImpl();
-		Users currentUser = null;
-		Users usersCredentials = findUser(username);
+		Users usersCredentials = ud.findUser(new Users(username));
 		if (usersCredentials == null) {
 			System.out.println("User not found, invalid username");
 		} else {
@@ -81,13 +80,12 @@ public class LoginService {
 			String userPassHash = usersCredentials.getPassHash();
 			int userId = usersCredentials.getId();
 			String loginPassHash = hashPassword(password, userSaltByte).toString();
-			if (loginPassHash == userPassHash) {
-				currentUser = ud.getUserById(userId);
-			} else {
+			if (loginPassHash != userPassHash) {
 				System.out.println("invalid password");
-			}
+				usersCredentials = null;
+			} 
 		}
-		return currentUser;
+		return usersCredentials;
 	}
 
 //	whenever a new user is added, the password will be hashed with a salt and both the salt and hashed password will be 

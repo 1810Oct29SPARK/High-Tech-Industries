@@ -69,10 +69,15 @@ public class Users {
 	}
 	
 	// add method to get users info by their username and password
-	public Users(String username, String passHash) {
+	public Users(String username) {
 		super();
 		this.username = username;
-		this.password = passHash;
+	}
+	
+	public Users(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
 	}
 	
 	public Users() {
