@@ -14,6 +14,7 @@ import { CanVisitService } from './can-visit.service';
 import { CalendarComponent } from './calendar/calendar.component';
 import { NgbDatepicker, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 // class profileGuard implements CanActivate{
@@ -88,7 +89,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes),
     FormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [CanVisitService],
   bootstrap: [AppComponent]

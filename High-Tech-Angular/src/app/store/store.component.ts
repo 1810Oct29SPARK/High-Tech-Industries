@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from '../config.service';
 
 @Component({
   selector: 'app-store',
@@ -11,6 +12,16 @@ export class StoreComponent implements OnInit {
 
   noItems: boolean = true;
   areItems: boolean = false;
+
+
+  showConfig() {
+    this.configService.getConfig()
+      .subscribe((data: Config) => this.config = {
+        heroesUrl: data['heroesUrl'],
+        textfile: data['textfile']
+      });
+  }
+
 
   ngOnInit() {
   }
