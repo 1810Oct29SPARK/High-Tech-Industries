@@ -51,6 +51,7 @@ public class LoginService {
 
 //	hash the password appended with the salt
 	public byte[] hashPassword(String password, byte[] salt) {
+		System.out.println("password is: "+password);
 		PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, keySize);
 		Arrays.fill(password.toCharArray(), Character.MIN_VALUE);
 		try {
