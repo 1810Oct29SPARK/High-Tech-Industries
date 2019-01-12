@@ -90,18 +90,31 @@ public class LoginService {
 
 //	whenever a new user is added, the password will be hashed with a salt and both the salt and hashed password will be 
 //	stored with the new user info 
-	public void addUserService(String firstname, String lastname, String email, String phone, String employeeStatus,
+	public void addUserService(String firstName, String lastName, String email, String phone, String employeeStatus,
 			String username, String password) {
-
+		
+		System.out.println("firsname: "+firstName+"lastname: "+lastName+"email: "+email+"phone: "+phone+"employeeSatus: "+employeeStatus+"username: "+username+"password: "+password);
+		System.out.println(firstName);
 		UserDAO ud = new UserDAOImpl();
-		Integer helpedBy = null;
+		int helpedBy = 5;
 		Blob image = null;
 		byte[] userSaltByte = new byte[16];
 		userSaltByte = getNextSalt();
 		byte[] passByte = hashPassword(password, userSaltByte);
 		String passHash = new String(passByte);
+		System.out.println(passHash);
 		String userSalt = new String(userSaltByte);
-		ud.addUser(new Users(firstname, lastname, email, phone, employeeStatus, helpedBy, image, username, passHash, userSalt));
+		System.out.println(userSalt);
+		ud.addUser(new Users(firstName, 
+				lastName, 
+				email, 
+				phone, 
+				employeeStatus, 
+				helpedBy, 
+				image, 
+				username, 
+				passHash, 
+				userSalt));
 
 	}
 
