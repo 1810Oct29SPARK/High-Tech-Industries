@@ -7,10 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Service;
 
 import project2.hightechindustries.beans.Users;
 import project2.hightechindustries.util.HibernateUtil;
 
+@Service(value="userService")
 public class UserDAOImpl implements UserDAO {
 	
 	/**
@@ -28,13 +30,12 @@ public class UserDAOImpl implements UserDAO {
 	//it doesnt care. its just wrong no matter what.
 	//god damn.
 	@Override
-	public Users findUser(Users namePass) {
+	public Users findUser(Users name) {
 		Users placeholder = null;
-		String username = namePass.getUsername();
-		String password = namePass.getPassHash();
+		String username = name.getUsername();
 		try(Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
-			List<Users> question = s.createQuery("from Users where username='"+username+"' and passHash='"+password+"'").getResultList();
+			List<Users> question = s.createQuery("from Users where username='"+username+"'").getResultList();
 			placeholder = question.get(0);
 			tx.commit();
 			s.close();
