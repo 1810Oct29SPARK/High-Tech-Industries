@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { ProfileInfoComponent } from '../profile-info/profile-info.component';
+import { ConfigService } from '../config.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit {
 
   showInfo: boolean = true;
   showItems: boolean = false;
-  
+
   toggleInfo() {
     this.showInfo = true;
     this.showItems = false;
@@ -23,6 +24,13 @@ export class ProfileComponent implements OnInit {
   toggleItems() {
     this.showItems = true;
     this.showInfo = false;
+  }
+
+  showConfig() {
+    this.configService.getConfig()
+      .subscribe((data: Config) => this.config = {
+        loginURL: data['loginUrl']
+      });
   }
 
   ngOnInit() {
