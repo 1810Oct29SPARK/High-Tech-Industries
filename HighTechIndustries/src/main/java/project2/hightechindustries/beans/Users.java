@@ -64,7 +64,7 @@ public class Users {
 		this.phone = phone;
 		this.employeeStatus = employeeStatus;
 		this.username = username;
-		this.passHash = passHash;
+		this.password = passHash;
 		this.salt = salt;
 	}
 	
