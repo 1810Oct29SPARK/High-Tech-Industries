@@ -28,10 +28,11 @@ public class LoginController {
 	private LoginService loginService;
 	
 	
-	@RequestMapping(value="/", method=RequestMethod.POST)
+	@RequestMapping(value="/test", method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<Users> userData(@PathVariable String username, String password) {
+	public ResponseEntity<Users> userData(@RequestBody String username, String password) {
 		Users user = loginService.login(username, password);
+		System.out.println(user);
 		if(user != null) {
 			return new ResponseEntity<>(user, HttpStatus.OK);
 		} else {
@@ -39,11 +40,12 @@ public class LoginController {
 		}
 	}
 	  
-	@RequestMapping(value="/", method=RequestMethod.POST)
+	@RequestMapping(value="/newU", method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<Users> addingUser(@PathVariable String firstname, String lastname, String email, String phone, String employeeStatus,
+	public ResponseEntity<Users> addingUser(@RequestBody String firstName, String lastName, String email, String phone, String employeeStatus,
 			String username, String password){
-		loginService.addUserService(firstname, lastname, email, phone, employeeStatus, username, password);
+		System.out.println(firstName);
+		loginService.addUserService(firstName, lastName, email, phone, employeeStatus, username, password);
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 	
