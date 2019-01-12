@@ -7,6 +7,13 @@ import project2.hightechindustries.beans.Users;
 public interface UserDAO {
 	
 	/**
+	 * @author (name="SBG")
+	 * This method is our login method, it will check a username and password against the database then return user info
+	 */
+	public Users findUser(Users namePass);
+	
+	
+	/**
 	 * @author (name=Esteban) (for method)
 	 * @author (name=Sean) (for JavaDoc)
 	 * This method is here so that a member (particularly an employee member) can view any particular client member.
