@@ -36,7 +36,11 @@ public class UserDAOImpl implements UserDAO {
 		try(Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
 			List<Users> question = s.createQuery("from Users where username='"+username+"'").getResultList();
-			placeholder = question.get(0);
+			try {
+				placeholder = question.get(0);
+			} catch (Exception e) {
+				System.out.println("can't find user");
+			}
 			tx.commit();
 			s.close();
 		}

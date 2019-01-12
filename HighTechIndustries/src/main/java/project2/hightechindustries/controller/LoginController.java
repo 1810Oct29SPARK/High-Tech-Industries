@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import project2.hightechindustries.beans.Users;
@@ -28,23 +29,22 @@ public class LoginController {
 	private LoginService loginService;
 	
 	
-	@RequestMapping(value="/test", method=RequestMethod.POST)
+	@RequestMapping(value="/login", method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<Users> userData(@RequestBody String username, String password) {
+	public ResponseEntity<Users> userData(@RequestParam String username, @RequestParam String password) {
 		Users user = loginService.login(username, password);
-		System.out.println(user);
 		if(user != null) {
-			return new ResponseEntity<>(user, HttpStatus.OK);
+			return new ResponseEntity<>(user, HttpStatus.I_AM_A_TEAPOT);
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
 	  
-	@RequestMapping(value="/newU", method=RequestMethod.POST)
+	@RequestMapping(value="/addUser", method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<Users> addingUser(@RequestBody String firstName, String lastName, String email, String phone, String employeeStatus,
-			String username, String password){
-		System.out.println(firstName);
+	public ResponseEntity<Users> addingUser(@RequestParam String firstName,@RequestParam String lastName,
+			@RequestParam String email, @RequestParam String phone, @RequestParam String employeeStatus,
+			@RequestParam String username, @RequestParam String password){
 		loginService.addUserService(firstName, lastName, email, phone, employeeStatus, username, password);
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
