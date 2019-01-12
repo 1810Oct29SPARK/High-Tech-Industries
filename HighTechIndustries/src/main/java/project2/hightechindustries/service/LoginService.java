@@ -23,18 +23,20 @@ import project2.hightechindustries.dao.UserDAOImpl;
 public class LoginService {
 
 	/**
-	 * @author (name=Sean) This is the LoginService. The purpose of this service is
-	 *         to log people in, both employee members and customer members, create
-	 *         a session when they're logged in, log them out, and end the session
-	 *         when they log out.
+	 * @author (name=Sean, name=Jeremy) This is the LoginService. The purpose of
+	 *         this service is to log people in, both employee members and customer
+	 *         members, create a session when they're logged in, log them out, and
+	 *         end the session when they log out.
 	 */
 
 	/**
 	 * Login X Logout X
 	 */
+//	used in the password hashing process
 	private static final Random RANDOM = new SecureRandom();
 	private static final int iterations = 20000;
 	private static final int keySize = 256;
+	
 	private ObjectMapper om = new ObjectMapper();
 
 	// Create a random sequence of characters to attach to the end of each person's
@@ -47,6 +49,7 @@ public class LoginService {
 		return salt;
 	}
 
+//	hash the password appended with the salt
 	public byte[] hashPassword(String password, byte[] salt) {
 		PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, keySize);
 		Arrays.fill(password.toCharArray(), Character.MIN_VALUE);
@@ -64,13 +67,13 @@ public class LoginService {
 
 	}
 
+//	login method that will grab the users username, password, and id and verify that what they logged in with matches. 
+//	if it does, then the full user will be returned
 	public Users login(String username, String password) {
 		UserDAO ud = new UserDAOImpl();
-		Users loginUsername = null;
 		Users currentUser = null;
-		Users usersCredentials = null;
-		usersCredentials = loginUsername.findUser(username);
-		if(usersCredentials == null) {
+		Users usersCredentials = findUser(username);
+		if (usersCredentials == null) {
 			System.out.println("User not found, invalid username");
 		} else {
 			String userSalt = usersCredentials.getSalt();
@@ -78,7 +81,7 @@ public class LoginService {
 			String userPassHash = usersCredentials.getPassHash();
 			int userId = usersCredentials.getId();
 			String loginPassHash = hashPassword(password, userSaltByte).toString();
-			if(loginPassHash == userPassHash) {
+			if (loginPassHash == userPassHash) {
 				currentUser = ud.getUserById(userId);
 			} else {
 				System.out.println("invalid password");
@@ -86,19 +89,21 @@ public class LoginService {
 		}
 		return currentUser;
 	}
-	
 
+//	whenever a new user is added, the password will be hashed with a salt and both the salt and hashed password will be 
+//	stored with the new user info 
 	public void addUserService(String firstname, String lastname, String email, String phone, String employeeStatus,
 			String username, String password) {
 
 		UserDAO ud = new UserDAOImpl();
+		Integer helpedBy = null;
+		Blob image = null;
 		byte[] userSaltByte = new byte[16];
 		userSaltByte = getNextSalt();
 		byte[] passByte = hashPassword(password, userSaltByte);
 		String passHash = new String(passByte);
 		String userSalt = new String(userSaltByte);
-		ud.addUser(new Users(firstname, lastname, email, phone, employeeStatus, username, passHash,
-				userSalt));
+		ud.addUser(new Users(firstname, lastname, email, phone, employeeStatus, helpedBy, image, username, passHash, userSalt));
 
 	}
 
