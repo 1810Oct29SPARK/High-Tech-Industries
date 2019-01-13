@@ -14,6 +14,7 @@ import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { ShowDirective } from './show.directive';
 import { StoreComponent } from './store/store.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const appRoutes: Routes = [
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule, 
     RouterModule.forRoot(
-      appRoutes)
+      appRoutes),
+      HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

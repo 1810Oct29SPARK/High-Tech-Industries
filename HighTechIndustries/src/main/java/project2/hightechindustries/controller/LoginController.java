@@ -1,25 +1,53 @@
 package project2.hightechindustries.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import project2.hightechindustries.beans.Users;
 import project2.hightechindustries.service.LoginService;
 
 @Controller
+@RequestMapping(value="/login")
 public class LoginController {
 	
-	@Autowired
 	public LoginController(LoginService loginService) {
 		super();
+		this.loginService = loginService;
 	}
 	
+	@Autowired
 	private LoginService loginService;
 	
 	
-	//@GetMapping
-	//  
-	
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<Users> userData(@RequestParam String username, @RequestParam String password) {
+		Users user = loginService.login(username, password);
+		if(user != null) {
+			return new ResponseEntity<>(user, HttpStatus.I_AM_A_TEAPOT);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	  
+	@RequestMapping(value="/addUser", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<Users> addingUser(@RequestParam String firstName,@RequestParam String lastName,
+			@RequestParam String email, @RequestParam String phone, @RequestParam String employeeStatus,
+			@RequestParam String username, @RequestParam String password){
+		loginService.addUserService(firstName, lastName, email, phone, employeeStatus, username, password);
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
 	
 	//@PostMapping
 	

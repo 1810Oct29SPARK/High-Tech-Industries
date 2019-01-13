@@ -19,7 +19,7 @@ import project2.hightechindustries.beans.Users;
 import project2.hightechindustries.dao.UserDAO;
 import project2.hightechindustries.dao.UserDAOImpl;
 
-@Service
+@Service(value="loginService")
 public class LoginService {
 
 	/**
@@ -71,8 +71,8 @@ public class LoginService {
 //	if it does, then the full user will be returned
 	public Users login(String username, String password) {
 		UserDAO ud = new UserDAOImpl();
-		Users currentUser = null;
-		Users usersCredentials = findUser(username);
+		Users usersCredentials = ud.findUser(new Users(username));
+		System.out.println(usersCredentials);
 		if (usersCredentials == null) {
 			System.out.println("User not found, invalid username");
 		} else {
@@ -80,30 +80,42 @@ public class LoginService {
 			byte userSaltByte[] = userSalt.getBytes();
 			String userPassHash = usersCredentials.getPassHash();
 			int userId = usersCredentials.getId();
-			String loginPassHash = hashPassword(password, userSaltByte).toString();
-			if (loginPassHash == userPassHash) {
-				currentUser = ud.getUserById(userId);
-			} else {
+			String loginPassHash = new String (hashPassword(password, userSaltByte));
+			if (!loginPassHash.equals(userPassHash)) {
 				System.out.println("invalid password");
-			}
+				usersCredentials = null;
+			} 
 		}
-		return currentUser;
+		return usersCredentials;
 	}
 
 //	whenever a new user is added, the password will be hashed with a salt and both the salt and hashed password will be 
 //	stored with the new user info 
-	public void addUserService(String firstname, String lastname, String email, String phone, String employeeStatus,
+	public void addUserService(String firstName, String lastName, String email, String phone, String employeeStatus,
 			String username, String password) {
-
+		
+		System.out.println("firsname: "+firstName+"lastname: "+lastName+"email: "+email+"phone: "+phone+"employeeSatus: "+employeeStatus+"username: "+username+"password: "+password);
+		System.out.println(firstName);
 		UserDAO ud = new UserDAOImpl();
-		Integer helpedBy = null;
+		int helpedBy = 5;
 		Blob image = null;
 		byte[] userSaltByte = new byte[16];
 		userSaltByte = getNextSalt();
 		byte[] passByte = hashPassword(password, userSaltByte);
 		String passHash = new String(passByte);
+		System.out.println(passHash);
 		String userSalt = new String(userSaltByte);
-		ud.addUser(new Users(firstname, lastname, email, phone, employeeStatus, helpedBy, image, username, passHash, userSalt));
+		System.out.println(userSalt);
+		ud.addUser(new Users(firstName, 
+				lastName, 
+				email, 
+				phone, 
+				employeeStatus, 
+				helpedBy, 
+				image, 
+				username, 
+				passHash, 
+				userSalt));
 
 	}
 
