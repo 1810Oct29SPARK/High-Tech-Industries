@@ -1,7 +1,7 @@
 package project2.hightechindustries.test;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import project2.hightechindustries.beans.RecentlyViewed;
 import project2.hightechindustries.beans.Store;
