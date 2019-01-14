@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+// Jeremy
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -16,6 +18,10 @@ export class NavComponent implements OnInit {
   signedOut: boolean = false;
 
   showEmployeeTab: boolean;
+
+  // addUser (user : User) {
+  //   return this.http.post
+  // }
 
   ngOnInit() {
   }

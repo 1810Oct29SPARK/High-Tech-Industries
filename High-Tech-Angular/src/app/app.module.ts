@@ -12,10 +12,11 @@ import { EmployeeComponent } from './employee/employee.component';
 import { MemberComponent } from './member/member.component';
 import { CanVisitService } from './can-visit.service';
 import { CalendarComponent } from './calendar/calendar.component';
-import { NgbDatepicker, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+// Jeremy
 
 // class profileGuard implements CanActivate{
 //   canActivate(){

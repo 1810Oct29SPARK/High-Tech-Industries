@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { ProfileInfoComponent } from '../profile-info/profile-info.component';
+import { ConfigService } from '../config.service';
+
+// Jeremy
+
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +12,7 @@ import { ProfileInfoComponent } from '../profile-info/profile-info.component';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, public configService: ConfigService) { }
 
   firstname: String = 'Someone\'s Name';
 
@@ -26,6 +30,8 @@ export class ProfileComponent implements OnInit {
     this.showItems = true;
     this.showInfo = false;
   }
+
+  user$ = this.configService.getUser()
 
   ngOnInit() {
   }
