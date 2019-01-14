@@ -36,7 +36,7 @@ public class Users {
 	}
 	
 	public Users(String firstName, String lastName, String email, String phone, String employeeStatus,
-			int helpedBy, Blob picture, String username, String passHash, String salt) {
+			Integer helpedBy, Blob picture, String username, String passHash, String salt) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
