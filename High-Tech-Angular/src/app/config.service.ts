@@ -11,8 +11,6 @@ export class ConfigService {
 
   constructor(private http: HttpClient) { }
 
-  id = 7;
-  productId = 10;
   configUrl = 'assets/config.json';
   profileInfoURL: "http://localhost:8082/HighTechIndustries/member/{memberId}";
   addUserURL: "http://localhost:8082/HighTechIndustries/login/addUser";
@@ -32,11 +30,11 @@ export class ConfigService {
   }
 
   getRecentlyViewed(): Observable<Object>{
-    return this.http.get(this.recentlyViewedURL.concat(this.id.toString()));
+    return this.http.get(this.recentlyViewedURL);
   }
 
   getProduct(): Observable<Object>{
-    return this.http.get(this.productURL.concat(this.productId.toString()));
+    return this.http.get(this.productURL);
   }
 
 }

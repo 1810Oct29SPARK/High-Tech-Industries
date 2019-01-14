@@ -13,6 +13,12 @@ export class EmployeeComponent implements OnInit {
 
   showMembers: boolean = true;
 
+  submitted = false;
+
+  onSubmit(){
+    this.submitted = true;
+  }
+
   ngOnInit() {
   }
 
