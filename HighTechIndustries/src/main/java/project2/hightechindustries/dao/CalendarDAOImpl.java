@@ -75,4 +75,17 @@ public class CalendarDAOImpl implements CalendarDAO {
 		}
 	}
 
+	@Override
+	public List<Calendar> getAllEvents() {
+		List<Calendar> calendar = new ArrayList<>();
+		try(Session s = sf.openSession()) {
+			Transaction tx = s.beginTransaction();
+			// grabbing information from database by using createQuery with 'from RecentlyViewed' query
+			calendar = s.createQuery("from Calendar").getResultList();
+			tx.commit();
+			s.close();
+		}
+		return calendar;
+	}
+
 }
