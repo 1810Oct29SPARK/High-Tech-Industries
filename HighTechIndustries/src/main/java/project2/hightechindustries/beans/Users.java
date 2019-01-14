@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class Users {
 	
 	public Users(int id, String firstName, String lastName, String email, String phone, String employeeStatus,
-			int helpedBy, Blob picture, String username, String passHash, String salt) {
+			Integer helpedBy, Blob picture, String username, String passHash, String salt) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -146,10 +146,10 @@ public class Users {
 	public void setEmployeeStatus(String employeeStatus) {
 		this.employeeStatus = employeeStatus;
 	}
-	public int getHelpedBy() {
+	public Integer getHelpedBy() {
 		return helpedBy;
 	}
-	public void setHelpedBy(int helpedBy) {
+	public void setHelpedBy(Integer helpedBy) {
 		this.helpedBy = helpedBy;
 	}
 	public Blob getPicture() {
