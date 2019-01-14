@@ -6,10 +6,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Service;
 
 import project2.hightechindustries.beans.Calendar;
 import project2.hightechindustries.util.HibernateUtil;
 
+@Service
 public class CalendarDAOImpl implements CalendarDAO {
 	
 	/**
