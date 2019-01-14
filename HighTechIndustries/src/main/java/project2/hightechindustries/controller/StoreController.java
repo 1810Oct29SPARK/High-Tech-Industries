@@ -22,7 +22,9 @@ public class StoreController {
 	
 	@Autowired
 	private RecentlyViewedDAO recentlyViewed;
-	private StoreDAO item;
+	
+	@Autowired
+	private StoreDAO stores;
 	
 	@GetMapping(value="/{memberId}")
 	public ResponseEntity<RecentlyViewed> getPurchasedItemsByMemberId(@PathVariable int memberId) {
@@ -36,7 +38,8 @@ public class StoreController {
 	
 	@GetMapping(value="/item{productId}")
 	public ResponseEntity<Store> getPurchasedItemsByProductId(@PathVariable int productId) {
-		Store storeItem = item.getStoreById(productId);
+		System.out.println(productId);
+		Store storeItem = stores.getStoreById(productId);
 		if (storeItem == null) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {

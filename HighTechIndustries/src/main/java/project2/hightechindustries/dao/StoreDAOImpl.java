@@ -6,10 +6,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Service;
 
 import project2.hightechindustries.beans.Store;
 import project2.hightechindustries.util.HibernateUtil;
 
+@Service
 public class StoreDAOImpl implements StoreDAO {
 	
 	/**
@@ -20,12 +22,14 @@ public class StoreDAOImpl implements StoreDAO {
 
 	// Getting a single item in the store
 	@Override
-	public Store getStoreById(int id) {
+	public Store getStoreById(Integer productId) {
 		Store str = null;
 		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
 			// Casting to Store object to be returned and used later
-			str = (Store) s.get(Store.class, id);
+			System.out.println("str before: "+str);
+			str = (Store) s.get(Store.class, productId);
+			System.out.println("str: "+str);
 			tx.commit();
 			s.close();
 		}
