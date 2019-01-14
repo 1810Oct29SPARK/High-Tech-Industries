@@ -11,7 +11,7 @@ public interface StoreDAO {
 	 * @author (name=Sean) (for JavaDoc)
 	 * This method is here so that members can search for a particular item in the store.
 	 */
-	public Store getStoreById(int id);
+	public Store getStoreById(Integer productId);
 	
 	/**
 	 * @author (name=Esteban) (for Method)

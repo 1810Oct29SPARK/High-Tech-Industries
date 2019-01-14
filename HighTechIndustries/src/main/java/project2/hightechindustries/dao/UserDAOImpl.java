@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import project2.hightechindustries.beans.Users;
 import project2.hightechindustries.util.HibernateUtil;
 
-@Service(value="userService")
+@Service
 public class UserDAOImpl implements UserDAO {
 	
 	/**
@@ -55,6 +55,7 @@ public class UserDAOImpl implements UserDAO {
 		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
 			u = (Users) s.get(Users.class, id);
+			System.out.println(u);
 			tx.commit();
 			s.close();
 		}
