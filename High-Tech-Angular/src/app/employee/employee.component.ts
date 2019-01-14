@@ -17,6 +17,7 @@ export class EmployeeComponent implements OnInit {
 
   onSubmit(){
     this.submitted = true;
+    console.log("hello");
   }
 
   ngOnInit() {
