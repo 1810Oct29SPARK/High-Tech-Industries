@@ -80,6 +80,13 @@ public class Users {
 		this.password = password;
 	}
 	
+	public Users(int memberId, String email, String phone) {
+		super();
+		this.id = memberId;
+		this.email = email;
+		this.phone = phone;
+	}
+	
 	public Users() {
 		
 	}

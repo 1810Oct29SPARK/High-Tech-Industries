@@ -38,12 +38,21 @@ public class StoreController {
 	
 	@GetMapping(value="/item{productId}")
 	public ResponseEntity<Store> getPurchasedItemsByProductId(@PathVariable int productId) {
-		System.out.println(productId);
 		Store storeItem = stores.getStoreById(productId);
 		if (storeItem == null) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
 			return new ResponseEntity<>(storeItem, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping(value="/products")
+	public ResponseEntity<List<Store>> getListOfProducts() {
+		List<Store> items = stores.getAllStore();
+		if (items == null) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<List<Store>>(items, HttpStatus.OK);
 		}
 	}
 
