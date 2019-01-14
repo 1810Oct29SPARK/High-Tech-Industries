@@ -1,5 +1,7 @@
 package project2.hightechindustries.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.beans.Users;
+import project2.hightechindustries.dao.PurchasedDAO;
 import project2.hightechindustries.dao.UserDAO;
 import project2.hightechindustries.dao.UserDAOImpl;
 
@@ -20,6 +24,9 @@ public class MemberController {
 	
 	@Autowired
 	private UserDAO user;
+	
+	@Autowired
+	private PurchasedDAO purchased;
 	
 	@GetMapping(value="/{memberId}")
 	public ResponseEntity<Users> getMemberById(@PathVariable int memberId) {
@@ -44,5 +51,17 @@ public class MemberController {
 			return new ResponseEntity<>(u, HttpStatus.OK);
 		}
 	}
+	
+	@GetMapping(value="/purchased{memberId}")
+	public ResponseEntity<List<Purchased>> getPurchasedList(@PathVariable int memberId) {
+		System.out.println(memberId);
+		List<Purchased> items = purchased.getPurchasedItemsByMemberId(memberId);
+		if (items == null) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<List<Purchased>>(items, HttpStatus.OK);
+		}
+	}
+	
 
 }

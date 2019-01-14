@@ -70,10 +70,4 @@ public class LoginController {
 		
 	}
 
-	// @PostMapping
-
-	// @GetMapping
-
-	// Profile, Employee, Store, Login
-
 }
