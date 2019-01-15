@@ -28,12 +28,12 @@ export class ProfileComponent implements OnInit {
   }
 
   user$ = this.configService.getUser()
-  showConfig() {
-    this.configService.getConfig()
-      .subscribe((data: Config) => this.config = {
-        loginURL: data['loginUrl']
-      });
-  }
+  // showConfig() {
+  //   this.configService.getConfig()
+  //     .subscribe((data: Config) => this.config = {
+  //       loginURL: data['loginUrl']
+  //     });
+  // }
 
   ngOnInit() {
   }

@@ -15,6 +15,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CalendarService } from './calendar/calendar.service';
 
 // Jeremy
 
@@ -93,7 +94,7 @@ const appRoutes: Routes = [
     NgbModule,
     HttpClientModule
   ],
-  providers: [CanVisitService],
+  providers: [CanVisitService, CalendarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
