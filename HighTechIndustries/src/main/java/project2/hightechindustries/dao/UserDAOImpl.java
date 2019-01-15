@@ -55,7 +55,6 @@ public class UserDAOImpl implements UserDAO {
 		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
 			u = (Users) s.get(Users.class, id);
-			System.out.println(u);
 			tx.commit();
 			s.close();
 		}
