@@ -15,7 +15,7 @@ export class ConfigService {
   profileInfoURL: "http://localhost:8082/HighTechIndustries/member/{memberId}";
   addUserURL: "http://localhost:8082/HighTechIndustries/login/addUser";
   recentlyViewedURL: "http://localhost:8082/HighTechIndustries/store/";
-  productURL: "http://localhost:8082/HighTechIndustries/store/";
+  productURL: "http://localhost:8082/HighTechIndustries/store/products";
   getConfig() {
     return this.http.get(this.configUrl);
   }
@@ -25,6 +25,7 @@ export class ConfigService {
   // }
 
   getUser(): Observable<Object>{
+    console.log("in service");
     return this.http.get(this.profileInfoURL)
   }
 
@@ -32,7 +33,8 @@ export class ConfigService {
     return this.http.get(this.recentlyViewedURL);
   }
 
-  getProduct(): Observable<Object>{
+  getProduct(): any{
+    console.log('in service');
     return this.http.get(this.productURL);
   }
 }

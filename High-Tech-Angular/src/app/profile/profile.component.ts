@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
-import { ProfileInfoComponent } from '../profile-info/profile-info.component';
+// import { ProfileInfoComponent } from '../profile-info/profile-info.component';
 import { ConfigService } from '../config.service';
+import { HttpClient } from '@angular/common/http';
 // Jeremy
 
 @Component({
@@ -9,7 +10,8 @@ import { ConfigService } from '../config.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, public configService: ConfigService) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, public configService: ConfigService,
+    private http: HttpClient) { }
 
   firstname: String = 'Someone\'s Name';
 
@@ -28,12 +30,12 @@ export class ProfileComponent implements OnInit {
   }
 
   user$ = this.configService.getUser()
-  showConfig() {
-    this.configService.getConfig()
-      .subscribe((data: Config) => this.config = {
-        loginURL: data['loginUrl']
-      });
-  }
+  // showConfig() {
+  //   this.configService.getConfig()
+  //     .subscribe((data: Config) => this.config = {
+  //       loginURL: data['loginUrl']
+  //     });
+  // }
 
   ngOnInit() {
   }
