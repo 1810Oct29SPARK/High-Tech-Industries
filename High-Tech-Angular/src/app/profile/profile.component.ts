@@ -29,7 +29,16 @@ export class ProfileComponent implements OnInit {
     this.showInfo = false;
   }
 
+  
+
   user$ = this.configService.getUser()
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 82ccccace8feea6310e0e8b6a5bc7d405bb66050
+>>>>>>> 844770e6a7a38ca7c7ab0c58c56dda0de2235b8c
   // showConfig() {
   //   this.configService.getConfig()
   //     .subscribe((data: Config) => this.config = {
