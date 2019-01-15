@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from '../config.service';
 
 // Jeremy
 
@@ -9,17 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public configService: ConfigService) { }
+
+  members: string[];
 
   showMembers: boolean = true;
 
   submitted = false;
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
   }
 
   ngOnInit() {
+    this.getCalendarEvents();
+  }
+
+  getCalendarEvents() {
+    this.configService.getMemberList().subscribe((e) => {
+      this.members = e;
+      console.log(e);
+    });
   }
 
 }
+
+

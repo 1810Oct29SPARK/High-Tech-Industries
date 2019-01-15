@@ -10,7 +10,7 @@ import { ConfigService } from '../config.service';
 })
 export class StoreComponent implements OnInit {
 
-  list: string[];
+  products: string[];
 
   constructor(public configService: ConfigService) { }
 
@@ -25,7 +25,7 @@ export class StoreComponent implements OnInit {
 
   getProductsFromStore() {
     this.configService.getProduct().subscribe( (e)=>{
-      this.list = e;
+      this.products = e;
       console.log(e[0]);
     });
   }

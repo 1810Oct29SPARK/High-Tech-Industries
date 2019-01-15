@@ -78,15 +78,15 @@
       <!-- each product has a card that displays the info
         This will create a card for every product in our list -->
       <div class="row">
-        <div *ngFor="let l of list" class="col-lg-4 col-md-6 mb-4">
+        <div *ngFor="let p of products" class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100">
             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">{{l.productName}}</a>
+                <a href="#">{{p.productName}}</a>
               </h4>
-              <h5>{{l.price}}</h5>
-              <p class="card-text">{{l.description}}</p>
+              <h5>{{p.price}}</h5>
+              <p class="card-text">{{p.description}}</p>
             </div>
             <div class="card-footer">
               <small class="text-muted">★ ★ ★ ★ ☆</small>

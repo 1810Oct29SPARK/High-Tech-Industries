@@ -33,6 +33,14 @@ export class ConfigService {
     return this.http.get(this.recentlyViewedURL);
   }
 
+  getMemberList(): Observable<any>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/member/allMembers')
+  }
+
+  getCalendarEvents(): Observable<any>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/calendar/allEvents')
+  }
+
   getProduct(): Observable<any>{
     return this.http.get('http://localhost:8082/HighTechIndustries/store/products');
   }

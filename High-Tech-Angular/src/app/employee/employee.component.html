@@ -22,16 +22,16 @@
         <div class="col">
           <div *ngIf="showMembers">
             <div class="list-group m-2">
-              <div *ngFor="let member of members">
+              <div>
                 <a class="list-group-item list-group-item-action flex-column align-items-start">
-                  <div class="row">
+                  <div *ngFor="let m of members" class="row">
                     <div class="col">
                       <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">George Foreman</h5>
+                        <h5 class="mb-1">{{m.firstName}} {{m.lastName}}</h5>
                       </div>
                     </div>
                     <div class="col">
-                      <p class="mb-1">george.com</p>
+                      <p class="mb-1">{{m.email}}</p>
                     </div>
                     <div class="col-md-2">
                       <!-- allows the employee to open a modal to view the individual member's information and items -->
@@ -115,9 +115,6 @@
                   </div>
                 </div>
               </a>
-              <div class="row">
-
-              </div>
             </div>
           </div>
         </div>

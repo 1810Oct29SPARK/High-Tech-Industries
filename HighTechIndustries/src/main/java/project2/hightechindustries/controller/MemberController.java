@@ -1,6 +1,6 @@
 package project2.hightechindustries.controller;
 
-import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.beans.Users;
 import project2.hightechindustries.dao.PurchasedDAO;
 import project2.hightechindustries.dao.UserDAO;
-import project2.hightechindustries.dao.UserDAOImpl;
 import project2.hightechindustries.service.LoginService;
 
 @RestController
@@ -67,6 +66,16 @@ public class MemberController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
 			return new ResponseEntity<List<Purchased>>(items, HttpStatus.OK);
+		}
+	}
+
+	@GetMapping(value = "/allMembers")
+	public ResponseEntity<List<Users>> getAllMembers() {
+		List<Users> members = user.getAllUsers();
+		if (members.equals(null)) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<List<Users>>(members, HttpStatus.OK);
 		}
 	}
 
