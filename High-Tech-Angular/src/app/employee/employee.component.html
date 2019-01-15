@@ -1,0 +1,191 @@
+
+<!-- Jeremy -->
+
+<div class="jumbotron jumbotron-fluid mb-0" style="background-color: gainsboro">
+  <div class="container">
+    <h1 class="display-4">Employee Home</h1>
+    <p class="lead"></p>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <app-calendar></app-calendar>
+    </div>
+    <div class="col">
+      <div class="row">
+        <h1>Members List</h1>
+      </div>
+      <!-- displays each member that is associated with the employee -->
+      <div class="row">
+        <div class="col">
+          <div *ngIf="showMembers">
+            <div class="list-group m-2">
+              <div *ngFor="let member of members">
+                <a class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="row">
+                    <div class="col">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">George Foreman</h5>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <p class="mb-1">george.com</p>
+                    </div>
+                    <div class="col-md-2">
+                      <!-- allows the employee to open a modal to view the individual member's information and items -->
+                      <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal"
+                        data-target="#viewMemberModal">View
+                        Member</button>
+                    </div>
+                  </div>
+                </a><!-- modal used to view the individual member's infomation and items -->
+                <div class="modal fade" id="viewMemberModal" tabindex="-1" role="dialog" aria-labelledby="viewMemeberModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add a New Member.</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="form-group">
+                            <label for="firstname" class="col-form-label">Firstname:</label>
+                            <input type="text" class="form-control" id="firstname" placeholder="Firstname" aria-label="Firstname"
+                              data-toggle="tooltip" data-placement="bottom" title="Firstname" required="true">
+                          </div>
+                          <div class="form-group">
+                            <label for="lastname" class="col-form-label">Lastname:</label>
+                            <input type="text" class="form-control" id="lastname" placeholder="Lastname" aria-label="Lastname"
+                              data-toggle="tooltip" data-placement="bottom" title="Lastname" required="true">
+                          </div>
+                          <div class="form-group">
+                            <label for="username" class="col-form-label">Username:</label>
+                            <input type="username" class="form-control" id="username1" placeholder="Username"
+                              aria-label="Username" data-toggle="tooltip" data-placement="bottom" title="Username"
+                              required="true">
+                          </div>
+                          <div class="form-group">
+                            <label for="email" class="col-form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email"
+                              data-toggle="tooltip" data-placement="bottom" title="Email" required="true">
+                          </div>
+                          <div class="form-group">
+                            <label for="password" class="col-form-label">Password:</label>
+                            <input type="password" class="form-control" id="password1" placeholder="Password"
+                              aria-label="Password" data-toggle="tooltip" data-placement="bottom" title="Password"
+                              required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.confirmPassword.pattern = this.value;">
+                          </div>
+                          <div class="form-group">
+                            <label for="confirmPassword" class="col-form-label">Confirm Password:</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
+                              aria-label="Confirm Password" data-toggle="tooltip" data-placement="bottom" title="Confirm Password"
+                              required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
+                          </div>
+                          <div class="modal-footer">
+                            <div class="col">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            </div>
+                            <div class="col">
+                              <button type="submit" name="submit" class="btn btn-primary btn-block">Save Updates</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <a class="list-group-item flex-column align-items-start">
+                <div class="row">
+                  <div class="col">
+                  </div>
+                  <div class="col">
+                  </div>
+                  <div class="col-md-2">
+                    <!-- allows the employee to open a modal to add a new member -->
+                    <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#addMemberModal">Add
+                      a New Member</button>
+                  </div>
+                </div>
+              </a>
+              <div class="row">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- model used to add a new member -->
+<div class="modal fade" id="addMemberModal" tabindex="-1" role="dialog" aria-labelledby="addMemeberModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a New Member.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="firstname" class="col-form-label">Firstname:</label>
+            <input type="text" class="form-control" id="firstname" placeholder="Firstname" aria-label="Firstname"
+              data-toggle="tooltip" data-placement="bottom" title="Firstname" required="true">
+          </div>
+          <div class="form-group">
+            <label for="lastname" class="col-form-label">Lastname:</label>
+            <input type="text" class="form-control" id="lastname" placeholder="Lastname" aria-label="Lastname"
+              data-toggle="tooltip" data-placement="bottom" title="Lastname" required="true">
+          </div>
+          <div class="form-group">
+            <label for="username" class="col-form-label">Username:</label>
+            <input type="username" class="form-control" id="username1" placeholder="Username" aria-label="Username"
+              data-toggle="tooltip" data-placement="bottom" title="Username" required="true">
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-form-label">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email" data-toggle="tooltip"
+              data-placement="bottom" title="Email" required="true">
+          </div>
+          <div class="form-group">
+            <label for="phone" class="col-form-label">Phone:</label>
+            <input type="phone" class="form-control" id="phone" placeholder="Phone" aria-label="Phone" data-toggle="tooltip"
+              data-placement="bottom" title="Phone" required="true">
+          </div>
+          <div class="form-group">
+            <label for="password" class="col-form-label">Password:</label>
+            <input type="password" class="form-control" id="password1" placeholder="Password" aria-label="Password"
+              data-toggle="tooltip" data-placement="bottom" title="Password" required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.confirmPassword.pattern = this.value;">
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword" class="col-form-label">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" aria-label="Confirm Password"
+              data-toggle="tooltip" data-placement="bottom" title="Confirm Password" required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
+          </div>
+          <div class="modal-footer">
+            <div class="col">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+            <div class="col">
+              <button type="submit" name="submit" class="btn btn-primary btn-block">Save Updates</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
