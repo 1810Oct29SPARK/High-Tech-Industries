@@ -92,7 +92,7 @@ public class LoginService {
 			String employeeStatus, String username, String password) {
 		UserDAO ud = new UserDAOImpl();
 		Integer helpedBy = null;
-		Blob image = null;
+		byte[] image = null;
 		byte[] userSaltByte = new byte[16];
 		userSaltByte = getNextSalt();
 		byte[] passByte = hashPassword(password, userSaltByte);
@@ -106,7 +106,7 @@ public class LoginService {
 			String employeeStatus, Integer helpedBy, String username, String password) {
 		UserDAO ud = new UserDAOImpl();
 		helpedBy = null;
-		Blob image = null;
+		byte[] image = null;
 		byte[] userSaltByte = new byte[16];
 		userSaltByte = getNextSalt();
 		byte[] passByte = hashPassword(password, userSaltByte);
@@ -122,7 +122,7 @@ public class LoginService {
 			String username, String password) {
 		UserDAO ud = new UserDAOImpl();
 		Integer helpedBy = null;
-		Blob image = null;
+		byte[] image = null;
 		byte[] userSaltByte = new byte[16];
 		userSaltByte = getNextSalt();
 		byte[] passByte = hashPassword(password, userSaltByte);

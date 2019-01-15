@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class Users {
 	
 	public Users(int id, String firstName, String lastName, String email, String phone, String employeeStatus,
-			Integer helpedBy, Blob picture, String username, String passHash, String salt) {
+			Integer helpedBy, byte[] image, String username, String passHash, String salt) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -29,14 +29,14 @@ public class Users {
 		this.phone = phone;
 		this.employeeStatus = employeeStatus;
 		this.helpedBy = helpedBy;
-		this.picture = picture;
+		this.picture = image;
 		this.username = username;
 		this.password = passHash;
 		this.salt = salt;
 	}
 	
 	public Users(String firstName, String lastName, String email, String phone, String employeeStatus,
-			Integer helpedBy, Blob picture, String username, String passHash, String salt) {
+			Integer helpedBy, byte[] picture, String username, String passHash, String salt) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -109,7 +109,7 @@ public class Users {
 	@Column(name="HELPED_BY")
 	private Integer helpedBy;
 	@Column(name="IMAGE")
-	private Blob picture;
+	private byte[] picture;
 	@Column(name="MEMBER_NAME")
 	private String username;
 	@Column(name="PASSWORD_HASH")
@@ -159,11 +159,11 @@ public class Users {
 	public void setHelpedBy(Integer helpedBy) {
 		this.helpedBy = helpedBy;
 	}
-	public Blob getPicture() {
+	public byte[] getPicture() {
 		return picture;
 	}
-	public void setPicture(Blob picture) {
-		this.picture = picture;
+	public void setPicture(byte[] imageInBytes) {
+		this.picture = imageInBytes;
 	}
 	public String getUsername() {
 		return username;

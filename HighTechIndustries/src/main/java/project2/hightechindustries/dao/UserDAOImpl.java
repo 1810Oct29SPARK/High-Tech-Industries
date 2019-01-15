@@ -1,5 +1,8 @@
 package project2.hightechindustries.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,5 +113,23 @@ public class UserDAOImpl implements UserDAO {
 			s.close();
 		}
 	}
+
+
+//	@Override
+//	public void updateProfilePhoto(File photo, int id) {
+//		try(Session s = sf.getCurrentSession()){
+//			Transaction tx = s.beginTransaction();
+//			Users u = (Users) s.get(Users.class, id);
+//			byte[] imageInBytes = new byte[(int)photo.length()];
+//			FileInputStream inputStream = new FileInputStream(photo);
+//			inputStream.read(imageInBytes);
+//			inputStream.close();
+//			u.setPicture(imageInBytes);
+//			tx.commit();
+//			s.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 }
