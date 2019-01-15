@@ -1,7 +1,7 @@
 package project2.hightechindustries.test;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import project2.hightechindustries.beans.RecentlyViewed;
 import project2.hightechindustries.beans.Store;
@@ -13,7 +13,7 @@ class RecentlyViewedTest {
 	RecentlyViewedDAO rv = new RecentlyViewedDAOImpl();
 
 	@Test
-	public void getRecentlyViewedById() {
+	public void getRecentlyViewedByIdTest() {
 		
 		RecentlyViewed recViewed = new RecentlyViewed();
 		recViewed.setMemberId(8);
@@ -32,7 +32,7 @@ class RecentlyViewedTest {
 	}
 	
 	@Test
-	public void listRecentlyViewedById() {
+	public void listRecentlyViewedByIdTest() {
 		
         RecentlyViewed recView = new RecentlyViewed();
 		recView.setMemberId(8);
@@ -42,7 +42,51 @@ class RecentlyViewedTest {
 		recView.setProductId4(9);
 		recView.setProductId5(6);
 
-        Assert.assertEquals(recView, rv.getAllRecentlyViewed(8));
+        Assert.assertEquals(recView.getMemberId(), rv.getRecentlyViewedById(8).getMemberId());
+        Assert.assertEquals(recView.getProductId1(), rv.getRecentlyViewedById(8).getProductId1());
+        Assert.assertEquals(recView.getProductId2(), rv.getRecentlyViewedById(8).getProductId2());
+        Assert.assertEquals(recView.getProductId3(), rv.getRecentlyViewedById(8).getProductId3());
+        Assert.assertEquals(recView.getProductId4(), rv.getRecentlyViewedById(8).getProductId4());
+        Assert.assertEquals(recView.getProductId5(), rv.getRecentlyViewedById(8).getProductId5());
+		
+	}
+	
+//	@Test
+//	public void newRecentlyVIewedTest() {
+//		
+//      RecentlyViewed recView = new RecentlyViewed();
+//		recView.setMemberId(3);
+//		
+////		rv.newRecentlyViewed(new RecentlyViewed(3));
+//		
+//		Assert.assertEquals(recView.getMemberId(), rv.getRecentlyViewedById(3).getMemberId());
+//		
+//	}
+	
+//	@Test
+//	public void addRecentlyViewedTest() {
+//		
+//        RecentlyViewed recView = new RecentlyViewed();
+//		recView.setMemberId(3);
+//		recView.setProductId1(2);
+//		recView.setProductId2(6);
+//		
+//		//cannot run addRecentlyViewed and then list because it will crash
+////		rv.addRecentlyViewed(new RecentlyViewed(3, 2));
+//
+//        Assert.assertEquals(recView.getMemberId(), rv.getRecentlyViewedById(3).getMemberId());
+//        Assert.assertEquals(recView.getProductId1(), rv.getRecentlyViewedById(3).getProductId1());
+//        Assert.assertEquals(recView.getProductId2(), rv.getRecentlyViewedById(3).getProductId2());
+//		
+//	}
+	
+	@Test
+	public void deleteRecentlyViewedTest() {
+		
+		RecentlyViewed drv = rv.getRecentlyViewedById(3);
+		rv.deleteRecentlyViewed(drv);
+		
+		Assert.assertNull(rv.getRecentlyViewedById(3));
 		
 	}
 
