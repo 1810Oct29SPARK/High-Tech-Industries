@@ -51,7 +51,6 @@ public class LoginService {
 
 //	hash the password appended with the salt
 	public byte[] hashPassword(String password, byte[] salt) {
-		System.out.println("password is: " + password);
 		PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, keySize);
 		Arrays.fill(password.toCharArray(), Character.MIN_VALUE);
 		try {
@@ -101,7 +100,20 @@ public class LoginService {
 		String userSalt = new String(userSaltByte);
 		ud.updateUser(new Users(userId, firstName, lastName, email, phone, employeeStatus, helpedBy, image, username,
 				passHash, userSalt));
-
+	}
+	
+	public void updateUser(int userId, String firstName, String lastName, String email, String phone,
+			String employeeStatus, Integer helpedBy, String username, String password) {
+		UserDAO ud = new UserDAOImpl();
+		helpedBy = null;
+		Blob image = null;
+		byte[] userSaltByte = new byte[16];
+		userSaltByte = getNextSalt();
+		byte[] passByte = hashPassword(password, userSaltByte);
+		String passHash = new String(passByte);
+		String userSalt = new String(userSaltByte);
+		ud.updateUser(new Users(userId, firstName, lastName, email, phone, employeeStatus, helpedBy, image, username,
+				passHash, userSalt));
 	}
 
 //	whenever a new user is added, the password will be hashed with a salt and both the salt and hashed password will be 
