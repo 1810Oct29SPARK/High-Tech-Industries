@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Service;
 
 import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.util.HibernateUtil;
@@ -16,6 +17,8 @@ import project2.hightechindustries.util.HibernateUtil;
  * the PurchasedDAOImpl will be called only once either
  * an employee or customer has logged in
  **/
+
+@Service
 public class PurchasedDAOImpl implements PurchasedDAO {
 
 	private SessionFactory sf = HibernateUtil.getSessionFactory();

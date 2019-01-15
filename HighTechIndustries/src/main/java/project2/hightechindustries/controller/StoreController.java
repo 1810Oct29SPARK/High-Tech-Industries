@@ -8,11 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import project2.hightechindustries.beans.Cart;
 import project2.hightechindustries.beans.RecentlyViewed;
 import project2.hightechindustries.beans.Store;
+import project2.hightechindustries.dao.CartDAO;
 import project2.hightechindustries.dao.RecentlyViewedDAO;
 import project2.hightechindustries.dao.StoreDAO;
 
@@ -26,8 +27,11 @@ public class StoreController {
 	@Autowired
 	private StoreDAO stores;
 	
+	@Autowired
+	private CartDAO cart;
+	
 	@GetMapping(value="/{memberId}")
-	public ResponseEntity<RecentlyViewed> getPurchasedItemsByMemberId(@PathVariable int memberId) {
+	public ResponseEntity<RecentlyViewed> getStoreItemsByMemberId(@PathVariable int memberId) {
 		List<RecentlyViewed> rv = recentlyViewed.getAllRecentlyViewed(memberId);
 		if (rv == null) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -37,7 +41,7 @@ public class StoreController {
 	}
 	
 	@GetMapping(value="/item{productId}")
-	public ResponseEntity<Store> getPurchasedItemsByProductId(@PathVariable int productId) {
+	public ResponseEntity<Store> getStoreItemsByProductId(@PathVariable int productId) {
 		Store storeItem = stores.getStoreById(productId);
 		if (storeItem == null) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -53,6 +57,16 @@ public class StoreController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
 			return new ResponseEntity<List<Store>>(items, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping(value="/cart{memberId}")
+	public ResponseEntity<List<Cart>> getItemsInCart(@PathVariable int memberId) {
+		List<Cart> items = cart.getAllCartItemsById(memberId);
+		if (items == null) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<List<Cart>>(items, HttpStatus.OK);
 		}
 	}
 
