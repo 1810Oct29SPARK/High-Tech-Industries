@@ -15,24 +15,25 @@ export class ConfigService {
   profileInfoURL: "http://localhost:8082/HighTechIndustries/member/{memberId}";
   addUserURL: "http://localhost:8082/HighTechIndustries/login/addUser";
   recentlyViewedURL: "http://localhost:8082/HighTechIndustries/store/";
-  productURL: "http://localhost:8082/HighTechIndustries/store/";
-  getConfig() {
-    return this.http.get(this.configUrl);
-  }
+  productURL: 'http://localhost:8082/HighTechIndustries/store/products';
+
+  // getConfig() {
+  //   return this.http.get(this.configUrl);
+  // }
   
   // addUser(): Observable<Object>{
   //   return this.http.post(this.addUserURL);
   // }
 
-  getUser(): Observable<Object>{
+  getUser(): Observable<any>{
     return this.http.get(this.profileInfoURL)
   }
 
-  getRecentlyViewed(): Observable<Object>{
+  getRecentlyViewed(): Observable<any>{
     return this.http.get(this.recentlyViewedURL);
   }
 
-  getProduct(): Observable<Object>{
-    return this.http.get(this.productURL);
+  getProduct(): Observable<any>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/store/products');
   }
 }
