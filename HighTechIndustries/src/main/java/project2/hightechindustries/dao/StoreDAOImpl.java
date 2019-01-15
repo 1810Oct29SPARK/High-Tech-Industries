@@ -134,7 +134,7 @@ public class StoreDAOImpl implements StoreDAO {
 
 	@Override
 	public void insertPhoto(int id) {
-		File file = new File("C:\\Users\\seans\\Pictures\\Asimo.png");
+		File file = new File("C:\\Users\\seans\\Pictures\\RobotDog1.png");
 		byte[] imageData = new byte[(int)file.length()];
 		try (Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();

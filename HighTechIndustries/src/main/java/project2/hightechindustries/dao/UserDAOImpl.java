@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Service;
 
+import project2.hightechindustries.beans.Store;
 import project2.hightechindustries.beans.Users;
 import project2.hightechindustries.util.HibernateUtil;
 
@@ -131,5 +132,24 @@ public class UserDAOImpl implements UserDAO {
 //			e.printStackTrace();
 //		}
 //	}
+//	@Override
+//	public void insertPhoto(String user) {
+//		File file = new File("C:\\Users\\seans\\Pictures\\RobotDog1.png");
+//		byte[] imageData = new byte[(int)file.length()];
+//		try (Session s = sf.getCurrentSession()) {
+//			Transaction tx = s.beginTransaction();
+//			FileInputStream fileInputStream = new FileInputStream(file);
+//			fileInputStream.read(imageData);
+//			fileInputStream.close();
+//			Users image = new Users();
+//			image.setUsername(user);
+////			image.setImage("Asimo.jpeg");
+//			image.setImage(imageData);
+//			s.save(image);
+//			tx.commit();
+//			s.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
 }

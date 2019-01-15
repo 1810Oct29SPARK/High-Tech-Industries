@@ -8,7 +8,7 @@ public class Driver {
 	public static void main(String[] args) {
 		Store store = new Store(21);
 		StoreDAO dao = new StoreDAOImpl();
-		dao.insertPhoto(21);
+		dao.insertPhoto(12);
 		
 	}
 
