@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class Users {
 	
 	public Users(int id, String firstName, String lastName, String email, String phone, String employeeStatus,
-			int helpedBy, Blob picture, String username, String passHash, String salt) {
+			Integer helpedBy, Blob picture, String username, String passHash, String salt) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -31,12 +31,12 @@ public class Users {
 		this.helpedBy = helpedBy;
 		this.picture = picture;
 		this.username = username;
-		this.passHash = passHash;
+		this.password = passHash;
 		this.salt = salt;
 	}
 	
 	public Users(String firstName, String lastName, String email, String phone, String employeeStatus,
-			int helpedBy, Blob picture, String username, String passHash, String salt) {
+			Integer helpedBy, Blob picture, String username, String passHash, String salt) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -46,13 +46,45 @@ public class Users {
 		this.helpedBy = helpedBy;
 		this.picture = picture;
 		this.username = username;
-		this.passHash = passHash;
+		this.password = passHash;
 		this.salt = salt;
 	}
 	
 	public Users(int id) {
 		super();
 		this.id = id;
+	}
+	
+	public Users(String firstName, String lastName, String email, String phone, String employeeStatus,
+			String username, String passHash, String salt) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;
+		this.employeeStatus = employeeStatus;
+		this.username = username;
+		this.password = passHash;
+		this.salt = salt;
+	}
+	
+	// add method to get users info by their username and password
+	public Users(String username) {
+		super();
+		this.username = username;
+	}
+	
+	public Users(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+	
+	public Users(int memberId, String email, String phone) {
+		super();
+		this.id = memberId;
+		this.email = email;
+		this.phone = phone;
 	}
 	
 	public Users() {
@@ -81,7 +113,7 @@ public class Users {
 	@Column(name="MEMBER_NAME")
 	private String username;
 	@Column(name="PASSWORD_HASH")
-	private String passHash;
+	private String password;
 	@Column(name="SALT")
 	private String salt;
 	
@@ -121,10 +153,10 @@ public class Users {
 	public void setEmployeeStatus(String employeeStatus) {
 		this.employeeStatus = employeeStatus;
 	}
-	public int getHelpedBy() {
+	public Integer getHelpedBy() {
 		return helpedBy;
 	}
-	public void setHelpedBy(int helpedBy) {
+	public void setHelpedBy(Integer helpedBy) {
 		this.helpedBy = helpedBy;
 	}
 	public Blob getPicture() {
@@ -140,10 +172,10 @@ public class Users {
 		this.username = username;
 	}
 	public String getPassHash() {
-		return passHash;
+		return password;
 	}
 	public void setPassHash(String passHash) {
-		this.passHash = passHash;
+		this.password = passHash;
 	}
 	public String getSalt() {
 		return salt;
@@ -155,68 +187,7 @@ public class Users {
 	public String toString() {
 		return "Users [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", phone=" + phone + ", employeeStatus=" + employeeStatus + ", helpedBy=" + helpedBy + ", picture="
-				+ picture + ", username=" + username + ", passHash=" + passHash + ", salt=" + salt + "]";
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Users other = (Users) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (employeeStatus == null) {
-			if (other.employeeStatus != null)
-				return false;
-		} else if (!employeeStatus.equals(other.employeeStatus))
-			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (helpedBy != other.helpedBy)
-			return false;
-		if (id != other.id)
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		if (passHash == null) {
-			if (other.passHash != null)
-				return false;
-		} else if (!passHash.equals(other.passHash))
-			return false;
-		if (phone == null) {
-			if (other.phone != null)
-				return false;
-		} else if (!phone.equals(other.phone))
-			return false;
-		if (picture == null) {
-			if (other.picture != null)
-				return false;
-		} else if (!picture.equals(other.picture))
-			return false;
-		if (salt == null) {
-			if (other.salt != null)
-				return false;
-		} else if (!salt.equals(other.salt))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		return true;
+				+ picture + ", username=" + username + ", passHash=" + password + ", salt=" + salt + "]";
 	}
 
 }

@@ -6,10 +6,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Service;
 
 import project2.hightechindustries.beans.Calendar;
 import project2.hightechindustries.util.HibernateUtil;
 
+@Service
 public class CalendarDAOImpl implements CalendarDAO {
 	
 	/**
@@ -19,15 +21,15 @@ public class CalendarDAOImpl implements CalendarDAO {
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
 
 	@Override
-	public Calendar getCalendarEventById(int id) {
-		Calendar c = null;
+	public List<Calendar> getCalendarEventById(int eventId) {
+		List<Calendar> calendar = new ArrayList<>();
 		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
-			c = (Calendar) s.get(Calendar.class, id);
+			calendar = s.createQuery("from Calendar C where C.eventId = "+eventId+"").getResultList();
 			tx.commit();
 			s.close();
 		}
-		return c;
+		return calendar;
 	}
 
 	@Override
@@ -71,6 +73,19 @@ public class CalendarDAOImpl implements CalendarDAO {
 			tx.commit();
 			s.close();
 		}
+	}
+
+	@Override
+	public List<Calendar> getAllEvents() {
+		List<Calendar> calendar = new ArrayList<>();
+		try(Session s = sf.openSession()) {
+			Transaction tx = s.beginTransaction();
+			// grabbing information from database by using createQuery with 'from RecentlyViewed' query
+			calendar = s.createQuery("from Calendar").getResultList();
+			tx.commit();
+			s.close();
+		}
+		return calendar;
 	}
 
 }

@@ -16,11 +16,10 @@ export class ConfigService {
   addUserURL: "http://localhost:8082/HighTechIndustries/login/addUser";
   recentlyViewedURL: "http://localhost:8082/HighTechIndustries/store/";
   productURL: "http://localhost:8082/HighTechIndustries/store/";
-
   getConfig() {
     return this.http.get(this.configUrl);
   }
-
+  
   // addUser(): Observable<Object>{
   //   return this.http.post(this.addUserURL);
   // }
@@ -36,5 +35,4 @@ export class ConfigService {
   getProduct(): Observable<Object>{
     return this.http.get(this.productURL);
   }
-
 }
