@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+// Jeremy
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -9,9 +11,17 @@ export class NavComponent implements OnInit {
 
   constructor() { }
 
-  @Input() isEmployee: boolean = true;
+  // used to determine which button is listed on the nav
+  // if the user is signed in then the sign out button will display and the sign in button will be disabled
+  isEmployee: boolean = true;
+  signedIn: boolean = true;
+  signedOut: boolean = false;
 
   showEmployeeTab: boolean;
+
+  // addUser (user : User) {
+  //   return this.http.post
+  // }
 
   ngOnInit() {
   }

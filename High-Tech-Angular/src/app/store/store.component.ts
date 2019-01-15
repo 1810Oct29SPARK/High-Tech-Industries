@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from '../config.service';
+
+// Jeremy
 
 @Component({
   selector: 'app-store',
@@ -7,7 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreComponent implements OnInit {
 
-  constructor() { }
+  constructor(public configService: ConfigService) { }
+
+  noItems: boolean = true;
+  areItems: boolean = false;
+
+  recentlyViewedList$ = this.configService.getRecentlyViewed();
+  
+
 
   ngOnInit() {
   }
