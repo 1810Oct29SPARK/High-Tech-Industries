@@ -1,3 +1,10 @@
 {
+<<<<<<< HEAD
     "loginUrl": "http://localhost:8082/HighTechIndustries/login"
+=======
+    "loginURL": "http://localhost:8082/HighTechIndustries/login/login",
+    "addUserURL": "http://localhost:8082/HighTechIndustries/login/addUser",
+    "recentlyViewedURL": "http://localhost:8082/HighTechIndustries/store/{id}",
+    "profileInfoURL": "http://localhost:8082/HighTechIndustries/member/{memberId}"
+>>>>>>> baf910032671d0d6897c207a62d9b6277e12dc42
 }

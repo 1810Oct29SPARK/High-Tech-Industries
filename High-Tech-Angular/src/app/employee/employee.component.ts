@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+// Jeremy
+
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -8,6 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class EmployeeComponent implements OnInit {
 
   constructor() { }
+
+  showMembers: boolean = true;
+
+  submitted = false;
+
+  onSubmit(){
+    this.submitted = true;
+  }
 
   ngOnInit() {
   }
