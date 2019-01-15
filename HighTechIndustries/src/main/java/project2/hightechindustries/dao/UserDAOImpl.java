@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import project2.hightechindustries.beans.Users;
 import project2.hightechindustries.util.HibernateUtil;
 
-@Service(value="userService")
+@Service
 public class UserDAOImpl implements UserDAO {
 	
 	/**
