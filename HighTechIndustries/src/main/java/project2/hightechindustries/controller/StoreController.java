@@ -31,7 +31,7 @@ public class StoreController {
 	private CartDAO cart;
 	
 	@GetMapping(value="/{memberId}")
-	public ResponseEntity<RecentlyViewed> getPurchasedItemsByMemberId(@PathVariable int memberId) {
+	public ResponseEntity<RecentlyViewed> getStoreItemsByMemberId(@PathVariable int memberId) {
 		List<RecentlyViewed> rv = recentlyViewed.getAllRecentlyViewed(memberId);
 		if (rv == null) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -41,7 +41,7 @@ public class StoreController {
 	}
 	
 	@GetMapping(value="/item{productId}")
-	public ResponseEntity<Store> getPurchasedItemsByProductId(@PathVariable int productId) {
+	public ResponseEntity<Store> getStoreItemsByProductId(@PathVariable int productId) {
 		Store storeItem = stores.getStoreById(productId);
 		if (storeItem == null) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
