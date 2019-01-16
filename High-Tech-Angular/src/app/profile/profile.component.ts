@@ -41,7 +41,6 @@ export class ProfileComponent implements OnInit {
   //       loginURL: data['loginUrl']
   //     });
   // }
-
   ngOnInit() {
     this.getInfo();
   }

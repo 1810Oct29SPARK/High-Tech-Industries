@@ -41,5 +41,16 @@ public interface StoreDAO {
 	 * This method is here so that members (once again, in this case employees) can remove products from the store.
 	 */
 	public void deleteStore(Store store);
+	
+	/**
+	 * @author (name=Sean)
+	 * Here we're looking to upload and view photos of products
+	 */
+	
+//	public void addPhoto();
+	
+//	public void getPhoto();
+	
+	public void insertPhoto(int id);
 
 }

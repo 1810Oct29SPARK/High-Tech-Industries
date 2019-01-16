@@ -1,5 +1,7 @@
 package project2.hightechindustries.beans;
 
+import java.io.File;
+import java.io.Serializable;
 import java.sql.Blob;
 
 import javax.persistence.Column;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * @Author (name="Sean, SBG")
@@ -17,9 +20,22 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="STORE")
-public class Store {
+public class Store implements Serializable {
 	
-	public Store(int productId, String productName, String description, Double price, String specs, Blob image) {
+	public Store(Integer productId, String productName, String description, Double price, String specs, File pic) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.description = description;
+		this.price = price;
+		this.specs = specs;
+		this.pic = pic;
+	}
+
+
+	private static final long serialVersionUID = 1L;
+	
+	public Store(int productId, String productName, String description, Double price, String specs, byte[] image) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -29,13 +45,24 @@ public class Store {
 		this.image = image;
 	}
 	
-	public Store(String productName, String description, Double price, String specs, Blob image) {
+	public Store(String productName, String description, Double price, String specs, byte[] image) {
 		super();
 		this.productName = productName;
 		this.description = description;
 		this.price = price;
 		this.specs = specs;
 		this.image = image;
+	}
+	
+	public Store(int productId, byte[] image) {
+		super();
+		this.productId = productId;
+		this.image = image;
+	}
+	
+	public Store(int productId) {
+		super();
+		this.productId = productId;
 	}
 	
 	public Store() {};
@@ -55,7 +82,9 @@ public class Store {
 	@Column(name="SPECIFICATIONS")
 	private String specs;
 	@Column(name="IMAGE")
-	private Blob image;
+	private byte[] image;
+	@Transient
+	private File pic;
 	
 	public Integer getProductId() {
 		return productId;
@@ -87,16 +116,24 @@ public class Store {
 	public void setSpecs(String specs) {
 		this.specs = specs;
 	}
-	public Blob getImage() {
+	public byte[] getImage() {
 		return image;
 	}
-	public void setImage(Blob image) {
-		this.image = image;
+	public void setImage(byte[] imageData) {
+		this.image = imageData;
 	}
 	@Override
 	public String toString() {
 		return "Store [productId=" + productId + ", productName=" + productName + ", description=" + description
 				+ ", price=" + price + ", specs=" + specs + ", image=" + image + "]";
+	}
+
+	public File getPic() {
+		return pic;
+	}
+
+	public void setPic(File pic) {
+		this.pic = pic;
 	}
 
 }

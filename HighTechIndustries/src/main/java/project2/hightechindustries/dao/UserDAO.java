@@ -1,5 +1,6 @@
 package project2.hightechindustries.dao;
 
+import java.io.File;
 import java.util.List;
 
 import project2.hightechindustries.beans.Users;
@@ -40,6 +41,18 @@ public interface UserDAO {
 	 * This method is here so that members can update their information.
 	 */
 	public void updateUser(Users user);
+	
+	/**
+	 * @author (name=Sean)
+	 * Here I want to make a separate method for users updating their profile pictures
+	 *  just since it seems like it's more complicated than updating the rest of their
+	 *  information.
+	 * If it turns out I'm wrong and we'd be better off combining this with the regular
+	 *  updateUser method (above), we can go ahead and do that instead.
+	 * But for now:
+	 */
+	
+//	public void updateProfilePhoto(File photo, int memberId);
 	
 	/**
 	 * @author (name=Esteban) (for method)
