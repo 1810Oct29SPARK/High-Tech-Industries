@@ -73,6 +73,7 @@ public class UserDAOImpl implements UserDAO {
 		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
 			// Getting info from Users table using HQL
+			System.out.println("in impl");
 			users = s.createQuery("from Users").getResultList();
 			// Will commit  everything and shows up in database if no errors
 			tx.commit();

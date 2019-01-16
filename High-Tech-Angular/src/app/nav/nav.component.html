@@ -1,4 +1,3 @@
-
 <!-- Jeremy -->
 
 <div class="navcomp fixed-top">
@@ -8,17 +7,17 @@
     <a routerLink="high-tech/news" routerLinkActive="active" onclick="closeNav()">News</a>
     <a routerLink="high-tech/store" routerLinkActive="active" onclick="closeNav()">Store</a>
     <!-- only shows if the server can validate that the user is signed in -->
-    <a routerLink="high-tech/profile" routerLinkActive="active" onclick="closeNav()">Profile</a>
+    <a *ngIf="signedIn" routerLink="high-tech/profile" routerLinkActive="active" onclick="closeNav()">Profile</a>
     <!-- only shows if the server can validate that the user signed in is an employee -->
     <a *ngIf="isEmployee" routerLink="high-tech/employee" routerLinkActive="active" onclick="closeNav()">Employee</a>
     <div class="text-center">
 
       <!-- only shows if the user is not signed in and opens up a modal that allows the user to sign in -->
-      <button *ngIf="signedIn" type="button" class="btn btn-outline-light my-2 my-sm-2 text-white mt-1" data-toggle="modal"
+      <button *ngIf="signedOut" type="button" class="btn btn-outline-light my-2 my-sm-2 text-white mt-1" data-toggle="modal"
         data-target="#exampleModal" data-whatever="@mdo">Sign In</button>
       <!-- only shows if the user is signed in and allows the user to sign out, ending their session -->
-      <button *ngIf="signedOut" type="button" class="btn btn-outline-light my-2 my-sm-2 text-white mt-1" data-toggle="modal"
-        data-target="#exampleModal">Sign Out</button>
+      <button *ngIf="signedIn" type="button" class="btn btn-outline-light my-2 my-sm-2 text-white mt-1" (click)="signOut()">Sign
+        Out</button>
     </div>
   </div>
   <div id="main">
@@ -53,10 +52,64 @@
       <!-- opens a new modal for the user to create an account -->
       <div class="modal-footer">
         <div class="col">
-          <button type="button" class="btn btn-secondary btn-block">Create an Account</button>
+          <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal" data-target="#createAccount"
+            data-toggle="modal">Create an Account</button>
         </div>
         <div class="col">
-          <button type="button" class="btn btn-primary btn-block">Sign In</button>
+          <button type="button" class="btn btn-primary btn-block" (click)="signIn()">Sign In</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="createAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create an Account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="addUser">
+          <div class="form-group">
+            <label for="createFirstname" class="col-form-label">Firstname:</label>
+            <input type="text" class="form-control" id="createFirstname" placeholder="Firstname" aria-label="Firstname"
+              data-toggle="tooltip" data-placement="bottom" title="Firstname" required="true">
+          </div>
+          <div class="form-group">
+            <label for="createLastname" class="col-form-label">Lastname:</label>
+            <input type="text" class="form-control" id="createLastname" placeholder="Lastname" aria-label="Lastname"
+              data-toggle="tooltip" data-placement="bottom" title="Lastname" required="true">
+          </div>
+          <div class="form-group">
+            <label for="createEmail" class="col-form-label">Email:</label>
+            <input type="email" class="form-control" id="createEmail" placeholder="Email" aria-label="Email"
+              data-toggle="tooltip" data-placement="bottom" title="Email" required="true">
+          </div>
+          <div class="form-group">
+            <label for="createPhone" class="col-form-label">Phone:</label>
+            <input type="Phone" class="form-control" id="createPhone" placeholder="Phone" aria-label="Phone"
+              data-toggle="tooltip" data-placement="bottom" title="Phone" required="true">
+          </div>
+          <div class="form-group">
+            <label for="createUsername" class="col-form-label">Username:</label>
+            <input type="username" class="form-control" id="createUsername" placeholder="Username" aria-label="Username"
+              data-toggle="tooltip" data-placement="bottom" title="Username" required="true">
+          </div>
+          <div class="form-group">
+            <label for="createPassword" class="col-form-label">Password</label>
+            <input type="password" class="form-control" id="createPassword" placeholder="Password" aria-label="Password"
+              data-toggle="tooltip" data-placement="bottom" title="Password" required="true">
+          </div>
+        </form>
+      </div>
+      <!-- opens a new modal for the user to create an account -->
+      <div class="modal-footer">
+        <div class="col">
+          <button type="button" class="btn btn-primary btn-block" (click)="addingUser()">Create Account</button>
         </div>
       </div>
     </div>
