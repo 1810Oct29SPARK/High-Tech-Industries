@@ -1,6 +1,7 @@
 package project2.hightechindustries.dao;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,8 +40,14 @@ public class StoreDAOImpl implements StoreDAO {
 			System.out.println("str before: "+str);
 			str = (Store) s.get(Store.class, productId);
 			System.out.println("str: "+str);
+			byte[] byteThing = str.getImage();
+			ByteArrayInputStream thingStream = new ByteArrayInputStream(byteThing);
+			BufferedImage thingy = ImageIO.read(thingStream);
+			ImageIO.write(thingy, "jpg", new File (str.getProductId() +".jpg"));
 			tx.commit();
 			s.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return str;
 	}

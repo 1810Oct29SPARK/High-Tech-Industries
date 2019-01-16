@@ -22,6 +22,17 @@ import javax.persistence.Transient;
 @Table(name="STORE")
 public class Store implements Serializable {
 	
+	public Store(Integer productId, String productName, String description, Double price, String specs, File pic) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.description = description;
+		this.price = price;
+		this.specs = specs;
+		this.pic = pic;
+	}
+
+
 	private static final long serialVersionUID = 1L;
 	
 	public Store(int productId, String productName, String description, Double price, String specs, byte[] image) {
@@ -115,6 +126,14 @@ public class Store implements Serializable {
 	public String toString() {
 		return "Store [productId=" + productId + ", productName=" + productName + ", description=" + description
 				+ ", price=" + price + ", specs=" + specs + ", image=" + image + "]";
+	}
+
+	public File getPic() {
+		return pic;
+	}
+
+	public void setPic(File pic) {
+		this.pic = pic;
 	}
 
 }
