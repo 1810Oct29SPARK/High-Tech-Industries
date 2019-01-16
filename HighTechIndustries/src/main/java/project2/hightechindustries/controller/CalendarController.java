@@ -18,6 +18,15 @@ import project2.hightechindustries.dao.CalendarDAO;
 @RestController
 @RequestMapping(value = "/calendar")
 public class CalendarController {
+	
+	/**
+	 * The Calendar Controller is here to deliver our information gathered from the back
+	 *  to the front.
+	 * We have a method for getting individual events by their id, getting a full list
+	 *  of events for a particular member, a method enabling employees to add events for
+	 *  their members, and a method enabling employees to pull up a list of all scheduled
+	 *  events.
+	 */
 
 	@Autowired
 	private CalendarDAO cal;

@@ -23,7 +23,11 @@ import project2.hightechindustries.service.LoginService;
 @RequestMapping(value = "/member")
 public class MemberController {
 
-	
+	/**
+	 * In the Member Controller we bring in reference variables for UserDAO, PurchasedDAO, and LoginService.
+	 * We also map methods that allow employees to view their members' information, members to update their own
+	 *  information, members to view a list of their purchased items, and employees to view a list of all members.
+	 */
 	
 	@Autowired
 	private UserDAO user;

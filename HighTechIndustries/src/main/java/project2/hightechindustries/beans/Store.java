@@ -122,12 +122,6 @@ public class Store implements Serializable {
 	public void setImage(byte[] imageData) {
 		this.image = imageData;
 	}
-	@Override
-	public String toString() {
-		return "Store [productId=" + productId + ", productName=" + productName + ", description=" + description
-				+ ", price=" + price + ", specs=" + specs + ", image=" + image + "]";
-	}
-
 	public File getPic() {
 		return pic;
 	}
@@ -135,5 +129,12 @@ public class Store implements Serializable {
 	public void setPic(File pic) {
 		this.pic = pic;
 	}
+	@Override
+	public String toString() {
+		return "Store [productId=" + productId + ", productName=" + productName + ", description=" + description
+				+ ", price=" + price + ", specs=" + specs + ", image=" + image + "]";
+	}
+
+	
 
 }
