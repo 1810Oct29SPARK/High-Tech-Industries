@@ -156,12 +156,12 @@
           <!-- displays the user's items if the Items button is pressed above -->
           <div *ngIf="showItems">
             <div class="list-group">
-              <a *ngFor="let p of purchased" href="" class="list-group-item list-group-item-action flex-column align-items-start">
+              <a *ngFor="let i of items" href="" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Name</h5>
+                  <h5 class="mb-1">{{i.productName}}</h5>
                 </div>
-                <p class="mb-1">Descprition</p>
-                <small>He He He He</small>
+                <p class="mb-1">{{i.description}}</p>
+                <small>{{i.specs}}</small>
               </a>
             </div>
           </div>
