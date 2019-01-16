@@ -10,20 +10,23 @@ import { ConfigService } from '../config.service';
 })
 export class StoreComponent implements OnInit {
 
+  products: string[];
+
   constructor(public configService: ConfigService) { }
 
   noItems: boolean = true;
   areItems: boolean = false;
+  recentlyViewedList$ = this.configService.getRecentlyViewed();
 
+  ngOnInit() {
+    this.getProductsFromStore();
+  }
 
-
-
-
-  ngOnInit(): void {
-    // function getStoreItems() {
-    //   const endpoint = "http://localhost:8082/HighTechIndustries/store/products";
-    //   fetch(endpoint).then(function (response) { return response.json() })
-    //     .then(function (data) { return data });
+  getProductsFromStore() {
+    this.configService.getProduct().subscribe( (e)=>{
+      this.products = e;
+      console.log(e[0]);
+    });
   }
 
   // var products = getStoreItems;

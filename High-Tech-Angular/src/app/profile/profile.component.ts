@@ -35,13 +35,6 @@ export class ProfileComponent implements OnInit {
       console.log(this.user);
     });
   }
-  
-
-  
-
-
-  // user$ = this.configService.getUser()
-
   // showConfig() {
   //   this.configService.getConfig()
   //     .subscribe((data: Config) => this.config = {

@@ -15,13 +15,10 @@ export class ConfigService {
   profileInfoURL: "http://localhost:8082/HighTechIndustries/member/{memberId}";
   addUserURL: "http://localhost:8082/HighTechIndustries/login/addUser";
   recentlyViewedURL: "http://localhost:8082/HighTechIndustries/store/";
-  productURL: "http://localhost:8082/HighTechIndustries/store/products";
-  loginURL: "http://localhost:8082/HighTechIndustries/login/login";
 
   // getConfig() {
   //   return this.http.get(this.configUrl);
   // }
-
   // // addUser(): Observable<Object>{
   // //   return this.http.post(this.addUserURL);
   // // }
@@ -45,7 +42,25 @@ export class ConfigService {
   // addUser(): Observable<Object>{
   //   return this.http.post(this.addUserURL);
   // }
+  
+  getUser(): Observable<any>{
+    return this.http.get(this.profileInfoURL)
+  }
 
+  getRecentlyViewed(): Observable<any>{
+    return this.http.get(this.recentlyViewedURL);
+  }
+
+  getMemberList(): Observable<any>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/member/allMembers');
+  }
+
+  getCalendarEvents(): Observable<any>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/calendar/allEvents');
+  }
+
+  getProduct(): Observable<any>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/store/products');
   // getUser(): Observable<Object>{
   //   return this.http.get(this.profileInfoURL)
   // }
