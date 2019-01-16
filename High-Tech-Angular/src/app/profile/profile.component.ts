@@ -13,6 +13,10 @@ export class ProfileComponent implements OnInit {
   constructor(private componentFactoryResolver: ComponentFactoryResolver, public configService: ConfigService,
     private http: HttpClient) { }
 
+    events: String[];
+    purchased: String[];
+    items: String[];
+
 
 // delare boolean values for the info and items on the profile page
   showInfo: boolean = true;
@@ -32,17 +36,37 @@ export class ProfileComponent implements OnInit {
   getInfo(){
     this.configService.getUserInfo().subscribe ((e) => {
       this.user = e;
-      console.log(this.user);
+      console.log(e);
     });
   }
-  // showConfig() {
-  //   this.configService.getConfig()
-  //     .subscribe((data: Config) => this.config = {
-  //       loginURL: data['loginUrl']
-  //     });
-  // }
   ngOnInit() {
     this.getInfo();
+    this.getCalendarEvents();
+    this.getPurchasedItems();
+  } 
+
+  getCalendarEvents() {
+    this.configService.getCalendarEvents().subscribe( (e)=>{
+      this.events = e;
+      this.configService.getUserInfo().subscribe( (e => {
+        this.user = e;
+      }))
+      console.log(e);
+    });
+  }
+
+  getPurchasedItems() {
+    this.configService.getPruchasedItems().subscribe( (e)=>{
+      this.purchased = e;
+      for (let x=0; x<e.length; x++) {
+        console.log("index of e: "+e.productId);
+        this.configService.getItem(e[x].id).subscribe( (e) => {
+          this.items = e;
+          console.log(this.items);
+        })
+      }
+      console.log(e);
+    });
   }
 
 }

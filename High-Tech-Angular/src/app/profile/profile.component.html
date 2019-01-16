@@ -7,9 +7,25 @@
   </div>
 </div>
 <div class="container-fluid">
-  <div class="row">
+  <div class="row my-2">
     <div class="col-md-3">
       <h1> Calendar </h1>
+      <div class="list-group m-2">
+          <div *ngFor="let e of events" class="row">
+            <div class="col">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{user.firstName}} {{user.lastName}}</h5>
+              </div>
+              <small>{{e.type}}</small>
+            </div>
+            <div class="col">
+              <p class="mb-1">Date: {{e.day}} </p>
+            </div>
+            <div class="col">
+              <p class="mb-1">Time: {{e.timeslot}} </p>
+            </div>
+          </div>
+      </div>
     </div>
     <div class="col">
       <div class="row" style="background-image: url(assets/img/374114-download-free-scenic-backgrounds-1920x1080.jpg); 
@@ -21,7 +37,7 @@
           <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleInfo()">Profile</button>
         </div>
         <div class="col m-2">
-          <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleItems()">Items</button>
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleItems()">Items Pruchased</button>
         </div>
       </div>
       <!-- only shows if showIfo is true (determined by which button is pressed from above) -->
@@ -93,8 +109,8 @@
                     <form ng-submit="onSubmit()">
                       <div class="form-group">
                         <label for="username" class="col-form-label">Username:</label>
-                        <input type="username" class="form-control" id="username1" value="{{ user.username }}" aria-label="Username"
-                          data-toggle="tooltip" data-placement="bottom" title="Username" required="true">
+                        <input type="username" class="form-control" id="username1" value="{{ user.username }}"
+                          aria-label="Username" data-toggle="tooltip" data-placement="bottom" title="Username" required="true">
                       </div>
                       <div class="form-group">
                         <label for="email" class="col-form-label">Email:</label>
@@ -140,11 +156,11 @@
           <!-- displays the user's items if the Items button is pressed above -->
           <div *ngIf="showItems">
             <div class="list-group">
-              <a *ngFor="let item of Items" href="" class="list-group-item list-group-item-action flex-column align-items-start">
+              <a *ngFor="let p of purchased" href="" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">{{ itemTitle }}</h5>
+                  <h5 class="mb-1">Name</h5>
                 </div>
-                <p class="mb-1">{{ itemDescription }}</p>
+                <p class="mb-1">Descprition</p>
                 <small>He He He He</small>
               </a>
             </div>

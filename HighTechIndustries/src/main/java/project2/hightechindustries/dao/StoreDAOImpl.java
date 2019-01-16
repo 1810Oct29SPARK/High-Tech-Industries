@@ -61,6 +61,7 @@ public class StoreDAOImpl implements StoreDAO {
 	@Override
 	public List<Store> getAllStore() {
 		List<Store> str = new ArrayList<>();
+		List<Store> withPics = new ArrayList<>();
 		//use a Query to retrieve all caves
 		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
@@ -69,8 +70,24 @@ public class StoreDAOImpl implements StoreDAO {
 			tx.commit();
 			s.close();
 		}
-		// Returning list of items from store
-		return str;
+		try {
+			for (Store item : str) {
+				byte[] byteThing = item.getImage();
+				System.out.println(byteThing);
+				ByteArrayInputStream thingStream = new ByteArrayInputStream(byteThing);
+				System.out.println(thingStream);
+				BufferedImage thingy = ImageIO.read(thingStream);
+				File hope = new File (item.getProductId()+ ".jpg");
+				ImageIO.write(thingy, "jpg", hope);
+				Store itemWithPic = new Store(item.getProductId(), item.getProductName(), item.getDescription(), item.getPrice(), item.getSpecs(), hope);
+				withPics.add(itemWithPic);
+			}
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		// Returning list of items from store but after converting their images to pics
+		return withPics;
 	}
 
 	// Adding items to the store
