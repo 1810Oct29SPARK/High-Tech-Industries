@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ConfigService } from '../config.service';
 import { HttpParams } from '@angular/common/http';
-import { url } from 'inspector';
 
 // Jeremy
 

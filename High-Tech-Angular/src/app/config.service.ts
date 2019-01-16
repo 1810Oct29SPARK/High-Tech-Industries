@@ -42,36 +42,38 @@ export class ConfigService {
   // addUser(): Observable<Object>{
   //   return this.http.post(this.addUserURL);
   // }
-  
-  getUser(): Observable<any>{
+
+  getUser(): Observable<any> {
     return this.http.get(this.profileInfoURL)
   }
 
-  getRecentlyViewed(): Observable<any>{
+  getRecentlyViewed(): Observable<any> {
     return this.http.get(this.recentlyViewedURL);
   }
 
-  getMemberList(): Observable<any>{
+  getMemberList(): Observable<any> {
     return this.http.get('http://localhost:8082/HighTechIndustries/member/allMembers');
   }
 
-  getCalendarEvents(): Observable<any>{
+  getCalendarEvents(): Observable<any> {
     return this.http.get('http://localhost:8082/HighTechIndustries/calendar/allEvents');
   }
 
-  getProduct(): Observable<any>{
+  getProduct(): Observable<any> {
     return this.http.get('http://localhost:8082/HighTechIndustries/store/products');
-  // getUser(): Observable<Object>{
-  //   return this.http.get(this.profileInfoURL)
-  // }
+    // getUser(): Observable<Object>{
+    //   return this.http.get(this.profileInfoURL)
+    // }
 
-  // getRecentlyViewed(): Observable<Object>{
-  //   return this.http.get(this.recentlyViewedURL);
-  // }
+    // getRecentlyViewed(): Observable<Object>{
+    //   return this.http.get(this.recentlyViewedURL);
+    // }
 
-  // getProduct(): Observable<any>{
-  //   return this.http.get(this.productURL);
-  // }
+    // getProduct(): Observable<any>{
+    //   return this.http.get(this.productURL);
+    // }
+  }
+
   addUser(firstname, lastname, email, phone, username, password) {
     var end = "http://localhost:8082/HighTechIndustries/login/" + firstname + "/" + lastname + "/" + email + "/" + phone + "/Customer/" + username + "/" + password;
     fetch(end).then(function () { location.reload() });
