@@ -34,6 +34,7 @@ public class StoreDAOImpl implements StoreDAO {
 	@Override
 	public Store getStoreById(Integer productId) {
 		Store str = null;
+		Store storeWithPic = null;
 		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
 			// Casting to Store object to be returned and used later
@@ -43,13 +44,17 @@ public class StoreDAOImpl implements StoreDAO {
 			byte[] byteThing = str.getImage();
 			ByteArrayInputStream thingStream = new ByteArrayInputStream(byteThing);
 			BufferedImage thingy = ImageIO.read(thingStream);
-			ImageIO.write(thingy, "jpg", new File (str.getProductId() +".jpg"));
+			File hope = new File (str.getProductId()+ ".jpg");
+			ImageIO.write(thingy, "jpg", hope);
+			
+			storeWithPic = new Store(str.getProductId(), str.getProductName(), str.getDescription(), str.getPrice(), str.getSpecs(), hope);
+			
 			tx.commit();
 			s.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return str;
+		return storeWithPic;
 	}
 
 	// Getting a list of everything in the store, can be filtered to show specific things later by front end
