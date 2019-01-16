@@ -48,7 +48,15 @@ export class ConfigService {
   }
 
   getRecentlyViewed(): Observable<any> {
-    return this.http.get(this.recentlyViewedURL);
+    return this.http.get('http://localhost:8082/HighTechIndustries/store/'+sessionStorage.getItem("ID").toString());
+  }
+
+  getStoreItem(productId): Observable<any>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/store/item'+productId.toString());
+  }
+
+  getCart(memberId): Observable<Object>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/store/cart'+memberId.toString());
   }
 
   getMemberList(): Observable<any> {
@@ -61,17 +69,14 @@ export class ConfigService {
 
   getProduct(): Observable<any> {
     return this.http.get('http://localhost:8082/HighTechIndustries/store/products');
-    // getUser(): Observable<Object>{
-    //   return this.http.get(this.profileInfoURL)
-    // }
+  }
 
-    // getRecentlyViewed(): Observable<Object>{
-    //   return this.http.get(this.recentlyViewedURL);
-    // }
+  getItem(itemNum): Observable<any> {
+    return this.http.get('http://localhost:8082/HighTechIndustries/store/item' + itemNum);
+  }
 
-    // getProduct(): Observable<any>{
-    //   return this.http.get(this.productURL);
-    // }
+  getPruchasedItems(): Observable<any> {
+    return this.http.get('http://localhost:8082/HighTechIndustries/member/purchased' + sessionStorage.getItem("ID").toString());
   }
 
   addUser(firstname, lastname, email, phone, username, password) {
@@ -87,10 +92,5 @@ export class ConfigService {
         sessionStorage.employeeStatus = data.employeeStatus;
         location.reload()
       });
-
-    // getProduct(): any{
-    //   console.log('in service');
-    //   return this.http.get(this.productURL);
-    // }
   }
 }
