@@ -48,7 +48,15 @@ export class ConfigService {
   }
 
   getRecentlyViewed(): Observable<any> {
-    return this.http.get(this.recentlyViewedURL);
+    return this.http.get('http://localhost:8082/HighTechIndustries/store/'+sessionStorage.getItem("ID").toString());
+  }
+
+  getStoreItem(productId): Observable<any>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/store/item'+productId.toString());
+  }
+
+  getCart(memberId): Observable<Object>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/store/cart'+memberId.toString());
   }
 
   getMemberList(): Observable<any> {
