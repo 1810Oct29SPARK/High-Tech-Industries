@@ -25,7 +25,7 @@ export class StoreComponent implements OnInit {
   getProductsFromStore() {
     this.configService.getProduct().subscribe( (e)=>{
       this.products = e;
-      console.log(e[13]);
+      console.log(e);
     });
   }
 
