@@ -13,6 +13,7 @@ export class EmployeeComponent implements OnInit {
   constructor(public configService: ConfigService) { }
 
   members: string[];
+  events: string[];
 
   showMembers: boolean = true;
 
@@ -23,12 +24,20 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getMemberList();
     this.getCalendarEvents();
   }
 
-  getCalendarEvents() {
+  getMemberList() {
     this.configService.getMemberList().subscribe((e) => {
       this.members = e;
+      console.log(e);
+    });
+  }
+
+  getCalendarEvents() {
+    this.configService.getCalendarEvents().subscribe((e) => {
+      this.events = e;
       console.log(e);
     });
   }

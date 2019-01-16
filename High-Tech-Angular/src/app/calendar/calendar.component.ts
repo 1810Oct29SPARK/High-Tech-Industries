@@ -16,20 +16,11 @@ export class CalendarComponent {
 
   constructor(private calendar: NgbCalendar, public configService: ConfigService) { }
 
-  events: string[];
 
   selectToday() {
     this.model = this.calendar.getToday();
   }
 
   OnInit() {
-    this.getCalendarEvents();
-  }
-
-  getCalendarEvents() {
-    this.configService.getCalendarEvents().subscribe((e) => {
-      this.events = e;
-      console.log(e);
-    });
   }
 }
