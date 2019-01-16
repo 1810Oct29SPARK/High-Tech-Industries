@@ -10,62 +10,83 @@ import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { StoreComponent } from './store/store.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { MemberComponent } from './member/member.component';
-import { CanVisitService } from './can-visit.service';
 import { CalendarComponent } from './calendar/calendar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileGuard } from './profile.guard';
+import { EmployeeGuard } from './employee.guard';
+
 
 // Jeremy
 
-// class profileGuard implements CanActivate{
-//   canActivate(){
-//     return true;
+// class profileGuard implements CanActivate {
+//   sessionId;
+//   canActivate() {
+//     this.sessionId = sessionStorage.getItem("ID").toString();
+//     if (this.sessionId) {
+//       return true;
+//     } else {
+//       window.alert("You are not logged in");
+//       return false;
+//     }
 //   }
 // }
-// 
-// class profileChildGuard implements CanActivateChild{
-//   canActivateChild(){
-//     return true;
-//   }
-// }
+
 
 //routing paths that determine what components will be shown at a given URL
 const appRoutes: Routes = [
   //default URL will redirect to the news page
-  {path: '', 
-  redirectTo: 'high-tech/news',
-  pathMatch: 'full'},
-  {path: 'high-tech/news',
-  component: NewsComponent},
-  {path: 'high-tech/profile',
-  component: ProfileComponent,
-  canActivate:[CanVisitService],
-  //all paths have a child path that will redirect them back to the specific path (if someone is at /news and types /news/fewaoiniugn)
-  children: [
-    {path: '**',
-    redirectTo: '',
-    pathMatch: 'full'}
-  ]},
-  {path: 'high-tech/store',
-  component: StoreComponent,
-  children: [
-    {path: '**',
-    redirectTo: '',
-    pathMatch: 'full'}
-  ]},
-  {path: 'high-tech/employee',
-  component: EmployeeComponent,
-  canActivate:[CanVisitService],
-  children: [
-    {path: '**',
-    redirectTo: '',
-    pathMatch: 'full'}
-  ]},
+  {
+    path: '',
+    redirectTo: 'high-tech/news',
+    pathMatch: 'full'
+  },
+  {
+    path: 'high-tech/news',
+    component: NewsComponent
+  },
+  {
+    path: 'high-tech/profile',
+    component: ProfileComponent,
+    canActivate: [ProfileGuard],
+    //all paths have a child path that will redirect them back to the specific path (if someone is at /news and types /news/fewaoiniugn)
+    // children: [
+    //   {
+    //     path: '**',
+    //     redirectTo: '',
+    //     pathMatch: 'full'
+    //   }
+    // ]
+  },
+  {
+    path: 'high-tech/store',
+    component: StoreComponent,
+    // children: [
+    //   {
+    //     path: '**',
+    //     redirectTo: '',
+    //     pathMatch: 'full'
+    //   }
+    // ]
+  },
+  {
+    path: 'high-tech/employee',
+    component: EmployeeComponent,
+    canActivate: [EmployeeGuard],
+    // children: [
+    //   {
+    //     path: '**',
+    //     redirectTo: '',
+    //     pathMatch: 'full'
+    //   }
+    // ]
+  },
   //if the URL is wrong, it will redirect back to news. 
-  { path: '**',
-  redirectTo: 'high-tech/news',
-  pathMatch: 'full'
+  {
+    path: '**',
+    redirectTo: 'high-tech/news',
+    pathMatch: 'full'
   }
 ];
 
@@ -85,7 +106,7 @@ const appRoutes: Routes = [
     CalendarComponent
   ],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     //needed for using routes 
     RouterModule.forRoot(
       appRoutes),
@@ -93,7 +114,7 @@ const appRoutes: Routes = [
     NgbModule,
     HttpClientModule
   ],
-  providers: [CanVisitService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

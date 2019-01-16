@@ -15,11 +15,16 @@ export class StoreComponent implements OnInit {
   noItems: boolean = true;
   areItems: boolean = false;
 
-  recentlyViewedList$ = this.configService.getRecentlyViewed();
-  
 
 
-  ngOnInit() {
+
+
+  ngOnInit(): void {
+    // function getStoreItems() {
+    //   const endpoint = "http://localhost:8082/HighTechIndustries/store/products";
+    //   fetch(endpoint).then(function (response) { return response.json() })
+    //     .then(function (data) { return data });
   }
 
+  // var products = getStoreItems;
 }
