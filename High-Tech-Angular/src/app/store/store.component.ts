@@ -16,7 +16,6 @@ export class StoreComponent implements OnInit {
 
   noItems: boolean = true;
   areItems: boolean = false;
-
   recentlyViewedList$ = this.configService.getRecentlyViewed();
 
   ngOnInit() {
@@ -30,4 +29,5 @@ export class StoreComponent implements OnInit {
     });
   }
 
+  // var products = getStoreItems;
 }
