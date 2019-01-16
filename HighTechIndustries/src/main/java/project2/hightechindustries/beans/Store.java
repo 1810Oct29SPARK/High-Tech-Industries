@@ -1,5 +1,6 @@
 package project2.hightechindustries.beans;
 
+import java.io.File;
 import java.io.Serializable;
 import java.sql.Blob;
 
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * @Author (name="Sean, SBG")
@@ -70,6 +72,8 @@ public class Store implements Serializable {
 	private String specs;
 	@Column(name="IMAGE")
 	private byte[] image;
+	@Transient
+	private File pic;
 	
 	public Integer getProductId() {
 		return productId;
