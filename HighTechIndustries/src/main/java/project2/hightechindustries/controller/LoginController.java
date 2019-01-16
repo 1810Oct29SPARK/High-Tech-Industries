@@ -33,32 +33,32 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/{username}/{password}", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<Users> userData(@RequestParam String username, @RequestParam String password, RedirectAttributes flash) {
+	public ResponseEntity<Users> userData(@PathVariable String username, @PathVariable String password) {
 		Users user = loginService.login(username, password);
 		if (user != null) {
-			flash.addFlashAttribute("User", user);
 			return new ResponseEntity<>(user, HttpStatus.I_AM_A_TEAPOT);
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
 
-	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/{firstName}/{lastName}/{email}/{phone}/{employeeStatus}/{username}/{password}", 
+			method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<Users> addingUser(@RequestParam String firstName, @RequestParam String lastName,
-			@RequestParam String email, @RequestParam String phone, @RequestParam String employeeStatus,
-			@RequestParam String username, @RequestParam String password) {
+	public ResponseEntity<Users> addingUser(@PathVariable String firstName, @PathVariable String lastName,
+			@PathVariable String email, @PathVariable String phone, @PathVariable String employeeStatus,
+			@PathVariable String username, @PathVariable String password) {
 		loginService.addUserService(firstName, lastName, email, phone, employeeStatus, username, password);
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/updatePassword", method = RequestMethod.PUT)
 	@ResponseBody
-	public ResponseEntity<Users> updatePassword(@RequestParam int userId, @RequestParam String firstName, @RequestParam String lastName,
-			@RequestParam String email, @RequestParam String phone, @RequestParam String employeeStatus,
-			@RequestParam String username, @RequestParam String password){
+	public ResponseEntity<Users> updatePassword(@RequestParam int userId, @RequestParam String firstName,
+			@RequestParam String lastName, @RequestParam String email, @RequestParam String phone,
+			@RequestParam String employeeStatus, @RequestParam String username, @RequestParam String password) {
 		try {
 			loginService.updatePass(userId, firstName, lastName, email, phone, employeeStatus, username, password);
 			return new ResponseEntity<>(null, HttpStatus.OK);
@@ -66,8 +66,7 @@ public class LoginController {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-		
-		
+
 	}
 
 }
