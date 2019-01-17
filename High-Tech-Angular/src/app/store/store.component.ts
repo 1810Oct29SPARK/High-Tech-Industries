@@ -35,6 +35,13 @@ export class StoreComponent implements OnInit {
     });
   }
 
+  addToCart(value){
+    this.configService.addCart(value).subscribe( (data) => {
+      
+    })
+    location.reload();
+  }
+
   getCartProducts() {
     this.configService.getCart(sessionStorage.getItem("ID")).subscribe((e) => {
       for (let x = 0; x < e.length; x++) {
