@@ -55,7 +55,7 @@ export class ConfigService {
     return this.http.get('http://localhost:8082/HighTechIndustries/store/item'+productId.toString());
   }
 
-  getCart(memberId): Observable<Object>{
+  getCart(memberId): Observable<any>{
     return this.http.get('http://localhost:8082/HighTechIndustries/store/cart'+memberId.toString());
   }
 

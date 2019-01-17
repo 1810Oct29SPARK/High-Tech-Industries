@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -46,24 +48,13 @@ public class StoreDAOImpl implements StoreDAO {
 		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
 			// Casting to Store object to be returned and used later
-			
-			
 			System.out.println("str before: "+str);
 			str = (Store) s.get(Store.class, productId);
 			System.out.println(str);
-			Blob image = str.getImage();
-			InputStream inputStream = image.getBinaryStream();
-			//URI hope = new URI ("file:///./productPics/" + str.getProductId() + ".png");
-			Files.copy(inputStream, Paths.get("../HighTechIndustries/productPics/" + str.getProductId() + ".png"), StandardCopyOption.REPLACE_EXISTING);
-			File hope = new File("../HighTechIndustries/productPics/"+str.getProductId()+".png");
-			storeWithPic = new Store(str.getProductId(), str.getProductName(), str.getDescription(), str.getPrice(), str.getSpecs(), hope);
-			
+			byte[] image = str.getImage();			
+			storeWithPic = new Store(str.getProductId(), str.getProductName(), str.getDescription(), str.getPrice(), str.getSpecs(), image);
 			tx.commit();
 			s.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return storeWithPic;
 	}
@@ -81,31 +72,12 @@ public class StoreDAOImpl implements StoreDAO {
 			tx.commit();
 			s.close();
 		}
-		try {
 			for (Store item : str) {
-				Blob image = item.getImage();
-				InputStream inputStream = image.getBinaryStream();
-				File hope = new File ("HighTechIndustries/productPics/" + item.getProductId() + ".png");
-				Files.copy(inputStream, Paths.get("HighTechIndustries/productPics/" + item.getProductId() + ".png"), StandardCopyOption.REPLACE_EXISTING);
-				withPics.add(new Store(item.getProductId(), item.getProductName(), item.getDescription(), item.getPrice(), item.getSpecs(), hope));
-				
-				//				byte[] byteThing = item.getImage();
-//				System.out.println(byteThing);
-//				ByteArrayInputStream thingStream = new ByteArrayInputStream(byteThing);
-//				System.out.println(thingStream);
-//				BufferedImage thingy = ImageIO.read(thingStream);
-//				File hope = new File (item.getProductId()+ ".jpg");
-//				ImageIO.write(thingy, "jpg", hope);
-//				Store itemWithPic = new Store(item.getProductId(), item.getProductName(), item.getDescription(), item.getPrice(), item.getSpecs(), hope);
-//				withPics.add(itemWithPic);
+				byte[] image = item.getImage();
+				withPics.add(new Store(item.getProductId(), item.getProductName(), item.getDescription(), item.getPrice(), item.getSpecs(), image));
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		// Returning list of items from store but after converting their images to pics
 		return withPics;
+		
 	}
 
 	// Adding items to the store

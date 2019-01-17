@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.swing.JLabel;
 
 /**
  * @Author (name="Sean, SBG")
@@ -23,7 +24,7 @@ import javax.persistence.Transient;
 @Table(name="STORE")
 public class Store implements Serializable {
 	
-	public Store(Integer productId, String productName, String description, Double price, String specs, File pic) {
+	public Store(Integer productId, String productName, String description, Double price, String specs, URI pic) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -36,7 +37,7 @@ public class Store implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	public Store(int productId, String productName, String description, Double price, String specs, Blob image) {
+	public Store(int productId, String productName, String description, Double price, String specs, byte[] image) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -46,7 +47,7 @@ public class Store implements Serializable {
 		this.image = image;
 	}
 	
-	public Store(String productName, String description, Double price, String specs, Blob image) {
+	public Store(String productName, String description, Double price, String specs, byte[] image) {
 		super();
 		this.productName = productName;
 		this.description = description;
@@ -55,7 +56,7 @@ public class Store implements Serializable {
 		this.image = image;
 	}
 	
-	public Store(int productId, Blob image) {
+	public Store(int productId, byte[] image) {
 		super();
 		this.productId = productId;
 		this.image = image;
@@ -83,9 +84,9 @@ public class Store implements Serializable {
 	@Column(name="SPECIFICATIONS")
 	private String specs;
 	@Column(name="IMAGE")
-	private Blob image;
+	private byte[] image;
 	@Transient
-	private File pic;
+	private URI pic;
 	
 	public Integer getProductId() {
 		return productId;
@@ -117,17 +118,17 @@ public class Store implements Serializable {
 	public void setSpecs(String specs) {
 		this.specs = specs;
 	}
-	public Blob getImage() {
+	public byte[] getImage() {
 		return image;
 	}
-	public void setImage(Blob imageData) {
+	public void setImage(byte[] imageData) {
 		this.image = imageData;
 	}
-	public File getPic() {
+	public URI getPic() {
 		return pic;
 	}
 
-	public void setPic(File pic) {
+	public void setPic(URI pic) {
 		this.pic = pic;
 	}
 	@Override
