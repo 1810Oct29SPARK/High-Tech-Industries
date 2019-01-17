@@ -11,20 +11,29 @@
     <div class="col-md-3">
       <h1> Calendar </h1>
       <div class="list-group m-2">
-          <div *ngFor="let e of events" class="row">
-            <div class="col">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{user.firstName}} {{user.lastName}}</h5>
-              </div>
-              <small>{{e.type}}</small>
+        <div *ngFor="let e of events" class="row">
+          <div class="col">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{ user.firstName }}</h5>
             </div>
-            <div class="col">
-              <p class="mb-1">Date: {{e.day}} </p>
-            </div>
-            <div class="col">
-              <p class="mb-1">Time: {{e.timeslot}} </p>
-            </div>
+            <small>{{e.type}}</small>
           </div>
+          <div class="col">
+            <p class="mb-1">Date: {{e.day}} </p>
+            <p class="mb-1">Time: {{e.timeslot}} </p>
+          </div>
+          <div class="col-md-3">
+            <!-- allows the employee to open a modal to view the individual member's information and items -->
+            <button type="button" class="btn btn-outline-dark btn-lg btn-block" (click)="deleteMemberEvent(e.eventId)">Cancel</button>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-md-9"></div>
+          <div class="col-md-3">
+            <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#addMemberEvent">Add
+              Event</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col">
@@ -37,7 +46,8 @@
           <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleInfo()">Profile</button>
         </div>
         <div class="col m-2">
-          <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleItems()">Items Pruchased</button>
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleItems()">Items
+            Pruchased</button>
         </div>
       </div>
       <!-- only shows if showIfo is true (determined by which button is pressed from above) -->
@@ -169,6 +179,53 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="addMemberEvent" tabindex="-1" role="dialog" aria-labelledby="addMemberEventLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Event</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col">
+        </div>
+        <form>
+          <div class="form-group">
+            <label for="type" class="col-form-label">Type of Event:</label>
+            <input type="text" class="form-control" id="type" placeholder="Type of Event" aria-label="Type" data-toggle="tooltip"
+              data-placement="bottom" title="Type of Event" required="true">
+          </div>
+          <div class="form-group">
+            <label for="date" class="col-form-label">Date:</label>
+            <input type="date" class="form-control" id="date" placeholder="MM-DD-YYYY" aria-label="Date" data-toggle="tooltip"
+              data-placement="bottom" title="MM-DD-YYYY" required="true">
+          </div>
+          <div class="form-group">
+            <label for="timeslot" class="col-form-label">Timeslot:</label>
+            <input type="timeslot" class="form-control" id="timeslot" placeholder="e.g. 5PM" aria-label="timeslot"
+              data-toggle="tooltip" data-placement="bottom" title="e.g. 5PM" required="true">
+          </div>
+          <div class="modal-footer">
+            <div class="col">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+            <div class="col">
+              <button type="submit" name="submit" (click)="addMemberEvent()" class="btn btn-primary btn-block">Request Event</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
     </div>
   </div>
 </div>

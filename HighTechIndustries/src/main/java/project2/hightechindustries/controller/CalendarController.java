@@ -42,9 +42,9 @@ public class CalendarController {
 		}
 	}
 
-	@PostMapping(value = "/addEvent")
-	public ResponseEntity<Calendar> addEvent(@RequestParam int memberId, @RequestParam String day,
-			@RequestParam String timeslot, @RequestParam String type, @RequestParam int helpedBy) {
+	@GetMapping(value = "/addEvent/{memberId}/{type}/{day}/{timeslot}/{helpedBy}")
+	public ResponseEntity<Calendar> addEvent(@PathVariable int memberId, @PathVariable String day,
+			@PathVariable String timeslot, @PathVariable String type, @PathVariable int helpedBy) {
 		try {
 			cal.addCalendarEvent(new Calendar(memberId, day, timeslot, type, helpedBy));
 			return new ResponseEntity<>(null, HttpStatus.OK);
@@ -61,6 +61,18 @@ public class CalendarController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
 			return new ResponseEntity<>(c, HttpStatus.OK);
+		}
+	}
+
+	@GetMapping(value = "/deleteEvent{eventId}")
+	public ResponseEntity<Calendar> deleteEventById(@PathVariable int eventId) {
+		Calendar c = cal.getCalendarEventById(eventId).get(0);
+		try {
+			cal.deleteCalendarEvent(c);
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
 
