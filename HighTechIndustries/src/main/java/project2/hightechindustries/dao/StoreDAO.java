@@ -51,6 +51,6 @@ public interface StoreDAO {
 	
 //	public void getPhoto();
 	
-	public void insertPhoto(int id);
+//	public void insertPhoto(int id);
 
 }

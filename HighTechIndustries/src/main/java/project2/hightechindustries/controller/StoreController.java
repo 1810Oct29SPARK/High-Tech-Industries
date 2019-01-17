@@ -27,6 +27,13 @@ import project2.hightechindustries.dao.StoreDAO;
 @RequestMapping(value="/store")
 public class StoreController {
 	
+	/**
+	 * The Store Controller brings in reference variables for RecentlyViewedDAO, StoreDAO, and CartDAO.
+	 * We also map methods for use in the front end that allow members to view a list of their recently
+	 *  viewed items, pull up information for an individual product, view items in their cart, and view
+	 *  a list of all the items in the store.
+	 */
+	
 	@Autowired
 	private RecentlyViewedDAO recentlyViewed;
 	

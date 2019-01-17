@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 /**
  * @Author (name="Sean, SBG")
+ * This bean represents the Calendar Table and its columns.
  */
 @Entity
 @Table(name="CALENDAR")

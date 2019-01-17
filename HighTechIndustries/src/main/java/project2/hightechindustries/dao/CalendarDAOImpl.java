@@ -16,6 +16,7 @@ public class CalendarDAOImpl implements CalendarDAO {
 	
 	/**
 	 * @author Esteban
+	 * Here we define the methods named in CalendarDAO.
 	 */
 	
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
