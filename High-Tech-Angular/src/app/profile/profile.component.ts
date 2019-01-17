@@ -13,9 +13,9 @@ export class ProfileComponent implements OnInit {
   constructor(private componentFactoryResolver: ComponentFactoryResolver, public configService: ConfigService,
     private http: HttpClient) { }
 
-    events: String[];
+    events: any;
     purchased: String[];
-    items: String[];
+    items: string[] = [];
 
 
 // delare boolean values for the info and items on the profile page
@@ -36,7 +36,6 @@ export class ProfileComponent implements OnInit {
   getInfo(){
     this.configService.getUserInfo().subscribe ((e) => {
       this.user = e;
-      console.log(e);
     });
   }
   ngOnInit() {
@@ -46,26 +45,36 @@ export class ProfileComponent implements OnInit {
   } 
 
   getCalendarEvents() {
-    this.configService.getCalendarEvents().subscribe( (e)=>{
+    this.configService.getMemberEvents().subscribe( (e)=>{
       this.events = e;
-      this.configService.getUserInfo().subscribe( (e => {
-        this.user = e;
-      }))
-      console.log(e);
+      console.log(this.events);
     });
+  }
+
+  addMemberEvent(){
+    var memberId = sessionStorage.getItem("ID").toString();
+    var type = (<HTMLInputElement>document.getElementById("type")).value.toString();
+    var date = (<HTMLInputElement>document.getElementById("date")).value.toString();
+    var timeslot = (<HTMLInputElement>document.getElementById("timeslot")).value.toString();
+    this.configService.addCalendarEvent(memberId, type, date, timeslot, null).subscribe( (e) => {
+    })
+    location.reload();
+  }
+
+  deleteMemberEvent(value){
+    this.configService.deleteCalendarEvent(value).subscribe( (data) => {
+    })
+    location.reload();
   }
 
   getPurchasedItems() {
     this.configService.getPruchasedItems().subscribe( (e)=>{
       this.purchased = e;
       for (let x=0; x<e.length; x++) {
-        console.log("index of e: "+e.productId);
-        this.configService.getItem(e[x].id).subscribe( (e) => {
-          this.items = e;
-          console.log(this.items);
+        this.configService.getItem(e[x].productId).subscribe( (data) => {
+          this.items[x] = data;
         })
       }
-      console.log(e);
     });
   }
 

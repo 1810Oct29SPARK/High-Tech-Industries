@@ -13,6 +13,7 @@ export class CalendarComponent {
 
   model: NgbDateStruct;
   date: { year: number, month: number };
+  allEvents: any;
 
   constructor(private calendar: NgbCalendar, public configService: ConfigService) { }
 
@@ -21,6 +22,14 @@ export class CalendarComponent {
     this.model = this.calendar.getToday();
   }
 
+  getEvents(){
+    this.configService.getAllEvents().subscribe( (data) => {
+      this.allEvents = data;
+      console.log(this.allEvents);
+    })
+  }
+
   OnInit() {
+    // this.getEvents();
   }
 }
