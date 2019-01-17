@@ -36,7 +36,6 @@ export class ProfileComponent implements OnInit {
   getInfo(){
     this.configService.getUserInfo().subscribe ((e) => {
       this.user = e;
-      console.log(e);
     });
   }
   ngOnInit() {
@@ -51,18 +50,15 @@ export class ProfileComponent implements OnInit {
       this.configService.getUserInfo().subscribe( (e => {
         this.user = e;
       }))
-      console.log(e);
     });
   }
 
   getPurchasedItems() {
     this.configService.getPruchasedItems().subscribe( (e)=>{
       this.purchased = e;
-      console.log(e);
       for (let x=0; x<e.length; x++) {
         this.configService.getItem(e[x].productId).subscribe( (data) => {
           this.items[x] = data;
-          console.log(data);
         })
       }
     });

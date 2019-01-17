@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import project2.hightechindustries.beans.Cart;
+import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.beans.RecentlyViewed;
 import project2.hightechindustries.beans.Store;
 import project2.hightechindustries.dao.CartDAO;
+import project2.hightechindustries.dao.PurchasedDAO;
 import project2.hightechindustries.dao.RecentlyViewedDAO;
 import project2.hightechindustries.dao.StoreDAO;
 
@@ -29,6 +31,9 @@ public class StoreController {
 	
 	@Autowired
 	private CartDAO cart;
+	
+	@Autowired
+	private PurchasedDAO purchased;
 	
 	@GetMapping(value="/{memberId}")
 	public ResponseEntity<RecentlyViewed> getStoreItemsByMemberId(@PathVariable int memberId) {
@@ -67,6 +72,16 @@ public class StoreController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
 			return new ResponseEntity<List<Cart>>(items, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping(value="/purchased")
+	public ResponseEntity<List<Purchased>> getAllPurchasedItems() {
+		List<Purchased> items = purchased.getAllPurchased();
+		if (items == null) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<List<Purchased>>(items, HttpStatus.OK);
 		}
 	}
 
