@@ -55,6 +55,10 @@ export class StoreComponent implements OnInit {
     console.log("something");
   }
 
+  buyItems() {
+    this.configService.buy(sessionStorage.getItem("ID"));
+  }
+
   getRecentlyViewed() {
     this.configService.getRecentlyViewed().subscribe((e) => {
       if (e.productId1 == null) {
