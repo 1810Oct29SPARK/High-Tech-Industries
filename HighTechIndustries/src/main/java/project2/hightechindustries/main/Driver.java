@@ -4,6 +4,11 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.sql.Blob;
 
 import javax.imageio.ImageIO;
 
@@ -15,10 +20,16 @@ public class Driver {
 	public static void main(String args[]) throws Exception {
 		StoreDAO sd = new StoreDAOImpl();
 		Store thing = sd.getStoreById(44);
-		byte[] byteThing = thing.getImage();
-		ByteArrayInputStream thingStream = new ByteArrayInputStream(byteThing);
-		BufferedImage thingy = ImageIO.read(thingStream);
-		ImageIO.write(thingy, "jpg", new File (thing.getProductId() +".jpg"));
+		System.out.println(thing);
+		Blob image = thing.getImage();
+		InputStream inputStream = image.getBinaryStream();
+		Files.copy(inputStream, Paths.get("productPics/" + thing.getProductId()+".png"), StandardCopyOption.REPLACE_EXISTING);
+		
+		
+//		byte[] byteThing = thing.getImage();
+//		ByteArrayInputStream thingStream = new ByteArrayInputStream(byteThing);
+//		BufferedImage thingy = ImageIO.read(thingStream);
+//		ImageIO.write(thingy, "jpg", new File (thing.getProductId() +".jpg"));
 		/**
 		 * There's probably a better way to do this.
 		 * But for now, this is what we've got.

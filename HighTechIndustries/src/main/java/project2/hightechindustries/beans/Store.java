@@ -35,7 +35,7 @@ public class Store implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	public Store(int productId, String productName, String description, Double price, String specs, byte[] image) {
+	public Store(int productId, String productName, String description, Double price, String specs, Blob image) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -45,7 +45,7 @@ public class Store implements Serializable {
 		this.image = image;
 	}
 	
-	public Store(String productName, String description, Double price, String specs, byte[] image) {
+	public Store(String productName, String description, Double price, String specs, Blob image) {
 		super();
 		this.productName = productName;
 		this.description = description;
@@ -54,7 +54,7 @@ public class Store implements Serializable {
 		this.image = image;
 	}
 	
-	public Store(int productId, byte[] image) {
+	public Store(int productId, Blob image) {
 		super();
 		this.productId = productId;
 		this.image = image;
@@ -82,7 +82,7 @@ public class Store implements Serializable {
 	@Column(name="SPECIFICATIONS")
 	private String specs;
 	@Column(name="IMAGE")
-	private byte[] image;
+	private Blob image;
 	@Transient
 	private File pic;
 	
@@ -116,10 +116,10 @@ public class Store implements Serializable {
 	public void setSpecs(String specs) {
 		this.specs = specs;
 	}
-	public byte[] getImage() {
+	public Blob getImage() {
 		return image;
 	}
-	public void setImage(byte[] imageData) {
+	public void setImage(Blob imageData) {
 		this.image = imageData;
 	}
 	public File getPic() {
