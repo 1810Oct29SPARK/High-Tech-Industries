@@ -1,0 +1,233 @@
+<!-- Jeremy -->
+
+<div class="jumbotron jumbotron-fluid mb-0" style="background-color: gainsboro">
+  <div class="container">
+    <h1 class="display-4">Welcome {{ user.firstName }}!</h1>
+    <p class="lead"></p>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row my-2">
+    <div class="col-md-3">
+      <h1> Calendar </h1>
+      <div class="list-group m-2">
+        <div *ngFor="let e of events" class="row">
+          <div class="col">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{ user.firstName }}</h5>
+            </div>
+            <small>{{e.type}}</small>
+          </div>
+          <div class="col">
+            <p class="mb-1">Date: {{e.day}} </p>
+            <p class="mb-1">Time: {{e.timeslot}} </p>
+          </div>
+          <div class="col-md-3">
+            <!-- allows the employee to open a modal to view the individual member's information and items -->
+            <button type="button" class="btn btn-outline-dark btn-lg btn-block" (click)="deleteMemberEvent(e.eventId)">Cancel</button>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-md-9"></div>
+          <div class="col-md-3">
+            <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#addMemberEvent">Add
+              Event</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row" style="background-image: url(https://i.pinimg.com/originals/a8/81/2b/a8812bdbc07e039f361e309e12eda4b9.jpg); 
+      background-size: 100% 100%; height: 45vh; min-height: 200px ">
+      </div>
+      <!-- two buttons that toggle between User Info and User Items -->
+      <div class="row">
+        <div class="col m-2">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleInfo()">Profile</button>
+        </div>
+        <div class="col m-2">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleItems()">Items
+            Pruchased</button>
+        </div>
+      </div>
+      <!-- only shows if showIfo is true (determined by which button is pressed from above) -->
+      <div class="row">
+        <div class="col">
+          <div *ngIf="showInfo">
+            <div class="row">
+              <div class="col-md-6">
+                <h3><label>Username</label></h3>
+              </div>
+              <div class="col-md-6">
+                <p>{{ user.username }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <h3><label>Name</label></h3>
+              </div>
+              <div class="col-md-6">
+                <p>{{ user.firstName }} {{ user.lastName }} </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <h3><label>Email</label></h3>
+              </div>
+              <div class="col-md-6">
+                <p>{{ user.email }} </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <h3><label>Phone</label></h3>
+              </div>
+              <div class="col-md-6">
+                <p>{{ user.phone }}</p>
+              </div>
+            </div>
+            <!-- used to open a modal that allows the user to update their information -->
+            <!-- <div class="row">
+              <div class="col-md-2 m-2 ml-auto">
+                <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#updateModal">Update
+                  Information</button>
+              </div>
+            </div> -->
+
+
+
+            <!-- the madal that opens up when the Update Information is pressed -->
+            <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update your information.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form ng-submit="onSubmit()">
+                      <div class="form-group">
+                        <label for="username" class="col-form-label">Username:</label>
+                        <input type="username" class="form-control" id="username1" value="{{ user.username }}"
+                          aria-label="Username" data-toggle="tooltip" data-placement="bottom" title="Username" required="true">
+                      </div>
+                      <div class="form-group">
+                        <label for="email" class="col-form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" value="{{ user.email }}" aria-label="Email"
+                          data-toggle="tooltip" data-placement="bottom" title="Email" required="true">
+                      </div>
+                      <div class="form-group">
+                        <label for="phone" class="col-form-label">Phone:</label>
+                        <input type="phone" class="form-control" id="phone" value="{{ user.phone }}" aria-label="Phone"
+                          data-toggle="tooltip" data-placement="bottom" title="Phone" required="true">
+                      </div>
+                      <div class="form-group">
+                        <label for="password" class="col-form-label">Password:</label>
+                        <input type="password" class="form-control" id="password1" placeholder="Password" aria-label="Password"
+                          data-toggle="tooltip" data-placement="bottom" title="Password" required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.confirmPassword.pattern = this.value;">
+                      </div>
+                      <div class="form-group">
+                        <label for="confirmPassword" class="col-form-label">Confirm Password:</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
+                          aria-label="Confirm Password" data-toggle="tooltip" data-placement="bottom" title="Confirm Password"
+                          required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
+                      </div>
+                      <div class="modal-footer">
+                        <div class="col">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="col">
+                          <button type="submit" class="btn btn-primary btn-block">Save Updates</button>
+                        </div>
+                        <div>
+                          <button class="btn btn-outline-light my-2 my-sm-2" type="submit" data-toggle="tooltip"
+                            data-placement="bottom" title="Sign In" value="submit">Sign In</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <!-- displays the user's items if the Items button is pressed above -->
+          <div *ngIf="showItems">
+            <div class="list-group">
+              <a *ngFor="let i of items" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{i.productName}}</h5>
+                </div>
+                <p class="mb-1">{{i.description}}</p>
+                <small>{{i.specs}}</small>
+                <small>{{purchased.quantity}}</small>
+
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="addMemberEvent" tabindex="-1" role="dialog" aria-labelledby="addMemberEventLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Event</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col">
+        </div>
+        <form>
+          <div class="form-group">
+            <label for="type" class="col-form-label">Type of Event:</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                </div>
+                <select class="custom-select" id="type">
+                  <option selected>Choose...</option>
+                  <option value="Installation">Installation</option>
+                  <option value="Advisement">Advisement</option>
+                  <option value="Maintenance">Maintenance</option>
+                  <option value="Consultation">Consultation</option>
+                </select>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="date" class="col-form-label">Date:</label>
+            <input type="date" class="form-control" id="date" placeholder="MM-DD-YYYY" aria-label="Date" data-toggle="tooltip"
+              data-placement="bottom" title="MM-DD-YYYY" required="true">
+          </div>
+          <div class="form-group">
+            <label for="timeslot" class="col-form-label">Timeslot:</label>
+            <input type="timeslot" class="form-control" id="timeslot" placeholder="e.g. 5PM" aria-label="timeslot"
+              data-toggle="tooltip" data-placement="bottom" title="e.g. 5PM" required="true">
+          </div>
+          <div class="modal-footer">
+            <div class="col">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+            <div class="col">
+              <button type="submit" name="submit" (click)="addMemberEvent()" class="btn btn-primary btn-block">Request Event</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
