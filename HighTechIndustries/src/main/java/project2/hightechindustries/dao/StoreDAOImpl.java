@@ -6,7 +6,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,23 +46,26 @@ public class StoreDAOImpl implements StoreDAO {
 		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
 			// Casting to Store object to be returned and used later
+			
+			
 			System.out.println("str before: "+str);
 			str = (Store) s.get(Store.class, productId);
-			System.out.println("str: "+str);
-			Blob byteThing = str.getImage();
-//			ByteArrayInputStream thingStream = new ByteArrayInputStream(byteThing);
-//			BufferedImage thingy = ImageIO.read(thingStream);
-//			File hope = new File (str.getProductId()+ ".jpg");
-//			ImageIO.write(thingy, "jpg", hope);
-			
-//			storeWithPic = new Store(str.getProductId(), str.getProductName(), str.getDescription(), str.getPrice(), str.getSpecs(), hope);
+			System.out.println(str);
+			Blob image = str.getImage();
+			InputStream inputStream = image.getBinaryStream();
+			//URI hope = new URI ("file:///./productPics/" + str.getProductId() + ".png");
+			Files.copy(inputStream, Paths.get("../HighTechIndustries/productPics/" + str.getProductId() + ".png"), StandardCopyOption.REPLACE_EXISTING);
+			File hope = new File("../HighTechIndustries/productPics/"+str.getProductId()+".png");
+			storeWithPic = new Store(str.getProductId(), str.getProductName(), str.getDescription(), str.getPrice(), str.getSpecs(), hope);
 			
 			tx.commit();
 			s.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return str;
+		return storeWithPic;
 	}
 
 	// Getting a list of everything in the store, can be filtered to show specific things later by front end
@@ -71,9 +81,15 @@ public class StoreDAOImpl implements StoreDAO {
 			tx.commit();
 			s.close();
 		}
-//		try {
-//			for (Store item : str) {
-//				byte[] byteThing = item.getImage();
+		try {
+			for (Store item : str) {
+				Blob image = item.getImage();
+				InputStream inputStream = image.getBinaryStream();
+				File hope = new File ("HighTechIndustries/productPics/" + item.getProductId() + ".png");
+				Files.copy(inputStream, Paths.get("HighTechIndustries/productPics/" + item.getProductId() + ".png"), StandardCopyOption.REPLACE_EXISTING);
+				withPics.add(new Store(item.getProductId(), item.getProductName(), item.getDescription(), item.getPrice(), item.getSpecs(), hope));
+				
+				//				byte[] byteThing = item.getImage();
 //				System.out.println(byteThing);
 //				ByteArrayInputStream thingStream = new ByteArrayInputStream(byteThing);
 //				System.out.println(thingStream);
@@ -82,11 +98,12 @@ public class StoreDAOImpl implements StoreDAO {
 //				ImageIO.write(thingy, "jpg", hope);
 //				Store itemWithPic = new Store(item.getProductId(), item.getProductName(), item.getDescription(), item.getPrice(), item.getSpecs(), hope);
 //				withPics.add(itemWithPic);
-//			}
-//		}
-//		catch (IOException e) {
-//			e.printStackTrace();
-//		}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		// Returning list of items from store but after converting their images to pics
 		return withPics;
 	}

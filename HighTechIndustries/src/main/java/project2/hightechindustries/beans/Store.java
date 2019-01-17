@@ -2,6 +2,7 @@ package project2.hightechindustries.beans;
 
 import java.io.File;
 import java.io.Serializable;
+import java.net.URI;
 import java.sql.Blob;
 
 import javax.persistence.Column;

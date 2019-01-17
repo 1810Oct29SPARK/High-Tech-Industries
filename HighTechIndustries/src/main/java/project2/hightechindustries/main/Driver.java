@@ -19,7 +19,7 @@ import project2.hightechindustries.dao.StoreDAOImpl;
 public class Driver {
 	public static void main(String args[]) throws Exception {
 		StoreDAO sd = new StoreDAOImpl();
-		Store thing = sd.getStoreById(44);
+		Store thing = sd.getStoreById(47);
 		System.out.println(thing);
 		Blob image = thing.getImage();
 		InputStream inputStream = image.getBinaryStream();
