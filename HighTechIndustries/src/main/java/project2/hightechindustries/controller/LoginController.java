@@ -24,6 +24,16 @@ import project2.hightechindustries.service.LoginService;
 @Controller
 @RequestMapping(value = "/login")
 public class LoginController {
+	
+	/**
+	 * The Login Controller differs from the other controllers in that it pulls its methods from
+	 *  LoginService as opposed to any of the DAOs.
+	 * It calls a constructor, names a variable, and maps the following methods:
+	 *  One that authenticates a user signing in, one that allows a visitor to sign up (thus creating
+	 *  a new member with new member information, including a username and password), and one that
+	 *  allows a member to update their password.
+	 * @param loginService
+	 */
 
 	public LoginController(LoginService loginService) {
 		super();

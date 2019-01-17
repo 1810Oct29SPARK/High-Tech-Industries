@@ -15,13 +15,6 @@
 
 
       <!-- Calendar Section -->
-
-      <div class="row text-center my-2">
-        <div class="col">
-          <h3>Today's Date: {{ date.month }}.{{ date.year }}</h3>
-        </div>
-      </div>
-
       <div class="row text-center my-2">
         <div class="col">
           <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
@@ -169,8 +162,16 @@
                 </div>
                 <div class="form-group">
                   <label for="type" class="col-form-label">Type of Event:</label>
-                  <input type="text" class="form-control" id="type" placeholder="Type of Event" aria-label="Type"
-                    data-toggle="tooltip" data-placement="bottom" title="Type of Event" required="true">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="type">Options</label>
+                  </div>
+                  <select class="custom-select" id="type">
+                    <option selected>Choose...</option>
+                    <option value="Installation">Installation</option>
+                    <option value="Advisement">Advisement</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Consultation">Consultation</option>
+                  </select>
                 </div>
                 <div class="form-group">
                   <label for="date" class="col-form-label">Date:</label>
@@ -187,7 +188,8 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                   </div>
                   <div class="col">
-                    <button type="submit" name="submit" (click)="addEvent()" class="btn btn-primary btn-block">Confirm Event</button>
+                    <button type="submit" name="submit" (click)="addEvent()" class="btn btn-primary btn-block">Confirm
+                      Event</button>
                   </div>
                 </div>
               </form>
@@ -244,11 +246,7 @@
                       <div class="col">
                         <p class="mb-1">{{m.username}}</p>
                       </div>
-                      <div class="col-md-2">
-                        <!-- allows the employee to open a modal to view the individual member's information and items -->
-                        <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal"
-                          data-target="#1">View Items</button>
-                      </div>
+
                       <!-- Modal for viewing an employees info -->
                       <!-- <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="viewMemeberModalLabel"
                         aria-hidden="true">

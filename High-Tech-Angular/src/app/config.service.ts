@@ -25,6 +25,11 @@ export class ConfigService {
     return this.http.get("http://localhost:8082/HighTechIndustries/member/" + memberId.toString());
   }
 
+  addCart(productId): Observable<any>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/store/addCart/'+sessionStorage.getItem("ID").toString()+"/"+productId.toString());
+    // return this.http.get('http://localhost:8082/HighTechIndustries/store/recentlyViewed/'+sessionStorage.getItem("ID").toString()+"/"+productId.toString());
+  }
+
   getRecentlyViewed(): Observable<any> {
     return this.http.get('http://localhost:8082/HighTechIndustries/store/'+sessionStorage.getItem("ID").toString());
   }
