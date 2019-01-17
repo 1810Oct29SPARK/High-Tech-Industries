@@ -72,8 +72,14 @@ public class CartDAOImpl implements CartDAO {
 
 	/**
 	 * @author (name=Sean, Stewart)
-	 * Grunt, Grunt, Good Job!
-	 * Shark Bait, Ooh ha ha!
+	 * Here is a method defined for deleting Cart Items.
+	 * Unlike adding/updating, deleting is an all or nothing deal.
+	 * You can either leave it on your cart and just not buy all of
+	 *  them, or you can remove the entry, which removes them all.
+	 * It could serve in discouraging customers from deleting items 
+	 *  from their cart if they do have more than one, but then again,
+	 *  we really don't want customers to remove items from their cart,
+	 *  but to be fair, it should be allowed.
 	 */
 
 	@Override

@@ -2,6 +2,7 @@ package project2.hightechindustries.beans;
 
 import java.io.File;
 import java.io.Serializable;
+import java.net.URI;
 import java.sql.Blob;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.swing.JLabel;
 
 /**
  * @Author (name="Sean, SBG")
@@ -22,7 +24,7 @@ import javax.persistence.Transient;
 @Table(name="STORE")
 public class Store implements Serializable {
 	
-	public Store(Integer productId, String productName, String description, Double price, String specs, File pic) {
+	public Store(Integer productId, String productName, String description, Double price, String specs, URI pic) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -84,7 +86,7 @@ public class Store implements Serializable {
 	@Column(name="IMAGE")
 	private byte[] image;
 	@Transient
-	private File pic;
+	private URI pic;
 	
 	public Integer getProductId() {
 		return productId;
@@ -122,18 +124,19 @@ public class Store implements Serializable {
 	public void setImage(byte[] imageData) {
 		this.image = imageData;
 	}
+	public URI getPic() {
+		return pic;
+	}
+
+	public void setPic(URI pic) {
+		this.pic = pic;
+	}
 	@Override
 	public String toString() {
 		return "Store [productId=" + productId + ", productName=" + productName + ", description=" + description
 				+ ", price=" + price + ", specs=" + specs + ", image=" + image + "]";
 	}
 
-	public File getPic() {
-		return pic;
-	}
-
-	public void setPic(File pic) {
-		this.pic = pic;
-	}
+	
 
 }

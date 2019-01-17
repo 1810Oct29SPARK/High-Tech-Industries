@@ -13,12 +13,12 @@ import project2.hightechindustries.dao.StoreDAOImpl;
 
 public class Driver {
 	public static void main(String args[]) throws Exception {
-		StoreDAO sd = new StoreDAOImpl();
-		Store thing = sd.getStoreById(44);
-		byte[] byteThing = thing.getImage();
-		ByteArrayInputStream thingStream = new ByteArrayInputStream(byteThing);
-		BufferedImage thingy = ImageIO.read(thingStream);
-		ImageIO.write(thingy, "jpg", new File (thing.getProductId() +".jpg"));
+//		StoreDAO sd = new StoreDAOImpl();
+//		Store thing = sd.getStoreById(44);
+//		byte[] byteThing = thing.getImage();
+//		ByteArrayInputStream thingStream = new ByteArrayInputStream(byteThing);
+//		BufferedImage thingy = ImageIO.read(thingStream);
+//		ImageIO.write(thingy, "jpg", new File (thing.getProductId() +".jpg"));
 		/**
 		 * There's probably a better way to do this.
 		 * But for now, this is what we've got.

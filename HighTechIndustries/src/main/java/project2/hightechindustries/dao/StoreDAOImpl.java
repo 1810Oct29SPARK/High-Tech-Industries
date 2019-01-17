@@ -6,10 +6,20 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -40,19 +50,11 @@ public class StoreDAOImpl implements StoreDAO {
 			// Casting to Store object to be returned and used later
 			System.out.println("str before: "+str);
 			str = (Store) s.get(Store.class, productId);
-			System.out.println("str: "+str);
-			byte[] byteThing = str.getImage();
-			ByteArrayInputStream thingStream = new ByteArrayInputStream(byteThing);
-			BufferedImage thingy = ImageIO.read(thingStream);
-			File hope = new File (str.getProductId()+ ".jpg");
-			ImageIO.write(thingy, "jpg", hope);
-			
-			storeWithPic = new Store(str.getProductId(), str.getProductName(), str.getDescription(), str.getPrice(), str.getSpecs(), hope);
-			
+			System.out.println(str);
+			byte[] image = str.getImage();			
+			storeWithPic = new Store(str.getProductId(), str.getProductName(), str.getDescription(), str.getPrice(), str.getSpecs(), image);
 			tx.commit();
 			s.close();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return storeWithPic;
 	}
@@ -70,24 +72,12 @@ public class StoreDAOImpl implements StoreDAO {
 			tx.commit();
 			s.close();
 		}
-		try {
 			for (Store item : str) {
-				byte[] byteThing = item.getImage();
-				System.out.println(byteThing);
-				ByteArrayInputStream thingStream = new ByteArrayInputStream(byteThing);
-				System.out.println(thingStream);
-				BufferedImage thingy = ImageIO.read(thingStream);
-				File hope = new File (item.getProductId()+ ".jpg");
-				ImageIO.write(thingy, "jpg", hope);
-				Store itemWithPic = new Store(item.getProductId(), item.getProductName(), item.getDescription(), item.getPrice(), item.getSpecs(), hope);
-				withPics.add(itemWithPic);
+				byte[] image = item.getImage();
+				withPics.add(new Store(item.getProductId(), item.getProductName(), item.getDescription(), item.getPrice(), item.getSpecs(), image));
 			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		// Returning list of items from store but after converting their images to pics
 		return withPics;
+		
 	}
 
 	// Adding items to the store
@@ -161,26 +151,26 @@ public class StoreDAOImpl implements StoreDAO {
 //		
 //	}
 
-	@Override
-	public void insertPhoto(int id) {
-		File file = new File("C:\\Users\\seans\\Pictures\\RobotDog1.png");
-		byte[] imageData = new byte[(int)file.length()];
-		try (Session s = sf.getCurrentSession()) {
-			Transaction tx = s.beginTransaction();
-			FileInputStream fileInputStream = new FileInputStream(file);
-			fileInputStream.read(imageData);
-			fileInputStream.close();
-			Store image = new Store();
-			image.setProductId(id);
-//			image.setImage("Asimo.jpeg");
-			image.setImage(imageData);
-			s.save(image);
-			tx.commit();
-			s.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+//	@Override
+//	public void insertPhoto(int id) {
+//		File file = new File("C:\\Users\\seans\\Pictures\\RobotDog1.png");
+//		Blob imageData = new Blob[(int)file.length()];
+//		try (Session s = sf.getCurrentSession()) {
+//			Transaction tx = s.beginTransaction();
+//			FileInputStream fileInputStream = new FileInputStream(file);
+//			fileInputStream.read(imageData);
+//			fileInputStream.close();
+//			Store image = new Store();
+//			image.setProductId(id);
+////			image.setImage("Asimo.jpeg");
+//			image.setImage(imageData);
+//			s.save(image);
+//			tx.commit();
+//			s.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 
 }
