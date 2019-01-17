@@ -64,6 +64,18 @@ public class CalendarController {
 		}
 	}
 
+	@GetMapping(value = "/deleteEvent{eventId}")
+	public ResponseEntity<Calendar> deleteEventById(@PathVariable int eventId) {
+		Calendar c = cal.getCalendarEventById(eventId).get(0);
+		try {
+			cal.deleteCalendarEvent(c);
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+
 //	@GetMapping(value = "/allEvents")
 //	public ResponseEntity<List<Calendar>> getAllEvents(@RequestPara)
 

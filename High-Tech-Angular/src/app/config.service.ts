@@ -16,24 +16,6 @@ export class ConfigService {
   addUserURL: "http://localhost:8082/HighTechIndustries/login/addUser";
   recentlyViewedURL: "http://localhost:8082/HighTechIndustries/store/";
 
-  // getConfig() {
-  //   return this.http.get(this.configUrl);
-  // }
-  // // addUser(): Observable<Object>{
-  // //   return this.http.post(this.addUserURL);
-  // // }
-
-  // async getUserInfo(){
-  //   var result;
-  //   var end = "http://localhost:8082/HighTechIndustries/member/" + sessionStorage.getItem("ID").toString();
-  //   var paul = fetch(end).then(function (response) {return response.json() })
-  //     .then(function (data) {
-  //       result = data;
-  //        return data;
-  //     });
-  //     await paul;
-  //     return result;
-  // }
 
   getUserInfo(): Observable<Object> {
     return this.http.get("http://localhost:8082/HighTechIndustries/member/" + sessionStorage.getItem("ID").toString());
@@ -43,8 +25,8 @@ export class ConfigService {
   //   return this.http.post(this.addUserURL);
   // }
 
-  getUser(): Observable<any> {
-    return this.http.get(this.profileInfoURL)
+  getUser(memberId): Observable<any> {
+    return this.http.get("http://localhost:8082/HighTechIndustries/member/" + memberId.toString());
   }
 
   getRecentlyViewed(): Observable<any> {
@@ -57,6 +39,14 @@ export class ConfigService {
 
   getCart(memberId): Observable<any>{
     return this.http.get('http://localhost:8082/HighTechIndustries/store/cart'+memberId.toString());
+  }
+
+  deleteCalendarEvent(eventId): Observable<any>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/calendar/deleteEvent'+eventId.toString());
+  }
+
+  getAllEvents(): Observable<any>{
+    return this.http.get('http://localhost:8082/HighTechIndustries/calendar/allEvents');
   }
 
   getMemberList(): Observable<any> {

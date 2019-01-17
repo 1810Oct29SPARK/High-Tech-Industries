@@ -10,7 +10,144 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3">
-      <app-calendar></app-calendar>
+
+
+
+
+      <!-- Calendar Section -->
+
+      <div class="row text-center my-2">
+        <div class="col">
+          <h3>Today's Date: {{ date.month }}.{{ date.year }}</h3>
+        </div>
+      </div>
+
+      <div class="row text-center my-2">
+        <div class="col">
+          <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+        </div>
+      </div>
+      <div class="row text-center my-2">
+        <div class="col">
+          <button class="btn btn-sm btn-outline-primary mr-2" (click)="selectToday()">Select Today</button>
+          <button class="btn btn-sm btn-outline-primary mr-2" (click)="dp.navigateTo()">To current month</button>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col">
+          <div class="list-group m-2">
+            <div>
+              <a class="list-group-item list-group-item-action flex-column align-items-start">
+                <div>
+                  <div *ngFor="let e of allEvents" class="row border-bottom">
+                    <div class="col">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">{{ e.memberId }}</h6>
+                      </div>
+                      <small>{{ e.type }}</small>
+                    </div>
+                    <div class="col">
+                      <p class="mb-1">Day: {{ e.day }} </p>
+                      <small>{{ e.timeslot }}</small>
+                    </div>
+                    <div class="col-md-3">
+                      <!-- allows the employee to open a modal to view the individual member's information and items -->
+                      <button type="button" class="btn btn-outline-dark btn-lg btn-block" (click)="deleteEvent(e.eventId)" >Delete</button>
+                    </div>
+
+                    <!-- <form *ngIf="{{ e.memberId }}"">
+                                        <div class=" form-group">
+                      <div class="row">
+                        <div class="col">
+                          <label for="firstname" class="col-form-label">Firstname:</label>
+                        </div>
+                        <div class="col">
+                          <p>George</p>
+                        </div>
+                        <div class="col">
+                        </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col">
+                        <label for="lastname" class="col-form-label">Lastname:</label>
+                      </div>
+                      <div class="col">
+                        <p>Forman</p>
+                      </div>
+                      <div class="col">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col">
+                        <label for="type1" class="col-form-label">Type:</label>
+                      </div>
+                      <div class="col">
+                        <p>Installation</p>
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" id="type1" placeholder="Change Type" aria-label="Type"
+                          data-toggle="tooltip" data-placement="bottom" title="Type" required="true">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col">
+                        <label for="type1" class="col-form-label">Date:</label>
+                      </div>
+                      <div class="col">
+                        <p>1.1.2019</p>
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" id="date1" placeholder="Change Date" aria-label="Date"
+                          data-toggle="tooltip" data-placement="bottom" title="Date" required="true">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col">
+                        <label for="type1" class="col-form-label">Timeslot:</label>
+                      </div>
+                      <div class="col">
+                        <p>5PM</p>
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" id="timeslot" placeholder="Change Timeslot" aria-label="Type"
+                          data-toggle="tooltip" data-placement="bottom" title="TimeSlot" required="true">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <div class="col">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="col">
+                      <button type="submit" name="submit" class="btn btn-primary btn-block">Save
+                        Updates</button>
+                    </div>
+                  </div>
+                  </form> -->
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
     </div>
     <div class="col">
       <div class="row">
@@ -23,7 +160,7 @@
             <div class="list-group m-2">
               <div>
                 <a class="list-group-item list-group-item-action flex-column align-items-start">
-                  <div *ngFor="let m of members" class="row">
+                  <div *ngFor="let m of members" class="row border-bottom">
                     <div class="col">
                       <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{m.firstName}} {{m.lastName}}</h5>
@@ -39,63 +176,63 @@
                         Member</button>
                     </div>
                     <!-- Modal for viewing an employees info -->
-                <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="viewMemeberModalLabel"
-                  aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Member Info</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="col">
-                          <p class="mb-1">{{m.firstName}}</p>
-                        </div>
-                        <form>
-                          <div class="form-group">
-                            <label for="lastname" class="col-form-label">Lastname:</label>
-                            <input type="text" class="form-control" id="lastname" placeholder="Lastname" aria-label="Lastname"
-                              data-toggle="tooltip" data-placement="bottom" title="Lastname" required="true">
+                    <!-- <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="viewMemeberModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Member Info</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
                           </div>
-                          <div class="form-group">
-                            <label for="username" class="col-form-label">Username:</label>
-                            <input type="username" class="form-control" id="username1" placeholder="Username"
-                              aria-label="Username" data-toggle="tooltip" data-placement="bottom" title="Username"
-                              required="true">
-                          </div>
-                          <div class="form-group">
-                            <label for="email" class="col-form-label">Email:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email"
-                              data-toggle="tooltip" data-placement="bottom" title="Email" required="true">
-                          </div>
-                          <div class="form-group">
-                            <label for="password" class="col-form-label">Password:</label>
-                            <input type="password" class="form-control" id="password1" placeholder="Password"
-                              aria-label="Password" data-toggle="tooltip" data-placement="bottom" title="Password"
-                              required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.confirmPassword.pattern = this.value;">
-                          </div>
-                          <div class="form-group">
-                            <label for="confirmPassword" class="col-form-label">Confirm Password:</label>
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
-                              aria-label="Confirm Password" data-toggle="tooltip" data-placement="bottom" title="Confirm Password"
-                              required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
-                          </div>
-                          <div class="modal-footer">
+                          <div class="modal-body">
                             <div class="col">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                              <p class="mb-1">{{m.firstName}}</p>
                             </div>
-                            <div class="col">
-                              <button type="submit" name="submit" class="btn btn-primary btn-block">Save Updates</button>
-                            </div>
+                            <form>
+                              <div class="form-group">
+                                <label for="lastname" class="col-form-label">Lastname:</label>
+                                <input type="text" class="form-control" id="lastname" placeholder="Lastname" aria-label="Lastname"
+                                  data-toggle="tooltip" data-placement="bottom" title="Lastname" required="true">
+                              </div>
+                              <div class="form-group">
+                                <label for="username" class="col-form-label">Username:</label>
+                                <input type="username" class="form-control" id="username1" placeholder="Username"
+                                  aria-label="Username" data-toggle="tooltip" data-placement="bottom" title="Username"
+                                  required="true">
+                              </div>
+                              <div class="form-group">
+                                <label for="email" class="col-form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email"
+                                  data-toggle="tooltip" data-placement="bottom" title="Email" required="true">
+                              </div>
+                              <div class="form-group">
+                                <label for="password" class="col-form-label">Password:</label>
+                                <input type="password" class="form-control" id="password1" placeholder="Password"
+                                  aria-label="Password" data-toggle="tooltip" data-placement="bottom" title="Password"
+                                  required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.confirmPassword.pattern = this.value;">
+                              </div>
+                              <div class="form-group">
+                                <label for="confirmPassword" class="col-form-label">Confirm Password:</label>
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
+                                  aria-label="Confirm Password" data-toggle="tooltip" data-placement="bottom" title="Confirm Password"
+                                  required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
+                              </div>
+                              <div class="modal-footer">
+                                <div class="col">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                </div>
+                                <div class="col">
+                                  <button type="submit" name="submit" class="btn btn-primary btn-block">Save Updates</button>
+                                </div>
+                              </div>
+                            </form>
                           </div>
-                        </form>
-                      </div>
 
-                    </div>
-                  </div>
-                </div>
+                        </div>
+                      </div>
+                    </div> -->
                   </div>
                 </a><!-- modal used to view the individual member's infomation and items -->
               </div>

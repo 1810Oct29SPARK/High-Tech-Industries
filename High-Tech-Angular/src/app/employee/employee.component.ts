@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../config.service';
+import { CalendarComponent } from '../calendar/calendar.component';
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 // Jeremy
 
@@ -10,14 +12,42 @@ import { ConfigService } from '../config.service';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor(public configService: ConfigService) { }
+  constructor(public configService: ConfigService, private calendar: NgbCalendar) { }
 
+  model: NgbDateStruct;
+  date: { year: number, month: number };
+  IDs: any;
+  allEvents: any;
   members: string[];
   events: string[];
 
   showMembers: boolean = true;
 
   submitted = false;
+
+
+  selectToday() {
+    this.model = this.calendar.getToday();
+  }
+
+  deleteEvent(value){
+    this.configService.deleteCalendarEvent(value).subscribe( (data) => {
+      console.log("it works");
+    })
+    console.log(value);
+  }
+
+  getEvents(){
+    this.configService.getAllEvents().subscribe( (data) => {
+      this.allEvents = data;
+      for(let x = 0; x < data.length; ++x ){
+      this.configService.getUser(data[x].memberId).subscribe( (e) => {
+        this.allEvents[x].memberId = e.firstName + " " + e.lastName;
+      })
+    }
+    })
+  }
+
 
   onSubmit() {
     this.submitted = true;
@@ -27,6 +57,7 @@ export class EmployeeComponent implements OnInit {
   ngOnInit() {
     this.getMemberList();
     this.getCalendarEvents();
+    this.getEvents();
   }
 
   getMemberList() {

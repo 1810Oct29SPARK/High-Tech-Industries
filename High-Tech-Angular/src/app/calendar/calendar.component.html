@@ -2,6 +2,12 @@
 
 <div class="row text-center my-2">
     <div class="col">
+        <h3>Today's Date: {{ date.month }}.{{ date.year }}</h3>
+    </div>
+</div>
+
+<div class="row text-center my-2">
+    <div class="col">
         <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
     </div>
 </div>
@@ -17,15 +23,16 @@
             <div>
                 <a class="list-group-item list-group-item-action flex-column align-items-start">
                     <div>
-                        <div class="row">
+                        <div *ngFor="let e of allEvents" class="row">
                             <div class="col">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">George Foreman</h5>
+                                    <h5 class="mb-1">{{ e.memberId }}</h5>
                                 </div>
-                                <small>Installation</small>
+                                <small>{{ e.type }}</small>
                             </div>
                             <div class="col">
-                                <p class="mb-1">Month: {{ date.month }}.{{ date.year }} </p>
+                                <p class="mb-1">Day: {{ e.day }} </p>
+                                <small>{{ e.timeslot }}</small>
                             </div>
                             <div class="col-md-3">
                                 <!-- allows the employee to open a modal to view the individual member's information and items -->
@@ -98,6 +105,21 @@
                                                 <input type="text" class="form-control" id="date1" placeholder="Change Date"
                                                     aria-label="Date" data-toggle="tooltip" data-placement="bottom"
                                                     title="Date" required="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="type1" class="col-form-label">Timeslot:</label>
+                                            </div>
+                                            <div class="col">
+                                                <p>5PM</p>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="timeslot" placeholder="Change Timeslot"
+                                                    aria-label="Type" data-toggle="tooltip" data-placement="bottom"
+                                                    title="TimeSlot" required="true">
                                             </div>
                                         </div>
                                     </div>
