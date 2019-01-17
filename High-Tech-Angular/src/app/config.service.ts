@@ -11,10 +11,6 @@ export class ConfigService {
 
   constructor(private http: HttpClient) { }
 
-  configUrl = 'assets/config.json';
-  profileInfoURL: "http://localhost:8082/HighTechIndustries/member/{memberId}";
-  addUserURL: "http://localhost:8082/HighTechIndustries/login/addUser";
-  recentlyViewedURL: "http://localhost:8082/HighTechIndustries/store/";
 
 
   getUserInfo(): Observable<Object> {
@@ -43,6 +39,17 @@ export class ConfigService {
 
   deleteCalendarEvent(eventId): Observable<any>{
     return this.http.get('http://localhost:8082/HighTechIndustries/calendar/deleteEvent'+eventId.toString());
+  }
+
+  addCalendarEvent(memberId, type, date, timeslot, helpedBy): Observable<any>{
+    if(helpedBy == null){
+      helpedBy = 1;
+    }
+    return this.http.get('http://localhost:8082/HighTechIndustries/calendar/addEvent/'+memberId+"/"+type+"/"+date+"/"+timeslot+"/"+helpedBy);
+  }
+
+  getMemberEvents(){
+    return this.http.get('http://localhost:8082/HighTechIndustries/calendar/memberEvents/'+sessionStorage.getItem("ID").toString());
   }
 
   getAllEvents(): Observable<any>{

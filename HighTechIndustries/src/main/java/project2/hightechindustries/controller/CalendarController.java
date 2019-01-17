@@ -42,9 +42,9 @@ public class CalendarController {
 		}
 	}
 
-	@PostMapping(value = "/addEvent")
-	public ResponseEntity<Calendar> addEvent(@RequestParam int memberId, @RequestParam String day,
-			@RequestParam String timeslot, @RequestParam String type, @RequestParam int helpedBy) {
+	@GetMapping(value = "/addEvent/{memberId}/{type}/{day}/{timeslot}/{helpedBy}")
+	public ResponseEntity<Calendar> addEvent(@PathVariable int memberId, @PathVariable String day,
+			@PathVariable String timeslot, @PathVariable String type, @PathVariable int helpedBy) {
 		try {
 			cal.addCalendarEvent(new Calendar(memberId, day, timeslot, type, helpedBy));
 			return new ResponseEntity<>(null, HttpStatus.OK);

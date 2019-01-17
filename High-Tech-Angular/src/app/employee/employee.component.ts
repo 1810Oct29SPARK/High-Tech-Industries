@@ -32,36 +32,36 @@ export class EmployeeComponent implements OnInit {
     this.model = this.calendar.getToday();
   }
 
-  deleteEvent(value){
-    this.configService.deleteCalendarEvent(value).subscribe( (data) => {
+  deleteEvent(value) {
+    this.configService.deleteCalendarEvent(value).subscribe((data) => {
     })
     location.reload();
   }
 
-  getEvents(){
-    this.configService.getAllEvents().subscribe( (data) => {
+  getEvents() {
+    this.configService.getAllEvents().subscribe((data) => {
       this.allEvents = data;
-      for(let x = 0; x < data.length; ++x ){
-      this.configService.getUser(data[x].memberId).subscribe( (e) => {
-        this.allEvents[x].memberId = e.firstName + " " + e.lastName;
-      })
-    }
+      for (let x = 0; x < data.length; ++x) {
+        this.configService.getUser(data[x].memberId).subscribe((e) => {
+          this.allEvents[x].memberId = e.firstName + " " + e.lastName;
+        })
+      }
     })
   }
 
   // delare boolean values for the info and items on the profile page
-    showMemList: boolean = true;
-    showPurchased: boolean = false;
-    // when each button is pressed it will change the related value to true and the unrelated value to false
-    // if that value is true, that section of html will display on the page. 
-    toggleInfo() {
-      this.showMemList = true;
-      this.showPurchased = false;
-    }
-    toggleItems() {
-      this.showPurchased = true;
-      this.showMemList = false;
-    }
+  showMemList: boolean = true;
+  showPurchased: boolean = false;
+  // when each button is pressed it will change the related value to true and the unrelated value to false
+  // if that value is true, that section of html will display on the page. 
+  toggleInfo() {
+    this.showMemList = true;
+    this.showPurchased = false;
+  }
+  toggleItems() {
+    this.showPurchased = true;
+    this.showMemList = false;
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -72,6 +72,17 @@ export class EmployeeComponent implements OnInit {
     this.getCalendarEvents();
     this.getEvents();
     this.getAllPurchasedItems();
+  }
+
+  addEvent() {
+    var memberId = (<HTMLInputElement>document.getElementById("memberId")).value.toString();
+    var type = (<HTMLInputElement>document.getElementById("type")).value.toString();
+    var date = (<HTMLInputElement>document.getElementById("date")).value.toString();
+    var timeslot = (<HTMLInputElement>document.getElementById("timeslot")).value.toString();
+    var helpedBy = sessionStorage.getItem("ID");
+    this.configService.addCalendarEvent(memberId, type, date, timeslot, helpedBy).subscribe((data) => {
+    })
+    location.reload();
   }
 
   getMemberList() {
@@ -89,8 +100,8 @@ export class EmployeeComponent implements OnInit {
   getAllPurchasedItems() {
     this.configService.getAllPurchasedItems().subscribe((e) => {
       this.purchased = e;
-      for (let x=0; x<e.length; x++) {
-        this.configService.getItem(e[x].productId).subscribe( (data) => {
+      for (let x = 0; x < e.length; x++) {
+        this.configService.getItem(e[x].productId).subscribe((data) => {
           this.item[x] = data;
         })
       }
