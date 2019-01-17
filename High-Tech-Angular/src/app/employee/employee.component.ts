@@ -32,9 +32,8 @@ export class EmployeeComponent implements OnInit {
 
   deleteEvent(value){
     this.configService.deleteCalendarEvent(value).subscribe( (data) => {
-      console.log("it works");
     })
-    console.log(value);
+    location.reload();
   }
 
   getEvents(){
