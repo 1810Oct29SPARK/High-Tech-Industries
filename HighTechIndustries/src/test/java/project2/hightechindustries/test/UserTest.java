@@ -21,9 +21,9 @@ class UserTest {
         user.setId(1);
         user.setFirstName("MARIO");
         user.setLastName("MARIO");
-        user.setEmail("No Email");
-        user.setPhone("No Phone");
-        user.setEmployeeStatus("Customer");
+        user.setEmail("mariomario@itsamemario.com");
+        user.setPhone("109-876-5432");
+        user.setEmployeeStatus("Employee");
         user.setUsername("SUPERMARIO");
 
         Assert.assertEquals(user, u.getUserById(1));
@@ -40,27 +40,29 @@ class UserTest {
         user1.setId(1);
         user1.setFirstName("MARIO");
         user1.setLastName("MARIO");
-        user1.setEmail("No Email");
-        user1.setPhone("No Phone");
-        user1.setEmployeeStatus("Customer");
+        user1.setEmail("mariomario@itsamemario.com");
+        user1.setPhone("109-876-5432");
+        user1.setEmployeeStatus("Employee");
         user1.setUsername("SUPERMARIO");
 
         Users user2 = new Users();
         user2.setId(2);
         user2.setFirstName("SONIC");
         user2.setLastName("THE HEDGEHOG");
-        user2.setEmail("No Email");
-        user2.setPhone("No Phone");
+        user2.setEmail("kingofrings@blueblur.com");
+        user2.setPhone("987-654-3210");
         user2.setEmployeeStatus("Customer");
+        user2.setHelpedBy(3);
         user2.setUsername("SUPERSONIC");
 
         Users user3 = new Users();
         user3.setId(3);
         user3.setFirstName("DONKEY");
         user3.setLastName("KONG");
-        user3.setEmail("No Email");
-        user3.setPhone("No Phone");
-        user3.setEmployeeStatus("Customer");
+        user3.setEmail("Ooooh@banana.com");
+        user3.setPhone("876-543-2109");
+        user3.setEmployeeStatus("Employee");
+        user2.setHelpedBy(1);
         user3.setUsername("DK");
 
         Users user4 = new Users();
