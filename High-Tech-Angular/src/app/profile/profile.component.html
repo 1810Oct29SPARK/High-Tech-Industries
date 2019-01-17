@@ -86,21 +86,13 @@
                 <p>{{ user.phone }}</p>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <h3><label>Employee helping you</label></h3>
-              </div>
-              <div class="col-md-6">
-                <p>{{ employeeFirstname }} {{ employeeLastname }}</p>
-              </div>
-            </div>
             <!-- used to open a modal that allows the user to update their information -->
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-md-2 m-2 ml-auto">
                 <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#updateModal">Update
                   Information</button>
               </div>
-            </div>
+            </div> -->
 
 
 
@@ -166,12 +158,14 @@
           <!-- displays the user's items if the Items button is pressed above -->
           <div *ngIf="showItems">
             <div class="list-group">
-              <a *ngFor="let i of items" href="" class="list-group-item list-group-item-action flex-column align-items-start">
+              <a *ngFor="let i of items" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-1">{{i.productName}}</h5>
                 </div>
                 <p class="mb-1">{{i.description}}</p>
                 <small>{{i.specs}}</small>
+                <small>{{purchased.quantity}}</small>
+
               </a>
             </div>
           </div>
@@ -200,8 +194,18 @@
         <form>
           <div class="form-group">
             <label for="type" class="col-form-label">Type of Event:</label>
-            <input type="text" class="form-control" id="type" placeholder="Type of Event" aria-label="Type" data-toggle="tooltip"
-              data-placement="bottom" title="Type of Event" required="true">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                </div>
+                <select class="custom-select" id="type">
+                  <option selected>Choose...</option>
+                  <option value="Installation">Installation</option>
+                  <option value="Advisement">Advisement</option>
+                  <option value="Maintenance">Maintenance</option>
+                  <option value="Consultation">Consultation</option>
+                </select>
+              </div>
           </div>
           <div class="form-group">
             <label for="date" class="col-form-label">Date:</label>

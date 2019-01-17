@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../config.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { timeout } from 'q';
 
 // Jeremy
 
@@ -35,31 +36,35 @@ export class StoreComponent implements OnInit {
     });
   }
 
-  addToCart(value){
-    this.configService.addCart(value).subscribe( (data) => {
-      
+  addToCart(value) {
+    this.configService.addCart(value).subscribe((data) => {
     })
-    location.reload();
+    //location.reload();
   }
 
   getCartProducts() {
     this.configService.getCart(sessionStorage.getItem("ID")).subscribe((e) => {
       for (let x = 0; x < e.length; x++) {
-        this.configService.getStoreItem(e[x].productId).subscribe( (data) => {
+        this.configService.getStoreItem(e[x].productId).subscribe((data) => {
           this.cartList[x] = data;
           this.quantity[x] = e[x].quantity;
-          this.cartQuantity += (e[x].quantity)/1;
+          this.cartQuantity += (e[x].quantity) / 1;
         })
       }
     })
   }
 
-  checkCart(){
-    if(this.cartList.length > 0){
+  checkCart() {
+    this.cartQuantity = 0;
+    this.getCartProducts();
+    if (this.cartList.length > 0) {
       this.areItems = true;
       this.noItems = false;
     }
-    console.log("something");
+  }
+
+  buyItems() {
+    this.configService.buy(sessionStorage.getItem("ID"));
   }
 
   getRecentlyViewed() {

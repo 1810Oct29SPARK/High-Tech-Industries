@@ -90,6 +90,11 @@ export class ConfigService {
     fetch(end).then(function () { location.reload() });
   }
 
+  buy(memberId) {
+    var end = "http://localhost:8082/HighTechIndustries/store/purchase" + memberId;
+    fetch(end).then(function () {location.reload() });
+  }
+
   logIn(username: String, password: String) {
     var end = "http://localhost:8082/HighTechIndustries/login/" + username + "/" + password;
     fetch(end).then(function (response) { return response.json() })
