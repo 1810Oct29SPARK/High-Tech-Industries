@@ -150,111 +150,146 @@
 
     </div>
     <div class="col">
+      <!-- two buttons that toggle between User Info and User Items -->
       <div class="row">
-        <h1>Members List</h1>
+        <div class="col m-2">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleInfo()">Member List</button>
+        </div>
+        <div class="col m-2">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block" label="Click" (click)="toggleItems()">Purchased List</button>
+        </div>
       </div>
-      <!-- displays each member that is associated with the employee -->
-      <div class="row">
-        <div class="col">
-          <div *ngIf="showMembers">
-            <div class="list-group m-2">
-              <div>
-                <a class="list-group-item list-group-item-action flex-column align-items-start">
-                  <div *ngFor="let m of members" class="row border-bottom">
-                    <div class="col">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{m.firstName}} {{m.lastName}}</h5>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <p class="mb-1">{{m.email}}</p>
-                    </div>
-                    <div class="col-md-2">
-                      <!-- allows the employee to open a modal to view the individual member's information and items -->
-                      <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal"
-                        data-target="#1">View
-                        Member</button>
-                    </div>
-                    <!-- Modal for viewing an employees info -->
-                    <!-- <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="viewMemeberModalLabel"
-                      aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Member Info</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <div class="col">
-                              <p class="mb-1">{{m.firstName}}</p>
-                            </div>
-                            <form>
-                              <div class="form-group">
-                                <label for="lastname" class="col-form-label">Lastname:</label>
-                                <input type="text" class="form-control" id="lastname" placeholder="Lastname" aria-label="Lastname"
-                                  data-toggle="tooltip" data-placement="bottom" title="Lastname" required="true">
-                              </div>
-                              <div class="form-group">
-                                <label for="username" class="col-form-label">Username:</label>
-                                <input type="username" class="form-control" id="username1" placeholder="Username"
-                                  aria-label="Username" data-toggle="tooltip" data-placement="bottom" title="Username"
-                                  required="true">
-                              </div>
-                              <div class="form-group">
-                                <label for="email" class="col-form-label">Email:</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email"
-                                  data-toggle="tooltip" data-placement="bottom" title="Email" required="true">
-                              </div>
-                              <div class="form-group">
-                                <label for="password" class="col-form-label">Password:</label>
-                                <input type="password" class="form-control" id="password1" placeholder="Password"
-                                  aria-label="Password" data-toggle="tooltip" data-placement="bottom" title="Password"
-                                  required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.confirmPassword.pattern = this.value;">
-                              </div>
-                              <div class="form-group">
-                                <label for="confirmPassword" class="col-form-label">Confirm Password:</label>
-                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
-                                  aria-label="Confirm Password" data-toggle="tooltip" data-placement="bottom" title="Confirm Password"
-                                  required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
-                              </div>
-                              <div class="modal-footer">
-                                <div class="col">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                </div>
-                                <div class="col">
-                                  <button type="submit" name="submit" class="btn btn-primary btn-block">Save Updates</button>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-
+      <div *ngIf="showMemList">
+        <div class="row">
+          <h1>Members List</h1>
+        </div>
+        <!-- displays each member that is associated with the employee -->
+        <div class="row">
+          <div class="col">
+            <div>
+              <div class="list-group m-2">
+                <div>
+                  <a class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div *ngFor="let m of members" class="row">
+                      <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">{{m.firstName}} {{m.lastName}}</h5>
                         </div>
                       </div>
-                    </div> -->
-                  </div>
-                </a><!-- modal used to view the individual member's infomation and items -->
-              </div>
+                      <div class="col">
+                        <p class="mb-1">{{m.email}}</p>
+                      </div>
+                      <div class="col">
+                        <p class="mb-1">{{m.phone}}</p>
+                      </div>
+                      <div class="col">
+                        <p class="mb-1">{{m.employeeStatus}}</p>
+                      </div>
+                      <div class="col">
+                        <p class="mb-1">{{m.username}}</p>
+                      </div>
+                      <div class="col-md-2">
+                        <!-- allows the employee to open a modal to view the individual member's information and items -->
+                        <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal"
+                          data-target="#1">View Items</button>
+                      </div>
+                      <!-- Modal for viewing an employees info -->
+                      <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="viewMemeberModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Member Info</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="col">
+                                <p class="mb-1">{{m.firstName}}</p>
+                              </div>
+                              <form>
+                                <div class="form-group">
+                                  <label for="lastname" class="col-form-label">Lastname:</label>
+                                  <input type="text" class="form-control" id="lastname" placeholder="Lastname"
+                                    aria-label="Lastname" data-toggle="tooltip" data-placement="bottom" title="Lastname"
+                                    required="true">
+                                </div>
+                                <div class="form-group">
+                                  <label for="username" class="col-form-label">Username:</label>
+                                  <input type="username" class="form-control" id="username1" placeholder="Username"
+                                    aria-label="Username" data-toggle="tooltip" data-placement="bottom" title="Username"
+                                    required="true">
+                                </div>
+                                <div class="form-group">
+                                  <label for="email" class="col-form-label">Email:</label>
+                                  <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email"
+                                    data-toggle="tooltip" data-placement="bottom" title="Email" required="true">
+                                </div>
+                                <div class="form-group">
+                                  <label for="password" class="col-form-label">Password:</label>
+                                  <input type="password" class="form-control" id="password1" placeholder="Password"
+                                    aria-label="Password" data-toggle="tooltip" data-placement="bottom" title="Password"
+                                    required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.confirmPassword.pattern = this.value;">
+                                </div>
+                                <div class="form-group">
+                                  <label for="confirmPassword" class="col-form-label">Confirm Password:</label>
+                                  <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
+                                    aria-label="Confirm Password" data-toggle="tooltip" data-placement="bottom" title="Confirm Password"
+                                    required="true" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
+                                </div>
+                                <div class="modal-footer">
+                                  <div class="col">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                  </div>
+                                  <div class="col">
+                                    <button type="submit" name="submit" class="btn btn-primary btn-block">Save Updates</button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
 
-              <a class="list-group-item flex-column align-items-start">
-                <div class="row">
-                  <div class="col">
-                  </div>
-                  <div class="col">
-                  </div>
-                  <div class="col-md-2">
-                    <!-- allows the employee to open a modal to add a new member -->
-                    <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal" data-target="#addMemberModal">Add
-                      a New Member</button>
-                  </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a><!-- modal used to view the individual member's infomation and items -->
                 </div>
-              </a>
+
+                <a class="list-group-item flex-column align-items-start">
+                  <div class="row">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                    </div>
+                    <div class="col-md-2">
+                      <!-- allows the employee to open a modal to add a new member -->
+                      <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal"
+                        data-target="#addMemberModal">Add
+                        a New Member</button>
+                    </div>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
+      <!-- displays all the pruchased items if the Items button is pressed above -->
+      <div *ngIf="showPurchased">
+        <div class="row">
+          <h1>All Products Pruchased</h1>
+        </div>
+        <div class="list-group">
+          <a *ngFor="let i of item" href="" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{purchased.quantity}} {{i.productName}}</h5>
+            </div>
+            <p class="mb-1">{{i.description}}</p>
+            <small>{{i.specs}}</small>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -69,6 +69,10 @@ export class ConfigService {
     return this.http.get('http://localhost:8082/HighTechIndustries/member/purchased' + sessionStorage.getItem("ID").toString());
   }
 
+  getAllPurchasedItems(): Observable<any> {
+    return this.http.get('http://localhost:8082/HighTechIndustries/store/purchased');
+  }
+
   addUser(firstname, lastname, email, phone, username, password) {
     var end = "http://localhost:8082/HighTechIndustries/login/" + firstname + "/" + lastname + "/" + email + "/" + phone + "/Customer/" + username + "/" + password;
     fetch(end).then(function () { location.reload() });

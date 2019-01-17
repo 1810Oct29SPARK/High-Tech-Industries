@@ -2,7 +2,7 @@
 
 <div class="jumbotron jumbotron-fluid mb-0" style="background-color: gainsboro">
   <div class="container">
-    <h1 class="display-4">Welcome {{ firstname }}!</h1>
+    <h1 class="display-4">Welcome {{ user.firstName }}!</h1>
     <p class="lead"></p>
   </div>
 </div>
@@ -28,8 +28,8 @@
       </div>
     </div>
     <div class="col">
-      <div class="row" style="background-image: url(assets/img/374114-download-free-scenic-backgrounds-1920x1080.jpg); 
-      background-size: 100% 100%; height: 30vh; min-height: 200px ">
+      <div class="row" style="background-image: url(https://i.pinimg.com/originals/a8/81/2b/a8812bdbc07e039f361e309e12eda4b9.jpg); 
+      background-size: 100% 100%; height: 45vh; min-height: 200px ">
       </div>
       <!-- two buttons that toggle between User Info and User Items -->
       <div class="row">
@@ -156,12 +156,12 @@
           <!-- displays the user's items if the Items button is pressed above -->
           <div *ngIf="showItems">
             <div class="list-group">
-              <a *ngFor="let p of purchased" href="" class="list-group-item list-group-item-action flex-column align-items-start">
+              <a *ngFor="let i of items" href="" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Name</h5>
+                  <h5 class="mb-1">{{i.productName}}</h5>
                 </div>
-                <p class="mb-1">Descprition</p>
-                <small>He He He He</small>
+                <p class="mb-1">{{i.description}}</p>
+                <small>{{i.specs}}</small>
               </a>
             </div>
           </div>
