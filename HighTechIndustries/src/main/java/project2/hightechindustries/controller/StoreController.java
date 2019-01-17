@@ -1,5 +1,6 @@
 package project2.hightechindustries.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import project2.hightechindustries.beans.Cart;
+import project2.hightechindustries.beans.Purchased;
 import project2.hightechindustries.beans.RecentlyViewed;
 import project2.hightechindustries.beans.Store;
+import project2.hightechindustries.beans.Users;
 import project2.hightechindustries.dao.CartDAO;
+import project2.hightechindustries.dao.PurchasedDAO;
 import project2.hightechindustries.dao.RecentlyViewedDAO;
 import project2.hightechindustries.dao.StoreDAO;
 
@@ -36,6 +42,9 @@ public class StoreController {
 	
 	@Autowired
 	private CartDAO cart;
+	
+	@Autowired
+	private PurchasedDAO purchased;
 	
 	@GetMapping(value="/{memberId}")
 	public ResponseEntity<RecentlyViewed> getStoreItemsByMemberId(@PathVariable int memberId) {
@@ -75,6 +84,30 @@ public class StoreController {
 		} else {
 			return new ResponseEntity<List<Cart>>(items, HttpStatus.OK);
 		}
+	}
+	
+	@GetMapping(value="/purchased")
+	public ResponseEntity<List<Purchased>> getAllPurchasedItems() {
+		List<Purchased> items = purchased.getAllPurchased();
+		if (items == null) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<List<Purchased>>(items, HttpStatus.OK);
+		}
+	}
+
+	@GetMapping(value = "/purchase{memberId}")
+	public ResponseEntity<Users> addingUser(@PathVariable int memberId) {
+		List<Cart> currentCart = cart.getAllCartItemsById(memberId);
+		List<Purchased> toBuy = new ArrayList<>();
+		for (int x=0; x<currentCart.size(); x++) {
+			toBuy.add(new Purchased(currentCart.get(x).getMemberId(), 
+					currentCart.get(x).getProductId(), 
+					currentCart.get(x).getQuantity()));
+			purchased.addOrUpdatePurchasedItem(toBuy.get(x));
+			cart.deleteCartItem(currentCart.get(x));
+		}
+		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 
 }
