@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
     var type = (<HTMLInputElement>document.getElementById("type")).value.toString();
     var date = (<HTMLInputElement>document.getElementById("date")).value.toString();
     var timeslot = (<HTMLInputElement>document.getElementById("timeslot")).value.toString();
-    this.configService.addCalendarEvent(memberId, type, date, timeslot, null).subscribe( (e) => {
+    this.configService.addCalendarEvent(memberId, type, date, timeslot, 128).subscribe( (e) => {
     })
     location.reload();
   }

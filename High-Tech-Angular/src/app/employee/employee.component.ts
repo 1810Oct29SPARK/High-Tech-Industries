@@ -72,6 +72,7 @@ export class EmployeeComponent implements OnInit {
     this.getCalendarEvents();
     this.getEvents();
     this.getAllPurchasedItems();
+    this.selectToday();
   }
 
   addEvent() {

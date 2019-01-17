@@ -24,7 +24,7 @@ import project2.hightechindustries.dao.RecentlyViewedDAO;
 import project2.hightechindustries.dao.StoreDAO;
 
 @RestController
-@RequestMapping(value="/store")
+@RequestMapping(value = "/store")
 public class StoreController {
 	
 	/**
@@ -36,17 +36,17 @@ public class StoreController {
 	
 	@Autowired
 	private RecentlyViewedDAO recentlyViewed;
-	
+
 	@Autowired
 	private StoreDAO stores;
-	
+
 	@Autowired
 	private CartDAO cart;
-	
+
 	@Autowired
 	private PurchasedDAO purchased;
-	
-	@GetMapping(value="/{memberId}")
+
+	@GetMapping(value = "/{memberId}")
 	public ResponseEntity<RecentlyViewed> getStoreItemsByMemberId(@PathVariable int memberId) {
 		List<RecentlyViewed> rv = recentlyViewed.getAllRecentlyViewed(memberId);
 		if (rv == null) {
@@ -55,8 +55,8 @@ public class StoreController {
 			return new ResponseEntity<>(rv.get(0), HttpStatus.OK);
 		}
 	}
-	
-	@GetMapping(value="/item{productId}")
+
+	@GetMapping(value = "/item{productId}")
 	public ResponseEntity<Store> getStoreItemsByProductId(@PathVariable int productId) {
 		Store storeItem = stores.getStoreById(productId);
 		if (storeItem == null) {
@@ -65,8 +65,8 @@ public class StoreController {
 			return new ResponseEntity<>(storeItem, HttpStatus.OK);
 		}
 	}
-	
-	@GetMapping(value="/products")
+
+	@GetMapping(value = "/products")
 	public ResponseEntity<List<Store>> getListOfProducts() {
 		List<Store> items = stores.getAllStore();
 		if (items == null) {
@@ -75,8 +75,8 @@ public class StoreController {
 			return new ResponseEntity<List<Store>>(items, HttpStatus.OK);
 		}
 	}
-	
-	@GetMapping(value="/cart{memberId}")
+
+	@GetMapping(value = "/cart{memberId}")
 	public ResponseEntity<List<Cart>> getItemsInCart(@PathVariable int memberId) {
 		List<Cart> items = cart.getAllCartItemsById(memberId);
 		if (items == null) {
@@ -85,8 +85,8 @@ public class StoreController {
 			return new ResponseEntity<List<Cart>>(items, HttpStatus.OK);
 		}
 	}
-	
-	@GetMapping(value="/purchased")
+
+	@GetMapping(value = "/purchased")
 	public ResponseEntity<List<Purchased>> getAllPurchasedItems() {
 		List<Purchased> items = purchased.getAllPurchased();
 		if (items == null) {
@@ -96,13 +96,26 @@ public class StoreController {
 		}
 	}
 
+	@GetMapping(value = "/recentlyViewed/{memberId}/{productId}")
+	public ResponseEntity<Store> addToRecentlyViewed(@PathVariable int memberId, @PathVariable int productId) {
+		RecentlyViewed r = new RecentlyViewed(memberId, productId);
+		recentlyViewed.addRecentlyViewed(r);
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/addCart/{memberId}/{productId}")
+	public ResponseEntity<Cart> addToCart(@PathVariable int memberId, @PathVariable int productId) {
+		Cart c = new Cart(memberId, productId, 1);
+		cart.addOrUpdateCartItem(c);
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
+
 	@GetMapping(value = "/purchase{memberId}")
 	public ResponseEntity<Users> addingUser(@PathVariable int memberId) {
 		List<Cart> currentCart = cart.getAllCartItemsById(memberId);
 		List<Purchased> toBuy = new ArrayList<>();
-		for (int x=0; x<currentCart.size(); x++) {
-			toBuy.add(new Purchased(currentCart.get(x).getMemberId(), 
-					currentCart.get(x).getProductId(), 
+		for (int x = 0; x < currentCart.size(); x++) {
+			toBuy.add(new Purchased(currentCart.get(x).getMemberId(), currentCart.get(x).getProductId(),
 					currentCart.get(x).getQuantity()));
 			purchased.addOrUpdatePurchasedItem(toBuy.get(x));
 			cart.deleteCartItem(currentCart.get(x));
